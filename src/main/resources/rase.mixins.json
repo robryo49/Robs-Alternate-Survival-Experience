@@ -4,11 +4,12 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AnvilScreenHandlerMixin",
-    "BlockStateMixin",
-    "BlockTransformMixin",
+    "NoInstaBreakMixin",
+    "BlockChippingMixin",
     "CampfireBlockEntityMixin",
     "CampfireBlockMixin",
     "FallingBlockEntityMixin",
+    "FoodPoisonMixin",
     "ItemStackMixin",
     "PlayerEntityMixin",
     "RecipeRemoverMixin",
@@ -23,6 +24,6 @@
   },
   "client": [
     "AnvilScreenMixin",
-    "ClientInteractionMixin"
+    "NoChippedBlockBreakingMixin"
   ]
 }

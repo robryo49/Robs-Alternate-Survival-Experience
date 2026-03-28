@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:bricks"
+    },
+    "-": {
+      "item": "minecraft:brick"
+    },
+    "o": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "o-o",
+    "- -",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:basic_forge"
+  }
+}

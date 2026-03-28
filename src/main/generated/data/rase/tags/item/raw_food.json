@@ -1,0 +1,28 @@
+{
+  "values": [
+    "rase:raw_horse",
+    "rase:raw_camel",
+    "rase:raw_llama",
+    "rase:raw_dolphin",
+    "rase:raw_wolf",
+    "rase:raw_goat",
+    "rase:raw_fox",
+    "rase:raw_cat",
+    "rase:raw_bat",
+    "rase:raw_frog",
+    "rase:raw_parrot",
+    "rase:raw_axolotl",
+    "rase:raw_squid",
+    "rase:raw_strider",
+    "rase:raw_turtle",
+    "rase:raw_polar_bear",
+    "rase:raw_sniffer",
+    "minecraft:beef",
+    "minecraft:chicken",
+    "minecraft:cod",
+    "minecraft:mutton",
+    "minecraft:rabbit",
+    "minecraft:porkchop",
+    "minecraft:salmon"
+  ]
+}

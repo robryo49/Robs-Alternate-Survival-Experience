@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "rase:block/basket"
+    },
+    "open=true": {
+      "model": "rase:block/basket_open"
+    }
+  }
+}

@@ -49,6 +49,12 @@ public class ModItemTags {
 	public static final TagKey<Item> MOLDS = createTagWithParent("ingots_molds",
 			List.of(INGOT_MOLDS, PICKAXE_HEAD_MOLDS, AXE_HEAD_MOLDS, SWORD_BLADE_MOLDS, SHOVEL_HEAD_MOLDS, HOE_HEAD_MOLDS)
 	);
+	public static final TagKey<Item> RAW_FOOD = createTag("raw_food", List.of(
+			Items.BEEF, Items.CHICKEN, Items.COD, Items.MUTTON, Items.RABBIT, Items.PORKCHOP, Items.SALMON
+	));
+	public static final TagKey<Item> COOKED_FOOD = createTag("cooked_food", List.of(
+			Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.COOKED_COD, Items.COOKED_MUTTON, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_SALMON
+	));
 	
 	// --- Core Registration Logic ---
 	

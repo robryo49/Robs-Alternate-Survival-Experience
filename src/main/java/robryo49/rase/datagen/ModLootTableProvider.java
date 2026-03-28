@@ -94,7 +94,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 	
 	public void generateMaterialBlockDrops() {
 		addDrop(ModItems.TIN, ModBlocks.TIN);
-		addDrop(ModItems.ZINC, ModBlocks.ZINC);
 		addDrop(ModItems.MAGNETITE, ModBlocks.MAGNETITE);
 		addDrop(ModItems.BRONZE, ModBlocks.BRONZE);
 		addDrop(ModItems.SILVER, ModBlocks.SILVER);
@@ -115,10 +114,27 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 		addDrop(ModBlocks.TITANIUM_ANVIL);
 		addDrop(ModBlocks.TUNGSTEN_ANVIL);
 	}
-	public void generateBlockDrops() {
+	
+	public void generateForgesDrops() {
 		addDrop(List.of(
 				ModBlocks.PRIMITIVE_FORGE,
-				ModBlocks.ADVANCED_FORGE
+				ModBlocks.PRIMITIVE_FORGE_CORE,
+				ModBlocks.BASIC_FORGE,
+				ModBlocks.BASIC_FORGE_CORE,
+				ModBlocks.REFINED_FORGE,
+				ModBlocks.REFINED_FORGE_CORE,
+				ModBlocks.ADVANCED_FORGE,
+				ModBlocks.ADVANCED_FORGE_CORE,
+				ModBlocks.ETHEREAL_FORGE,
+				ModBlocks.ETHEREAL_FORGE_CORE
+		));
+	}
+	
+	public void generateBlockDrops() {
+		addDrop(List.of(
+				ModBlocks.DRYING_RACK,
+				ModBlocks.OBSIDIAN_BRICKS,
+				ModBlocks.CRYING_OBSIDIAN_BRICKS
 		));
 	}
 	
@@ -127,6 +143,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 	public void generate() {
 		generateMaterialBlockDrops();
 		generateAnvilDrops();
+		generateForgesDrops();
 		generateBlockDrops();
 	}
 }

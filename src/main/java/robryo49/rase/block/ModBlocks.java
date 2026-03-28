@@ -1,8 +1,7 @@
 package robryo49.rase.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.data.client.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -34,30 +33,19 @@ public class ModBlocks {
 	
 	// --- Block Registrations ---
 	
-	public static final Block BASKET = registerBlock("basket",
-			new BasketBlock(AbstractBlock.Settings.create()
-					.strength(2.5f, 3.0f)
-					.sounds(BlockSoundGroup.BIG_DRIPLEAF)),
-			List.of(), Models.BASKET);
+	public static final Block BASKET = registerBlock("basket", new BasketBlock(AbstractBlock.Settings.create().strength(2.5f, 3.0f).sounds(BlockSoundGroup.BIG_DRIPLEAF)), List.of(), Models.BASKET);
+	public static final Block DRYING_RACK = registerBlock("drying_rack", new DryingRackBlock(AbstractBlock.Settings.create().strength(1.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), List.of(), Models.SCAFFOLDING);
 	
-	public static final Block DRYING_RACK = registerBlock("drying_rack",
-			new DryingRackBlock(AbstractBlock.Settings.create().strength(1.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()),
-			List.of(), Models.SCAFFOLDING);
-	
-	public static final Block CRACKED_STONE = registerBlock("cracked_stone", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_STONE = registerBlock("cracked_stone", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	public static final Block CRACKED_DEEPSLATE = registerBlock("cracked_deepslate", 2.5f, 6.0f, BlockSoundGroup.DEEPSLATE);
-	public static final Block CRACKED_GRANITE = registerBlock("cracked_granite", 2.5f, 6.0f, BlockSoundGroup.STONE);
-	public static final Block CRACKED_ANDESITE = registerBlock("cracked_andesite", 2.5f, 6.0f, BlockSoundGroup.STONE);
-	public static final Block CRACKED_DIORITE = registerBlock("cracked_diorite", 2.5f, 6.0f, BlockSoundGroup.STONE);
-	public static final Block CRACKED_TUFF = registerBlock("cracked_tuff", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_GRANITE = registerBlock("cracked_granite", 1.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_ANDESITE = registerBlock("cracked_andesite", 1.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_DIORITE = registerBlock("cracked_diorite", 1.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_TUFF = registerBlock("cracked_tuff", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	
 	
-	public static final Block OBSIDIAN_BRICKS = registerBlock("obsidian_bricks",
-			new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F)),
-			List.of(), Models.CUBE_ALL);
-	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks",
-			new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)),
-			List.of(), Models.CUBE_ALL);
+	public static final Block OBSIDIAN_BRICKS = registerBlock("obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F)), List.of(ModBlockTags.ETHEREAL_FORGE_SHELL), Models.CUBE_ALL);
+	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)), List.of(), Models.CUBE_ALL);
 	
 	
 	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
@@ -66,14 +54,13 @@ public class ModBlocks {
 	public static final Block ADVANCED_FORGE = registerForgeWithBottom("advanced_forge", ForgeTiers.ADVANCED, 15.0f, 100.0f);
 	public static final Block ETHEREAL_FORGE = registerForgeWithBottom("ethereal_forge", ForgeTiers.ETHEREAL, 20.0f, 1200.0f);
 	
-	public static final Block PRIMITIVE_FORGE_CORE = registerBlock("primitive_forge_core", 3.5f, 10.0f, BlockSoundGroup.STONE);
-	public static final Block BASIC_FORGE_CORE = registerBlock("basic_forge_core", 7.0f, 50.0f, BlockSoundGroup.STONE);
-	public static final Block REFINED_FORGE_CORE = registerBlock("refined_forge_core", 10.0f, 80.0f, BlockSoundGroup.STONE);
-	public static final Block ADVANCED_FORGE_CORE = registerBlock("advanced_forge_core", 15.0f, 100.0f, BlockSoundGroup.STONE);
-	public static final Block ETHEREAL_FORGE_CORE = registerBlock("ethereal_forge_core", 20.0f, 1200.0f, BlockSoundGroup.STONE);
+	public static final Block PRIMITIVE_FORGE_CORE = registerBlock("primitive_forge_core", 3.5f, 10.0f, BlockSoundGroup.STONE, ModBlockTags.PRIMITIVE_FORGE_CORE);
+	public static final Block BASIC_FORGE_CORE = registerBlock("basic_forge_core", 7.0f, 50.0f, BlockSoundGroup.STONE, ModBlockTags.BASIC_FORGE_CORE);
+	public static final Block REFINED_FORGE_CORE = registerBlock("refined_forge_core", 10.0f, 80.0f, BlockSoundGroup.STONE,  ModBlockTags.REFINED_FORGE_CORE);
+	public static final Block ADVANCED_FORGE_CORE = registerBlock("advanced_forge_core", 15.0f, 100.0f, BlockSoundGroup.STONE,  ModBlockTags.ADVANCED_FORGE_CORE);
+	public static final Block ETHEREAL_FORGE_CORE = registerBlock("ethereal_forge_core", 20.0f, 1200.0f, BlockSoundGroup.STONE,   ModBlockTags.ETHEREAL_FORGE_CORE);
 	
 	public static final OreBlockSet TIN = registerOreBlockSet(ModMaterials.TIN, 3.0f, 3.0f);
-	public static final OreBlockSet ZINC = registerOreBlockSet(ModMaterials.ZINC, 3.0f, 3.0f);
 	public static final OreBlockSet MAGNETITE = registerOreBlockSet(ModMaterials.MAGNETITE, 4.0f, 6.0f);
 	
 	public static final AlloyBlockSet BRONZE = registerAlloyBlockSet(ModMaterials.BRONZE, 6.0f, 15.0f);
@@ -166,6 +153,10 @@ public class ModBlocks {
 	
 	public static Block registerBlock(String name, float strength, float resistance, BlockSoundGroup sound, List<TagKey<Block>> tags) {
 		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound).requiresTool()), tags, Models.CUBE_ALL);
+	}
+	
+	public static Block registerBlock(String name, float strength, float resistance, BlockSoundGroup sound, TagKey<Block> tag) {
+		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound).requiresTool()), List.of(tag), Models.CUBE_ALL);
 	}
 	
 	public static Block registerBlock(String name, Block block, List<TagKey<Block>> tags, Models model) {

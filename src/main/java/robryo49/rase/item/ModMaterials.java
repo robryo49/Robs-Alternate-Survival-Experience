@@ -15,7 +15,6 @@ public enum ModMaterials {
 	COPPER(1, "copper",         () -> Items.COPPER_INGOT, () -> Blocks.COPPER_BLOCK),
 	TIN(1, "tin",               () -> ModItems.TIN.INGOT(), () -> ModBlocks.TIN.BLOCK()),
 	BRONZE(1, "bronze",         () -> ModItems.BRONZE.INGOT(), () -> ModBlocks.BRONZE.BLOCK()),
-	ZINC(1, "zinc",             () -> ModItems.ZINC.INGOT(), () -> ModBlocks.ZINC.BLOCK()),
 	MAGNETITE(1, "magnetite",   () -> ModItems.MAGNETITE.INGOT(), () -> ModBlocks.MAGNETITE.BLOCK()),
 	LEAD(1, "lead",             () -> ModItems.LEAD.INGOT(), () -> ModBlocks.LEAD.BLOCK()),
 	

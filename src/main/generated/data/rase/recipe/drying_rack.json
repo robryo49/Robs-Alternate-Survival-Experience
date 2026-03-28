@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "s": {
+      "item": "rase:string_mesh"
+    }
+  },
+  "pattern": [
+    "#s#",
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:drying_rack"
+  }
+}

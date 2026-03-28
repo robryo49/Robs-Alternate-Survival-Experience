@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rase:block/advanced_forge_core"
+    }
+  }
+}

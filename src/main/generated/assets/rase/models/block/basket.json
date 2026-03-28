@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rase:block/basket_bottom",
+    "side": "rase:block/basket_side",
+    "top": "rase:block/basket_top"
+  }
+}

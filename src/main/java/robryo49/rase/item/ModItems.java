@@ -93,7 +93,6 @@ public class ModItems {
 	// --- Material Sets ---
 	
 	public static final OreMaterialSet TIN = registerOreMaterialSet(ModMaterials.TIN);
-	public static final OreMaterialSet ZINC = registerOreMaterialSet(ModMaterials.ZINC);
 	public static final OreMaterialSet MAGNETITE = registerOreMaterialSet(ModMaterials.MAGNETITE);
 	public static final AlloyMaterialSet BRONZE = registerAlloyMaterialSet(ModMaterials.BRONZE);
 	public static final OreMaterialSet SILVER = registerOreMaterialSet(ModMaterials.SILVER);
@@ -207,7 +206,7 @@ public class ModItems {
 		Item registeredItem = Registry.register(Registries.ITEM, Rase.getIdentifier(name), item);
 		ALL.add(registeredItem);
 		MODELS.computeIfAbsent(model, k -> new ArrayList<>()).add(registeredItem);
-		tags.forEach(tag -> TAGS.computeIfAbsent(tag, k -> new ArrayList<>()).add(registeredItem));
+		addToTag(tags, registeredItem);
 		return registeredItem;
 	}
 	
@@ -261,12 +260,14 @@ public class ModItems {
 	}
 	
 	public static ToolSet registerToolSet(String materialName, int tier, ToolMaterial material, boolean isPrimitive) {
-		return new ToolSet(materialName, tier,
+		ToolSet toolSet = new ToolSet(materialName, tier,
 				registerSwordItem(materialName + "_sword", material, isPrimitive), registerItem(materialName + "_sword_blade", ModItemTags.SWORD_BLADES),
 				registerAxeItem(materialName + "_axe", material, isPrimitive), registerItem(materialName + "_axe_head", ModItemTags.AXE_HEADS),
 				registerPickaxeItem(materialName + "_pickaxe", material, isPrimitive), registerItem(materialName + "_pickaxe_head", ModItemTags.PICKAXE_HEADS),
 				registerShovelItem(materialName + "_shovel", material, isPrimitive), registerItem(materialName + "_shovel_head", ModItemTags.SHOVEL_HEADS),
 				registerHoeItem(materialName + "_hoe", material, isPrimitive), registerItem(materialName + "_hoe_head", ModItemTags.HOE_HEADS));
+		if (isPrimitive) addToTag(ModItemTags.PRIMITIVE_TOOLS, List.of(toolSet.SWORD, toolSet.AXE, toolSet.PICKAXE, toolSet.SHOVEL, toolSet.HOE));
+		return toolSet;
 	}
 	
 	
@@ -275,31 +276,31 @@ public class ModItems {
 	
 	public static SwordItem registerSwordItem(String name, ToolMaterial material, boolean isPrimitive) {
 		SwordItem item = (SwordItem) registerItem(name, new SwordItem(material, new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(material, 3, -2.4f))), List.of(ItemTags.SWORDS), Models.HANDHELD);
-		if (isPrimitive) TAGS.computeIfAbsent(ModItemTags.PRIMITIVE_TOOLS, k -> new ArrayList<>()).add(item);
+		if (isPrimitive) addToTag(ModItemTags.PRIMITIVE_TOOLS, item);
 		return item;
 	}
 	
 	public static PickaxeItem registerPickaxeItem(String name, ToolMaterial material, boolean isPrimitive) {
 		PickaxeItem item = (PickaxeItem) registerItem(name, new PickaxeItem(material, new Item.Settings().attributeModifiers(PickaxeItem.createAttributeModifiers(material, 1, -2.8f))), List.of(ItemTags.PICKAXES), Models.HANDHELD);
-		if (isPrimitive) TAGS.computeIfAbsent(ModItemTags.PRIMITIVE_TOOLS, k -> new ArrayList<>()).add(item);
+		if (isPrimitive) addToTag(ModItemTags.PRIMITIVE_TOOLS, item);
 		return item;
 	}
 	
 	public static AxeItem registerAxeItem(String name, ToolMaterial material, boolean isPrimitive) {
 		AxeItem item = (AxeItem) registerItem(name, new AxeItem(material, new Item.Settings().attributeModifiers(AxeItem.createAttributeModifiers(material, 5, -3.0f))), List.of(ItemTags.AXES), Models.HANDHELD);
-		if (isPrimitive) TAGS.computeIfAbsent(ModItemTags.PRIMITIVE_TOOLS, k -> new ArrayList<>()).add(item);
+		if (isPrimitive) addToTag(ModItemTags.PRIMITIVE_TOOLS, item);
 		return item;
 	}
 	
 	public static ShovelItem registerShovelItem(String name, ToolMaterial material, boolean isPrimitive) {
 		ShovelItem item = (ShovelItem) registerItem(name, new ShovelItem(material, new Item.Settings().attributeModifiers(ShovelItem.createAttributeModifiers(material, 1.5f, -3.0f))), List.of(ItemTags.SHOVELS), Models.HANDHELD);
-		if (isPrimitive) TAGS.computeIfAbsent(ModItemTags.PRIMITIVE_TOOLS, k -> new ArrayList<>()).add(item);
+		if (isPrimitive) addToTag(ModItemTags.PRIMITIVE_TOOLS, item);
 		return item;
 	}
 	
 	public static HoeItem registerHoeItem(String name, ToolMaterial material, boolean isPrimitive) {
 		HoeItem item = (HoeItem) registerItem(name, new HoeItem(material, new Item.Settings().attributeModifiers(HoeItem.createAttributeModifiers(material, -3.0f, 0f))), List.of(ItemTags.HOES), Models.HANDHELD);
-		if (isPrimitive) TAGS.computeIfAbsent(ModItemTags.PRIMITIVE_TOOLS, k -> new ArrayList<>()).add(item);
+		if (isPrimitive) addToTag(ModItemTags.PRIMITIVE_TOOLS, item);
 		return item;
 	}
 	
@@ -320,16 +321,21 @@ public class ModItems {
 	public static MeatSet registerMeatSet(EntityType<?> entity, int nutritionRaw, int nutritionCooked, float saturationMultiplier, boolean isSnack) {
 		String name = entity.getUntranslatedName();
 		MeatSet set = new MeatSet(entity,
-				registerFoodItem("raw_" + name, nutritionRaw, saturationMultiplier * 0.5f, false),
-				registerFoodItem("cooked_" + name, nutritionCooked, saturationMultiplier, false));
+				registerFoodItem("raw_" + name, nutritionRaw, saturationMultiplier * 0.5f, false, true),
+				registerFoodItem("cooked_" + name, nutritionCooked, saturationMultiplier, false, false));
 		MEAT_SETS.add(set);
+		
+		
+		
 		return set;
 	}
 	
-	public static Item registerFoodItem(String name, int nutrition, float saturation, boolean isSnack) {
+	public static Item registerFoodItem(String name, int nutrition, float saturation, boolean isSnack, boolean isRaw) {
 		FoodComponent.Builder builder = new FoodComponent.Builder().nutrition(nutrition).saturationModifier(saturation);
 		if (isSnack) builder.snack();
-		return registerItem(name, new Item(new Item.Settings().food(builder.build())));
+		Item item = registerItem(name, new Item(new Item.Settings().food(builder.build())));
+		if (isRaw) addToTag(ModItemTags.RAW_FOOD, item);
+		return item;
 	}
 	
 	
@@ -379,6 +385,23 @@ public class ModItems {
 	public static Item registerBaseMoldItem(MoldMaterials moldMaterial) { return registerItem(moldMaterial.getName() + "_mold_base"); }
 	public static MoldItem registerMoldItem(String pattern, MoldMaterials material, TagKey<Item> accepted, TagKey<Item> tag) {
 		return (MoldItem) registerItem(material.getName() + "_" + pattern + "_mold", new MoldItem(new Item.Settings(), material, accepted, pattern), tag);
+	}
+	
+	public static void addToTag(TagKey<Item> itemTagKey, Item item) {
+		TAGS.computeIfAbsent(itemTagKey, k -> new ArrayList<>()).add(item);
+	}
+	
+	public static void addToTag(List<TagKey<Item>> itemTagKeys, Item item) {
+		itemTagKeys.forEach(itemTagKey ->  TAGS.computeIfAbsent(itemTagKey, k -> new ArrayList<>()).add(item));
+	}
+	
+	
+	public static void addToTag(TagKey<Item> itemTagKey, List<Item> items) {
+		items.forEach(item ->  addToTag(itemTagKey, item));
+	}
+	
+	public static void addToTag(List<TagKey<Item>> itemTagKeys, List<Item> items) {
+		items.forEach(item ->  addToTag(itemTagKeys, item));
 	}
 	
 	

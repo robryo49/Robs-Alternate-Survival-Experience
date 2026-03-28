@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rase:block/primitive_forge_core"
+    }
+  }
+}

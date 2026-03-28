@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rase:dry_cane"
+    },
+    {
+      "item": "rase:dry_cane"
+    },
+    {
+      "item": "rase:dry_cane"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:dry_cane_bundle"
+  }
+}

@@ -123,6 +123,7 @@ public class RaseEmiPlugin implements EmiPlugin {
 		
 		
 		registry.addRecipe(new ItemUseEmiRecipe(ModItems.KNITTING_KIT, Rase.getIdentifier("/item_use/string_mesh")));
+		registry.addRecipe(new ItemUseEmiRecipe(ModItems.DRY_CANE_BUNDLE, Rase.getIdentifier("/item_use/wicker_mesh")));
 		
 		Map.of(
 				BlockTags.OAK_LOGS, Blocks.OAK_PLANKS,

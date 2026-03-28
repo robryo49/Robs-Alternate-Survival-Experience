@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/scaffolding_stable",
+  "textures": {
+    "bottom": "rase:block/drying_rack_bottom",
+    "particle": "rase:block/drying_rack_top",
+    "side": "rase:block/drying_rack_side",
+    "top": "rase:block/drying_rack_top"
+  }
+}

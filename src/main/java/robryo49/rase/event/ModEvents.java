@@ -27,6 +27,7 @@ import net.minecraft.util.math.Direction;
 import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
 import robryo49.rase.item.ModItems;
+import robryo49.rase.util.ModBlockTags;
 import robryo49.rase.util.ModItemTags;
 
 public class ModEvents {
@@ -154,12 +155,8 @@ public class ModEvents {
 	}
 	
 	public static Block getReplacingBlock(Block block) {
-		String name = block.getTranslationKey();
-		
-		if (block == Blocks.DEEPSLATE || block == ModBlocks.CRACKED_DEEPSLATE ||
-				(block.getTranslationKey().contains("deepslate_") && block.getTranslationKey().contains("_ore"))) return ModBlocks.CRACKED_DEEPSLATE;
-		
-		if (block == Blocks.STONE || block == ModBlocks.CRACKED_STONE || block.getTranslationKey().contains("_ore")) return ModBlocks.CRACKED_STONE;
+		if (block == Blocks.DEEPSLATE || block == ModBlocks.CRACKED_DEEPSLATE || block.getDefaultState().isIn(ModBlockTags.DEEPSLATE_ORES)) return ModBlocks.CRACKED_DEEPSLATE;
+		if (block == Blocks.STONE || block == ModBlocks.CRACKED_STONE || block.getDefaultState().isIn(ModBlockTags.STONE_ORES)) return ModBlocks.CRACKED_STONE;
 		if (block == Blocks.GRANITE || block == ModBlocks.CRACKED_GRANITE) return ModBlocks.CRACKED_GRANITE;
 		if (block == Blocks.ANDESITE || block == ModBlocks.CRACKED_ANDESITE) return ModBlocks.CRACKED_ANDESITE;
 		if (block == Blocks.DIORITE || block == ModBlocks.CRACKED_DIORITE) return ModBlocks.CRACKED_DIORITE;

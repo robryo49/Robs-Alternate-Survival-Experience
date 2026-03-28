@@ -49,20 +49,20 @@ public class ModBlockTags {
 	public static final TagKey<Block> FORGES = createTag("forges");
 	public static final TagKey<Block> ANVILS = createTag("anvils");
 	
-	public static final TagKey<Block> PRIMITIVE_FORGE_CORE = createTag("primitive_forge_core", List.of(ModBlocks.PRIMITIVE_FORGE_CORE));
+	public static final TagKey<Block> PRIMITIVE_FORGE_CORE = createTag("primitive_forge_core");
 	public static final TagKey<Block> PRIMITIVE_FORGE_SHELL = createTag("primitive_forge_shell", List.of(Blocks.COBBLESTONE));
 	
-	public static final TagKey<Block> BASIC_FORGE_CORE = createTag("basic_forge_core", List.of(ModBlocks.BASIC_FORGE_CORE));
+	public static final TagKey<Block> BASIC_FORGE_CORE = createTag("basic_forge_core");
 	public static final TagKey<Block> BASIC_FORGE_SHELL = createTag("basic_forge_shell", List.of(Blocks.BRICKS));
 	
-	public static final TagKey<Block> REFINED_FORGE_CORE = createTag("refined_forge_core", List.of(ModBlocks.REFINED_FORGE_CORE));
+	public static final TagKey<Block> REFINED_FORGE_CORE = createTag("refined_forge_core");
 	public static final TagKey<Block> REFINED_FORGE_SHELL = createTag("refined_forge_shell", List.of(Blocks.STONE_BRICKS));
 	
-	public static final TagKey<Block> ADVANCED_FORGE_CORE = createTag("advanced_forge_core", List.of(ModBlocks.ADVANCED_FORGE_CORE));
+	public static final TagKey<Block> ADVANCED_FORGE_CORE = createTag("advanced_forge_core");
 	public static final TagKey<Block> ADVANCED_FORGE_SHELL = createTag("advanced_forge_shell", List.of(Blocks.NETHER_BRICKS));
 	
-	public static final TagKey<Block> ETHEREAL_FORGE_CORE = createTag("ethereal_forge_core", List.of(ModBlocks.ETHEREAL_FORGE_CORE));
-	public static final TagKey<Block> ETHEREAL_FORGE_SHELL = createTag("ethereal_forge_shell", List.of(ModBlocks.OBSIDIAN_BRICKS));
+	public static final TagKey<Block> ETHEREAL_FORGE_CORE = createTag("ethereal_forge_core");
+	public static final TagKey<Block> ETHEREAL_FORGE_SHELL = createTag("ethereal_forge_shell");
 	
 	
 	public static final TagKey<Block> STONE_ORES = createTag("stone_ores", List.of(
@@ -141,8 +141,46 @@ public class ModBlockTags {
 	public static void registerBlockTags() {
 		Rase.LOGGER.info("Registering Block Tags for " + Rase.MOD_ID);
 		
-		TAGS.put(BlockTags.SWORD_EFFICIENT, List.of(Blocks.TALL_GRASS, Blocks.SHORT_GRASS, Blocks.SUGAR_CANE));
+		addToTag(BlockTags.SWORD_EFFICIENT, List.of(Blocks.TALL_GRASS, Blocks.SHORT_GRASS, Blocks.SUGAR_CANE));
 		
+		addToTag(NEEDS_TIER_0_TOOLS, List.of(
+				Blocks.COAL_ORE,
+				Blocks.COAL_BLOCK,
+				Blocks.COAL_ORE
+		));
+		
+		addToTag(NEEDS_TIER_1_TOOLS, List.of(
+				Blocks.DEEPSLATE,
+				Blocks.DEEPSLATE_BRICK_SLAB,
+				Blocks.DEEPSLATE_BRICK_STAIRS,
+				Blocks.DEEPSLATE_BRICK_WALL,
+				Blocks.DEEPSLATE_BRICKS,
+				Blocks.DEEPSLATE_TILE_SLAB,
+				Blocks.DEEPSLATE_TILE_STAIRS,
+				Blocks.DEEPSLATE_TILE_WALL,
+				Blocks.DEEPSLATE_TILES,
+				Blocks.COBBLED_DEEPSLATE_SLAB,
+				Blocks.COBBLED_DEEPSLATE_STAIRS,
+				Blocks.COBBLED_DEEPSLATE_WALL,
+				Blocks.CRACKED_DEEPSLATE_BRICKS,
+				Blocks.CRACKED_DEEPSLATE_TILES,
+				Blocks.POLISHED_DEEPSLATE_SLAB,
+				Blocks.POLISHED_DEEPSLATE_WALL,
+				Blocks.POLISHED_DEEPSLATE,
+				Blocks.CHISELED_DEEPSLATE,
+				Blocks.COBBLED_DEEPSLATE,
+				Blocks.INFESTED_DEEPSLATE,
+				Blocks.REINFORCED_DEEPSLATE,
+				
+				Blocks.DEEPSLATE_COAL_ORE,
+				Blocks.DEEPSLATE_COPPER_ORE,
+				Blocks.DEEPSLATE_DIAMOND_ORE,
+				Blocks.DEEPSLATE_EMERALD_ORE,
+				Blocks.DEEPSLATE_GOLD_ORE,
+				Blocks.DEEPSLATE_IRON_ORE,
+				Blocks.DEEPSLATE_LAPIS_ORE,
+				Blocks.DEEPSLATE_REDSTONE_ORE
+		));
 		
 		addMaterialBlocksToTag(ModMaterials.NETHERITE, List.of(
 				Blocks.ANCIENT_DEBRIS,

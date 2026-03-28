@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:cobblestone"
+    },
+    "-": {
+      "item": "rase:stone_pebbles"
+    },
+    "o": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "o-o",
+    "- -",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:primitive_forge"
+  }
+}

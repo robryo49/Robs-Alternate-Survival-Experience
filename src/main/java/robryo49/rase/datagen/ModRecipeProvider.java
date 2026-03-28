@@ -448,7 +448,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	private void generateMaterialRecipes(RecipeExporter exporter) {
 		
 		offerMaterialSetRecipes(exporter, ModItems.TIN, ModBlocks.TIN);
-		offerMaterialSetRecipes(exporter, ModItems.ZINC, ModBlocks.ZINC);
 		offerMaterialSetRecipes(exporter, ModItems.MAGNETITE, ModBlocks.MAGNETITE);
 		
 		offerMaterialSetRecipes(exporter,
@@ -509,16 +508,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 				Map.of('#', Ingredient.ofItems(Items.BRICKS), '-', Ingredient.ofItems(Items.BRICK), 'o', Ingredient.ofItems(Items.CLAY_BALL)),
 				List.of("o-o", "- -", "###"), Items.BRICK);
 		
-		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BASIC_FORGE, 1,
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.REFINED_FORGE, 1,
 				Map.of('#', Ingredient.ofItems(Items.SMOOTH_STONE), '-', Ingredient.ofItems(Items.STONE), 'i', Ingredient.ofItems(Items.IRON_INGOT)),
 				List.of("---", "i -", "###"), Items.STONE);
 		
-		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.REFINED_FORGE, 1,
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ADVANCED_FORGE, 1,
 				Map.of('#', Ingredient.ofItems(ModBlocks.STEEL.BLOCK()), '-', Ingredient.ofItems(Items.NETHER_BRICKS),
 						'i', Ingredient.ofItems(ModItems.STEEL.INGOT())),
 				List.of("---", "i -", "###"), Items.NETHER_BRICK);
 		
-		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ADVANCED_FORGE, 1,
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ETHEREAL_FORGE, 1,
 				Map.of('#', Ingredient.ofItems(ModBlocks.STEEL.BLOCK()), '-', Ingredient.ofItems(ModBlocks.OBSIDIAN_BRICKS),
 						'i', Ingredient.ofItems(ModItems.STEEL.INGOT())),
 				List.of("---", "i -", "###"), Items.OBSIDIAN);
@@ -543,6 +542,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 				Map.of('#', Ingredient.ofItems(Items.OBSIDIAN)), List.of("##", "##"), Items.OBSIDIAN);
 		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYING_OBSIDIAN_BRICKS, 4,
 				Map.of('#', Ingredient.ofItems(Items.CRYING_OBSIDIAN)), List.of("##", "##"), Items.CRYING_OBSIDIAN);
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.DRYING_RACK, 1, Map.of(
+				'#', Ingredient.ofItems(Items.STICK), 's', Ingredient.ofItems(ModItems.STRING_MESH)), List.of("#s#", "# #", "# #"), Items.STRING);
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BASKET, 1, Map.of(
+				'#', Ingredient.ofItems(ModItems.WICKER_MESH)), List.of(" # ", "# #", " # "), Items.SUGAR_CANE);
 		
 		generateForgeRecipes(exporter);
 		generateToolRecipes(exporter);
@@ -591,6 +595,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	
 	@Override
 	public void generate(RecipeExporter exporter) {
+		replaceVanillaRecipes(exporter);
+		
 		generateVanillaMaterialRecipes(exporter);
 		generateMaterialRecipes(exporter);
 		
