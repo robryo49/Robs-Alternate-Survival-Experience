@@ -2,12 +2,11 @@ package robryo49.rase.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
+import robryo49.rase.block.ModBlocks;
 import robryo49.rase.item.ModMaterials;
 
 import java.util.ArrayList;
@@ -50,20 +49,20 @@ public class ModBlockTags {
 	public static final TagKey<Block> FORGES = createTag("forges");
 	public static final TagKey<Block> ANVILS = createTag("anvils");
 	
-	public static final TagKey<Block> PRIMITIVE_FORGE_CORE = createTag("primitive_forge_core");
+	public static final TagKey<Block> PRIMITIVE_FORGE_CORE = createTag("primitive_forge_core", List.of(ModBlocks.PRIMITIVE_FORGE_CORE));
 	public static final TagKey<Block> PRIMITIVE_FORGE_SHELL = createTag("primitive_forge_shell", List.of(Blocks.COBBLESTONE));
 	
-	public static final TagKey<Block> BASIC_FORGE_CORE = createTag("basic_forge_core");
+	public static final TagKey<Block> BASIC_FORGE_CORE = createTag("basic_forge_core", List.of(ModBlocks.BASIC_FORGE_CORE));
 	public static final TagKey<Block> BASIC_FORGE_SHELL = createTag("basic_forge_shell", List.of(Blocks.BRICKS));
 	
-	public static final TagKey<Block> REFINED_FORGE_CORE = createTag("refined_forge_core");
+	public static final TagKey<Block> REFINED_FORGE_CORE = createTag("refined_forge_core", List.of(ModBlocks.REFINED_FORGE_CORE));
 	public static final TagKey<Block> REFINED_FORGE_SHELL = createTag("refined_forge_shell", List.of(Blocks.STONE_BRICKS));
 	
-	public static final TagKey<Block> ADVANCED_FORGE_CORE = createTag("advanced_forge_core");
-	public static final TagKey<Block> ADVANCED_FORGE_SHELL = createTag("advanced_forge_shell", List.of(Blocks.POLISHED_BLACKSTONE_BRICKS));
+	public static final TagKey<Block> ADVANCED_FORGE_CORE = createTag("advanced_forge_core", List.of(ModBlocks.ADVANCED_FORGE_CORE));
+	public static final TagKey<Block> ADVANCED_FORGE_SHELL = createTag("advanced_forge_shell", List.of(Blocks.NETHER_BRICKS));
 	
-	public static final TagKey<Block> ETHEREAL_FORGE_CORE = createTag("ethereal_forge_core");
-	public static final TagKey<Block> ETHEREAL_FORGE_SHELL = createTag("ethereal_forge_shell", List.of(Blocks.OBSIDIAN));
+	public static final TagKey<Block> ETHEREAL_FORGE_CORE = createTag("ethereal_forge_core", List.of(ModBlocks.ETHEREAL_FORGE_CORE));
+	public static final TagKey<Block> ETHEREAL_FORGE_SHELL = createTag("ethereal_forge_shell", List.of(ModBlocks.OBSIDIAN_BRICKS));
 	
 	
 	public static final TagKey<Block> STONE_ORES = createTag("stone_ores", List.of(
@@ -76,9 +75,6 @@ public class ModBlockTags {
 	public static final TagKey<Block> NETHER_ORES = createTag("nether_ores", List.of(
 			Blocks.NETHER_GOLD_ORE, Blocks.NETHER_QUARTZ_ORE
 	));
-	
-	public static final TagKey<Block> ORES = createTagWithParents("ores", List.of(STONE_ORES, DEEPSLATE_ORES, NETHER_ORES));
-	
 	
 	
 	public static TagKey<Block> getIncorrectForTier(int tier) {

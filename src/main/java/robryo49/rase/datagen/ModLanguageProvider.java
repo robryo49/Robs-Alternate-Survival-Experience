@@ -74,6 +74,9 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 	public void generateRecipeCategoriesTranslations(TranslationBuilder translationBuilder) {
 		generateTranslation(translationBuilder, "emi.category.rase.anvil_smithing");
 		generateTranslation(translationBuilder, "emi.category.rase.forge");
+		generateTranslation(translationBuilder, "emi.category.rase.forge_structure");
+		generateTranslation(translationBuilder, "emi.category.rase.drying");
+		generateTranslation(translationBuilder, "emi.category.rase.item_use");
 	}
 	
 	

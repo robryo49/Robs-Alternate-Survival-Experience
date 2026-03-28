@@ -11,7 +11,7 @@
       "item": "minecraft:iron_ingot"
     },
     {
-      "item": "minecraft:coal"
+      "item": "rase:coal_coke"
     }
   ],
   "mold_tag": "#rase:ingot_molds",

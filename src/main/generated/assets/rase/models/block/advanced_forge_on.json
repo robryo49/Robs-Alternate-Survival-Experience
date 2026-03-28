@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
+    "bottom": "rase:block/advanced_forge_bottom",
     "front": "rase:block/advanced_forge_front_on",
     "side": "rase:block/advanced_forge_side",
     "top": "rase:block/advanced_forge_top"

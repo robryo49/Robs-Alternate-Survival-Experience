@@ -4,7 +4,7 @@ import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.handler.EmiCraftContext;
 import dev.emi.emi.api.recipe.handler.StandardRecipeHandler;
 import net.minecraft.screen.slot.Slot;
-import robryo49.rase.compat.emi.ForgeEmiRecipe;
+import robryo49.rase.compat.emi.recipe.ForgeEmiRecipe;
 import robryo49.rase.compat.emi.RaseEmiPlugin;
 import robryo49.rase.screen.custom.ForgeScreenHandler;
 import robryo49.rase.block.entity.custom.ForgeBlockEntity;

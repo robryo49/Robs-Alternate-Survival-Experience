@@ -13,6 +13,8 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
+import robryo49.rase.block.custom.BasketBlock;
+import robryo49.rase.block.custom.DryingRackBlock;
 import robryo49.rase.block.custom.forge.*;
 import robryo49.rase.item.ModMaterials;
 import robryo49.rase.util.ModBlockTags;
@@ -23,23 +25,52 @@ import java.util.function.BiConsumer;
 public class ModBlocks {
 	
 	// --- Collections for DataGen and Registry ---
+	
+	
 	public static final List<Block> ALL = new ArrayList<>();
 	public static final Map<Models, List<Block>> MODELS = new EnumMap<>(Models.class);
 	public static final Map<TagKey<Block>, List<Block>> TAGS = new HashMap<>();
 	
-	// --- 1. Primitive & Utility Blocks ---
-	public static final Block CHIPPED_STONE = registerBlock("chipped_stone", 2.5f, 6.0f, BlockSoundGroup.STONE);
 	
-	// --- 2. Forges (Luminance + Resistance) ---
+	// --- Block Registrations ---
+	
+	public static final Block BASKET = registerBlock("basket",
+			new BasketBlock(AbstractBlock.Settings.create()
+					.strength(2.5f, 3.0f)
+					.sounds(BlockSoundGroup.BIG_DRIPLEAF)),
+			List.of(), Models.BASKET);
+	
+	public static final Block DRYING_RACK = registerBlock("drying_rack",
+			new DryingRackBlock(AbstractBlock.Settings.create().strength(1.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()),
+			List.of(), Models.SCAFFOLDING);
+	
+	public static final Block CRACKED_STONE = registerBlock("cracked_stone", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_DEEPSLATE = registerBlock("cracked_deepslate", 2.5f, 6.0f, BlockSoundGroup.DEEPSLATE);
+	public static final Block CRACKED_GRANITE = registerBlock("cracked_granite", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_ANDESITE = registerBlock("cracked_andesite", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_DIORITE = registerBlock("cracked_diorite", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	public static final Block CRACKED_TUFF = registerBlock("cracked_tuff", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	
+	
+	public static final Block OBSIDIAN_BRICKS = registerBlock("obsidian_bricks",
+			new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F)),
+			List.of(), Models.CUBE_ALL);
+	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks",
+			new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)),
+			List.of(), Models.CUBE_ALL);
+	
+	
 	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
 	public static final Block BASIC_FORGE = registerForge("basic_forge", ForgeTiers.BASIC, 7.0f, 50.0f);
-	public static final Block REFINED_FORGE = registerForge("refined_forge", ForgeTiers.REFINED, 10.0f, 80.0f);
-	public static final Block ADVANCED_FORGE = registerForge("advanced_forge", ForgeTiers.ADVANCED, 15.0f, 100.0f);
-	public static final Block ETHEREAL_FORGE = registerForge("ethereal_forge", ForgeTiers.ETHEREAL, 20.0f, 1200.0f);
+	public static final Block REFINED_FORGE = registerForgeWithBottom("refined_forge", ForgeTiers.REFINED, 10.0f, 80.0f);
+	public static final Block ADVANCED_FORGE = registerForgeWithBottom("advanced_forge", ForgeTiers.ADVANCED, 15.0f, 100.0f);
+	public static final Block ETHEREAL_FORGE = registerForgeWithBottom("ethereal_forge", ForgeTiers.ETHEREAL, 20.0f, 1200.0f);
 	
-	
-	
-	// --- 3. Material Sets (Hardness / Resistance / Tool Gating) ---
+	public static final Block PRIMITIVE_FORGE_CORE = registerBlock("primitive_forge_core", 3.5f, 10.0f, BlockSoundGroup.STONE);
+	public static final Block BASIC_FORGE_CORE = registerBlock("basic_forge_core", 7.0f, 50.0f, BlockSoundGroup.STONE);
+	public static final Block REFINED_FORGE_CORE = registerBlock("refined_forge_core", 10.0f, 80.0f, BlockSoundGroup.STONE);
+	public static final Block ADVANCED_FORGE_CORE = registerBlock("advanced_forge_core", 15.0f, 100.0f, BlockSoundGroup.STONE);
+	public static final Block ETHEREAL_FORGE_CORE = registerBlock("ethereal_forge_core", 20.0f, 1200.0f, BlockSoundGroup.STONE);
 	
 	public static final OreBlockSet TIN = registerOreBlockSet(ModMaterials.TIN, 3.0f, 3.0f);
 	public static final OreBlockSet ZINC = registerOreBlockSet(ModMaterials.ZINC, 3.0f, 3.0f);
@@ -61,7 +92,6 @@ public class ModBlocks {
 	public static final OreBlockSet MYTHRIL = registerOreBlockSet(ModMaterials.MYTHRIL, 30.0f, 1200.0f);
 	public static final NetherCrystalBlockSet RHEXIS = registerNetherCrystalBlockSet(ModMaterials.RHEXIS, 35.0f, 1200.0f);
 	
-	// --- 4. Anvils ---
 	public static final SmithingAnvilBlockSet STONE_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.STONE);
 	public static final SmithingAnvilBlockSet LEAD_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.LEAD);
 	public static final SmithingAnvilBlockSet TITANIUM_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.TITANIUM);
@@ -74,6 +104,12 @@ public class ModBlocks {
 						.strength(strength, resistance)
 						.luminance(state -> state.get(ForgeBlock.LIT) ? 13 : 0), tier),
 				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), Models.COOKER);
+	}
+	private static Block registerForgeWithBottom(String name, ForgeTiers tier, float strength, float resistance) {
+		return registerBlock(name, new ForgeBlock(AbstractBlock.Settings.create()
+						.strength(strength, resistance)
+						.luminance(state -> state.get(ForgeBlock.LIT) ? 13 : 0), tier),
+				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), Models.COOKER_WITH_BOTTOM);
 	}
 	
 	public static AlloyBlockSet registerAlloyBlockSet(ModMaterials material, float strength, float resistance) {
@@ -177,6 +213,7 @@ public class ModBlocks {
 		CUBE_ALL(BlockStateModelGenerator::registerSimpleCubeAll),
 		ORIENTABLE((generator, block) -> generator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE)),
 		COOKER((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE)),
+		COOKER_WITH_BOTTOM((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE_WITH_BOTTOM)),
 		ANVIL((generator, block) -> {
 			TextureKey BODY = TextureKey.of("body");
 			TextureKey TOP = TextureKey.of("top");
@@ -191,15 +228,69 @@ public class ModBlocks {
 			Identifier modelId = model.upload(block, textures, generator.modelCollector);
 			generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block, BlockStateVariant.create().put(VariantSettings.MODEL, modelId))
 					.coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates()));
-		});
+		}),
+		BASKET((generator, block) -> {
+			Identifier blockId = Registries.BLOCK.getId(block);
+			String ns = blockId.getNamespace();
+			String path = blockId.getPath();
+			
+			Identifier closedModel = Identifier.of(ns, "block/" + path);
+			Identifier openModel   = Identifier.of(ns, "block/" + path + "_open");
+			
+			generator.blockStateCollector.accept(
+					VariantsBlockStateSupplier.create(block)
+							.coordinate(BlockStateVariantMap.create(BasketBlock.OPEN)
+									.register(false, BlockStateVariant.create()
+											.put(VariantSettings.MODEL, closedModel))
+									.register(true,  BlockStateVariant.create()
+											.put(VariantSettings.MODEL, openModel)))
+			);
+			
+			// Upload both models (cube with different top textures)
+			TextureMap closedTextures = new TextureMap()
+					.put(TextureKey.ALL,    Identifier.of(ns, "block/" + path))
+					.put(TextureKey.TOP,    Identifier.of(ns, "block/" + path + "_top"))
+					.put(TextureKey.BOTTOM, Identifier.of(ns, "block/" + path + "_bottom"))
+					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side"));
+			TextureMap openTextures = new TextureMap()
+					.put(TextureKey.ALL,    Identifier.of(ns, "block/" + path))
+					.put(TextureKey.TOP,    Identifier.of(ns, "block/" + path + "_top_open"))
+					.put(TextureKey.BOTTOM, Identifier.of(ns, "block/" + path + "_bottom"))
+					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side"));
+			
+			net.minecraft.data.client.Models.CUBE_BOTTOM_TOP.upload(closedModel, closedTextures, generator.modelCollector);
+			net.minecraft.data.client.Models.CUBE_BOTTOM_TOP.upload(openModel,   openTextures,   generator.modelCollector);
+		}),
+		SCAFFOLDING((generator, block) -> {
+			Identifier blockId = Registries.BLOCK.getId(block);
+			String path = blockId.getPath();
+			String namespace = blockId.getNamespace();
+			
+			TextureMap textures = new TextureMap()
+					.put(TextureKey.PARTICLE, Identifier.of(namespace, "block/" + path + "_top"))
+					.put(TextureKey.TOP,      Identifier.of(namespace, "block/" + path + "_top"))
+					.put(TextureKey.BOTTOM,   Identifier.of(namespace, "block/" + path + "_bottom"))
+					.put(TextureKey.SIDE,     Identifier.of(namespace, "block/" + path + "_side"));
+			
+			Model scaffoldingParent = new Model(
+					Optional.of(Identifier.of("minecraft", "block/scaffolding_stable")),
+					Optional.empty(),
+					TextureKey.PARTICLE, TextureKey.TOP, TextureKey.BOTTOM, TextureKey.SIDE
+			);
+			
+			Identifier modelId = scaffoldingParent.upload(block, textures, generator.modelCollector);
+			generator.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(block, modelId));
+			
+			generator.registerParentedItemModel(block, modelId);
+		}),;
 		
 		private final BiConsumer<BlockStateModelGenerator, Block> generator;
 		Models(BiConsumer<BlockStateModelGenerator, Block> generator) { this.generator = generator; }
 		public void generate(BlockStateModelGenerator gen, Block block) { this.generator.accept(gen, block); }
-		public void generate(BlockStateModelGenerator gen, List<Block> blocks) { blocks.forEach(block -> generate(gen, block)); }
+		public void generate(BlockStateModelGenerator gen, List<Block> blocks) { blocks.forEach(block -> generate(gen, block));}
 	}
 	
 	public static void registerModBlocks() {
-		Rase.LOGGER.info("Hardening the world: Registering Blocks for " + Rase.MOD_ID);
+		Rase.LOGGER.info("Registering Blocks for " + Rase.MOD_ID);
 	}
 }

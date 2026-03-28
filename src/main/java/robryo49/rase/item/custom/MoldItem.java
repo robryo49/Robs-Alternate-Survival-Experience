@@ -156,10 +156,6 @@ public class MoldItem extends Item {
 		return world.getTime() >= getCoolingTime(mold) + getCoolingStartTime(mold);
 	}
 	
-	@Override
-	public int getMaxCount() {
-		return super.getMaxCount();
-	}
 	
 	@Override
 	public boolean onClicked(ItemStack mold, ItemStack itemStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {

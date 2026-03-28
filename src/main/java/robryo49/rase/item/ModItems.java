@@ -17,11 +17,13 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.sound.SoundEvents;
 import org.jetbrains.annotations.Nullable;
 import robryo49.rase.Rase;
 import robryo49.rase.item.custom.FireStarterItem;
 import robryo49.rase.item.custom.MoldItem;
 import robryo49.rase.item.custom.MoldMaterials;
+import robryo49.rase.item.custom.UsableItem;
 import robryo49.rase.util.ModItemTags;
 
 import java.util.*;
@@ -47,14 +49,31 @@ public class ModItems {
 	public static final Item SHARP_FLINT = registerItem("sharp_flint", new Item(new Item.Settings().attributeModifiers(AttributeModifiersComponent.builder()
 			.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, 1.0,
 					EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND).build())));
-	
+	 
 	public static final Item PLANT_FIBER = registerItem("plant_fiber");
 	public static final Item TWINE = registerItem("twine", List.of(ModItemTags.STRINGS));
 	public static final Item LEATHER_STRAP = registerItem("leather_strap", List.of(ModItemTags.STRINGS));
 	public static final Item HANDLE = registerItem("handle");
-	public static final Item FIRE_STARTER = registerItem("fire_starter", new FireStarterItem(new Item.Settings().maxDamage(64), 80, 0.02f));
-	
 	public static final Item COAL_COKE = registerItem("coal_coke");
+	public static final Item DRY_CANE = registerItem("dry_cane");
+	
+	public static final Item CLAY_BRICK = registerItem("clay_brick");
+	
+	public static final Item LONG_STRING = registerItem("long_string");
+	public static final Item STRING_MESH = registerItem("string_mesh");
+	public static final Item WICKER_MESH = registerItem("wicker_mesh");
+	
+	public static final Item KNITTING_KIT = registerItem("knitting_kit",
+			new UsableItem(new Item.Settings(), 120*4, ModItems.STRING_MESH, SoundEvents.ITEM_BRUSH_BRUSHING_GENERIC));
+	public static final Item DRY_CANE_BUNDLE = registerItem("dry_cane_bundle",
+			new UsableItem(new Item.Settings(), 120*4, ModItems.WICKER_MESH, SoundEvents.BLOCK_BIG_DRIPLEAF_STEP));
+	
+	
+	public static final Item FIRE_STARTER = registerItem("fire_starter",
+			new FireStarterItem(new Item.Settings(), 80, 0.02f, SoundEvents.ITEM_BRUSH_BRUSHING_GENERIC));
+	public static final Item FLINT_AND_STEEL = registerItem("flint_and_steel",
+			new FireStarterItem(new Item.Settings(), 30, 0.3f, SoundEvents.ITEM_FLINTANDSTEEL_USE), List.of(), Models.HANDHELD);
+	
 	
 	
 	// --- Pebbles ---
@@ -96,7 +115,7 @@ public class ModItems {
 	public static final Item FLINT_HATCHET = registerAxeItem("flint_hatchet", ModToolMaterials.FLINT, true);
 	public static final Item FLINT_PICK = registerPickaxeItem("flint_pick", ModToolMaterials.FLINT, true);
 	public static final ToolSet STONE_TOOL_SET = registerToolSet(ModToolMaterials.STONE, true);
-	public static final ToolSet BRONZE_TOOL_SET = registerToolSet(ModToolMaterials.BRONZE);
+	public static final ToolSet BRONZE_TOOL_SET = registerToolSet(ModToolMaterials.BRONZE, true);
 	public static final ToolSet SILVER_TOOL_SET = registerToolSet(ModToolMaterials.SILVER);
 	public static final ToolSet STEEL_TOOL_SET = registerToolSet(ModToolMaterials.STEEL);
 	public static final ToolSet TITANIUM_TOOL_SET = registerToolSet(ModToolMaterials.TITANIUM);
@@ -367,7 +386,7 @@ public class ModItems {
 	
 	
 	public static void registerModItems() {
-		Rase.LOGGER.info("Hardening the player: Registering Items for " + Rase.MOD_ID);
+		Rase.LOGGER.info("Registering Items for " + Rase.MOD_ID);
 		GROUPS.forEach((key, list) -> modifyEntriesEvent(key).register(entries -> list.forEach(entries::add)));
 	}
 }

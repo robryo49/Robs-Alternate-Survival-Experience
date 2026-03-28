@@ -2,22 +2,17 @@ package robryo49.rase.event;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.network.packet.s2c.play.BlockUpdateS2CPacket;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,14 +24,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
 import robryo49.rase.item.ModItems;
 import robryo49.rase.util.ModItemTags;
-
-import java.util.List;
-import java.util.Stack;
 
 public class ModEvents {
 	
@@ -150,15 +141,14 @@ public class ModEvents {
 	
 	
 	private static Item getPlankForLog(Block log) {
-		String name = log.getTranslationKey();
-		if (name.contains("oak")) return Items.OAK_PLANKS;
-		if (name.contains("spruce")) return Items.SPRUCE_PLANKS;
-		if (name.contains("birch")) return Items.BIRCH_PLANKS;
-		if (name.contains("jungle")) return Items.JUNGLE_PLANKS;
-		if (name.contains("acacia")) return Items.ACACIA_PLANKS;
-		if (name.contains("dark_oak")) return Items.DARK_OAK_PLANKS;
-		if (name.contains("mangrove")) return Items.MANGROVE_PLANKS;
-		if (name.contains("cherry")) return Items.CHERRY_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.OAK_LOGS)) return Items.OAK_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.SPRUCE_LOGS)) return Items.SPRUCE_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.BIRCH_LOGS)) return Items.BIRCH_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.JUNGLE_LOGS)) return Items.JUNGLE_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.ACACIA_LOGS)) return Items.ACACIA_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.DARK_OAK_LOGS)) return Items.DARK_OAK_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.MANGROVE_LOGS)) return Items.MANGROVE_PLANKS;
+		if (log.getDefaultState().isIn(BlockTags.CHERRY_LOGS)) return Items.CHERRY_PLANKS;
 		
 		return Items.OAK_PLANKS;
 	}
@@ -166,10 +156,14 @@ public class ModEvents {
 	public static Block getReplacingBlock(Block block) {
 		String name = block.getTranslationKey();
 		
-		if (block == Blocks.DEEPSLATE || block == Blocks.COBBLED_DEEPSLATE ||
-				(block.getTranslationKey().contains("deepslate_") && block.getTranslationKey().contains("_ore"))) return Blocks.COBBLED_DEEPSLATE;
+		if (block == Blocks.DEEPSLATE || block == ModBlocks.CRACKED_DEEPSLATE ||
+				(block.getTranslationKey().contains("deepslate_") && block.getTranslationKey().contains("_ore"))) return ModBlocks.CRACKED_DEEPSLATE;
 		
-		if (block == Blocks.STONE || block == ModBlocks.CHIPPED_STONE || block.getTranslationKey().contains("_ore")) return ModBlocks.CHIPPED_STONE;
+		if (block == Blocks.STONE || block == ModBlocks.CRACKED_STONE || block.getTranslationKey().contains("_ore")) return ModBlocks.CRACKED_STONE;
+		if (block == Blocks.GRANITE || block == ModBlocks.CRACKED_GRANITE) return ModBlocks.CRACKED_GRANITE;
+		if (block == Blocks.ANDESITE || block == ModBlocks.CRACKED_ANDESITE) return ModBlocks.CRACKED_ANDESITE;
+		if (block == Blocks.DIORITE || block == ModBlocks.CRACKED_DIORITE) return ModBlocks.CRACKED_DIORITE;
+		if (block == Blocks.TUFF || block == ModBlocks.CRACKED_TUFF) return ModBlocks.CRACKED_TUFF;
 		
 		return null;
 	}

@@ -21,12 +21,73 @@ public class RecipeRemoverMixin {
 	@Unique
 	public List<String> getRemovedIds() {
 		List<String> ids = new ArrayList<>();
-		ids.add("minecraft:stick");
-		ids.add("minecraft:stick_from_bamboo_item");
+		ids.add("stick");
+		ids.add("stick_from_bamboo_item");
+		ids.add("brick");
 		
 		for (String type : new String[]{"oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo"}) {
 			ids.add(type + "_planks");
 		}
+		
+		ids.addAll(List.of(
+				"gold_ingot_from_blasting_deepslate_gold_ore",
+				"gold_ingot_from_blasting_gold_ore",
+				"gold_ingot_from_blasting_nether_gold_ore",
+				"gold_ingot_from_blasting_raw_gold",
+				"gold_ingot_from_smelting_deepslate_gold_ore",
+				"gold_ingot_from_smelting_gold_ore",
+				"gold_ingot_from_smelting_nether_gold_ore",
+				"gold_ingot_from_smelting_raw_gold",
+				"gold_nugget_from_blasting",
+				"gold_nugget_from_smelting",
+				
+				"iron_ingot_from_blasting_deepslate_iron_ore",
+				"iron_ingot_from_blasting_iron_ore",
+				"iron_ingot_from_blasting_raw_iron",
+				"iron_ingot_from_smelting_deepslate_iron_ore",
+				"iron_ingot_from_smelting_iron_ore",
+				"iron_ingot_from_smelting_raw_iron",
+				"iron_nugget_from_blasting",
+				"iron_nugget_from_smelting",
+				
+				"redstone_from_blasting_deepslate_redstone_ore",
+				"redstone_from_blasting_redstone_ore",
+				"redstone_from_smelting_deepslate_redstone_ore",
+				"redstone_from_smelting_redstone_ore",
+				
+				"lapis_lazuli_from_blasting_deepslate_lapis_ore",
+				"lapis_lazuli_from_blasting_lapis_ore",
+				"lapis_lazuli_from_smelting_deepslate_lapis_ore",
+				"lapis_lazuli_from_smelting_lapis_ore",
+				
+				"emerald_from_blasting_deepslate_emerald_ore",
+				"emerald_from_blasting_emerald_ore",
+				"emerald_from_smelting_deepslate_emerald_ore",
+				"emerald_from_smelting_emerald_ore",
+				
+				"diamond_from_blasting_deepslate_diamond_ore",
+				"diamond_from_blasting_diamond_ore",
+				"diamond_from_smelting_deepslate_diamond_ore",
+				"diamond_from_smelting_diamond_ore",
+				
+				"copper_ingot_from_blasting_copper_ore",
+				"copper_ingot_from_blasting_deepslate_copper_ore",
+				"copper_ingot_from_blasting_raw_copper",
+				"copper_ingot_from_smelting_copper_ore",
+				"copper_ingot_from_smelting_deepslate_copper_ore",
+				"copper_ingot_from_smelting_raw_copper",
+				
+				"coal_from_blasting_coal_ore",
+				"coal_from_blasting_deepslate_coal_ore",
+				"coal_from_smelting_coal_ore",
+				"coal_from_smelting_deepslate_coal_ore",
+				
+				"quartz",
+				"quartz_from_blasting",
+				
+				"netherite_ingot",
+				"netherite_scrap_from_blasting"
+		));
 		
 		return ids;
 	}
@@ -35,7 +96,7 @@ public class RecipeRemoverMixin {
 	private void removeRecipes(Map<Identifier, JsonElement> map, ResourceManager resourceManager, Profiler profiler, CallbackInfo ci) {
 		map.keySet().removeIf(id -> {
 			for (String removedId: getRemovedIds()) {
-				if (id.toString().equals(removedId)) return true;
+				if (id.getPath().equals(removedId) && id.getNamespace().equals("minecraft")) return true;
 			}
 			return false;
 		});

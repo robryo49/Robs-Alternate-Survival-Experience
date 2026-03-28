@@ -6,6 +6,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
 import robryo49.rase.recipe.custom.AnvilSmithingRecipe;
+import robryo49.rase.recipe.custom.DryingRecipe;
 import robryo49.rase.recipe.custom.ForgeRecipe;
 import robryo49.rase.recipe.custom.ToolingRecipe;
 
@@ -14,6 +15,7 @@ public class ModRecipes {
 	public static final RecipeSerializer<ToolingRecipe> TOOLING_RECIPE_SERIALIZER = Registry.register(
 			Registries.RECIPE_SERIALIZER, Rase.getIdentifier("tooling"), new ToolingRecipe.Serializer()
 	);
+	
 	
 	
 	public static RecipeSerializer<ForgeRecipe> FORGE_RECIPE_SERIALIZER = Registry.register(
@@ -31,6 +33,7 @@ public class ModRecipes {
 	);
 	
 	
+	
 	public static RecipeSerializer<AnvilSmithingRecipe> ANVIL_SMITHING_SERIALIZER = Registry.register(
 			Registries.RECIPE_SERIALIZER, Rase.getIdentifier("anvil_smithing"), new AnvilSmithingRecipe.Serializer()
 	);
@@ -42,6 +45,18 @@ public class ModRecipes {
 				public String toString() {
 					return "anvil_smithing";
 				}
+			}
+	);
+	
+	
+	public static RecipeSerializer<DryingRecipe> DRYING_RECIPE_SERIALIZER = Registry.register(
+			Registries.RECIPE_SERIALIZER, Rase.getIdentifier("drying"), new DryingRecipe.Serializer()
+	);
+	
+	public static RecipeType<DryingRecipe> DRYING_RECIPE_TYPE = Registry.register(
+			Registries.RECIPE_TYPE, Rase.getIdentifier("drying"),
+			new RecipeType<DryingRecipe>() {
+				@Override public String toString() { return "drying"; }
 			}
 	);
 	

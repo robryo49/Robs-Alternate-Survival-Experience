@@ -2,6 +2,16 @@
   "values": [
     "rase:flint_knife",
     "rase:flint_hatchet",
-    "rase:flint_pick"
+    "rase:flint_pick",
+    "rase:stone_sword",
+    "rase:stone_axe",
+    "rase:stone_pickaxe",
+    "rase:stone_shovel",
+    "rase:stone_hoe",
+    "rase:bronze_sword",
+    "rase:bronze_axe",
+    "rase:bronze_pickaxe",
+    "rase:bronze_shovel",
+    "rase:bronze_hoe"
   ]
 }

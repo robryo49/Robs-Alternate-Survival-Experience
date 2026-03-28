@@ -23,9 +23,11 @@ import org.jetbrains.annotations.Nullable;
 import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
 import robryo49.rase.datagen.builders.AnvilSmithingRecipeJsonBuilder;
+import robryo49.rase.datagen.builders.DryingRecipeJsonBuilder;
 import robryo49.rase.datagen.builders.ForgeSmeltingRecipeJsonBuilder;
 import robryo49.rase.datagen.builders.ToolingRecipeJsonBuilder;
 import robryo49.rase.item.ModItems;
+import robryo49.rase.item.ModMaterials;
 import robryo49.rase.util.ModItemTags;
 
 import java.util.*;
@@ -120,11 +122,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 				.offerTo(exporter, Rase.getIdentifier(getItemPath(output) + "_from_" + cooker));
 	}
 	
-	public static void offerAllCooking(RecipeExporter exporter, RecipeCategory category, ItemConvertible input, ItemConvertible output, float exp, boolean furnace, boolean smoker, boolean campfire, boolean blasting) {
+	public static void offerFurnaceCooking(RecipeExporter exporter, RecipeCategory category, ItemConvertible input, ItemConvertible output, float exp) {
+		offerCooking(exporter, "smelting", RecipeSerializer.SMELTING, SmeltingRecipe::new, category, 200, input, output, exp);
+	}
+	public static void offerSmokerCooking(RecipeExporter exporter, RecipeCategory category, ItemConvertible input, ItemConvertible output, float exp) {
+		offerCooking(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, category, 100, input, output, exp);
+	}
+	public static void offerCampfireCooking(RecipeExporter exporter, RecipeCategory category, ItemConvertible input, ItemConvertible output, float exp) {
+		offerCooking(exporter, "campfire", RecipeSerializer.CAMPFIRE_COOKING, CampfireCookingRecipe::new, category, 600, input, output, exp);
+	}
+	
+	public static void offerAllCooking(RecipeExporter exporter, RecipeCategory category, ItemConvertible input, ItemConvertible output, float exp, boolean furnace, boolean smoker, boolean campfire) {
 		if (furnace) offerCooking(exporter, "smelting", RecipeSerializer.SMELTING, SmeltingRecipe::new, category, 200, input, output, exp);
 		if (smoker) offerCooking(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, category, 100, input, output, exp);
 		if (campfire) offerCooking(exporter, "campfire", RecipeSerializer.CAMPFIRE_COOKING, CampfireCookingRecipe::new, category, 600, input, output, exp);
-		if (blasting) offerCooking(exporter, "blasting", RecipeSerializer.BLASTING, BlastingRecipe::new, category, 100, input, output, exp);
 	}
 	
 	// --- Compacting Recipes ---
@@ -190,6 +201,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	public static void offerAnvilSmithing(RecipeExporter exporter, String name, Ingredient base, Ingredient addition, ItemConvertible result, int cost, int tier) {
 		AnvilSmithingRecipeJsonBuilder.create(base, addition, result.asItem())
 				.levelCost(cost).tier(tier)
+				.offerTo(exporter, name);
+	}
+	
+	public static void offerDrying(RecipeExporter exporter, String name, Ingredient input, ItemConvertible output, int dryingTime) {
+		DryingRecipeJsonBuilder.create(CraftingRecipeCategory.MISC, input, output, dryingTime)
+				.criterion(hasItem(ModBlocks.DRYING_RACK.asItem()), conditionsFromItem(ModBlocks.DRYING_RACK.asItem()))
 				.offerTo(exporter, name);
 	}
 	
@@ -263,13 +280,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	
 	public static void offerMoldSetRecipes(RecipeExporter exporter, ModItems.MoldSet moldSet) {
 		if (moldSet.FROM_SMELTING() instanceof ModItems.MoldSet unsmelted) {
-			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.BASE(), moldSet.BASE(), 0.35f, true, false, true, false);
-			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.INGOT(), moldSet.INGOT(), 0.35f, true, false, true, false);
-			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.AXE(), moldSet.AXE(), 0.35f, true, false, true, false);
-			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.PICKAXE(), moldSet.PICKAXE(), 0.35f, true, false, true, false);
-			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.SWORD(), moldSet.SWORD(), 0.35f, true, false, true, false);
-			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.SHOVEL(), moldSet.SHOVEL(), 0.35f, true, false, true, false);
-			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.HOE(), moldSet.HOE(), 0.35f, true, false, true, false);
+			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.BASE(), moldSet.BASE(), 0.35f, true, false, true);
+			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.INGOT(), moldSet.INGOT(), 0.35f, true, false, true);
+			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.AXE(), moldSet.AXE(), 0.35f, true, false, true);
+			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.PICKAXE(), moldSet.PICKAXE(), 0.35f, true, false, true);
+			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.SWORD(), moldSet.SWORD(), 0.35f, true, false, true);
+			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.SHOVEL(), moldSet.SHOVEL(), 0.35f, true, false, true);
+			offerAllCooking(exporter, RecipeCategory.TOOLS, unsmelted.HOE(), moldSet.HOE(), 0.35f, true, false, true);
 		} else if (moldSet.INGREDIENT() != null){
 			offerShaped(exporter, RecipeCategory.TOOLS, moldSet.BASE(), 4, Map.of('#', Ingredient.ofItems(moldSet.INGREDIENT())), List.of("###", "# #", "###"), moldSet.INGREDIENT());
 			offerShapeless(exporter, RecipeCategory.TOOLS, moldSet.INGOT(), 1, List.of(Ingredient.ofItems(Items.BRICK), Ingredient.ofItems(moldSet.BASE())), moldSet.BASE());
@@ -289,7 +306,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, pebbleSet.RECONSTRUCTED_BLOCK(), pebbleSet.PEBBLE());
 	}
 	
-	
 	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.OreMaterialSet materialSet, ModBlocks.OreBlockSet blockSet) {
 		offerMaterialSetRecipes(exporter, materialSet, blockSet, null, null);
 	}
@@ -304,11 +320,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		int smeltingTime = 200 * tier, coolingTime = 200 * tier;
 		float xp = 1.2f * tier;
 		
-		offerForging(exporter, materialName + "_ingot_from_raw_ore", List.of(Ingredient.ofItems(raw)),
-				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
-		offerForging(exporter, materialName + "_ingot_from_ore", List.of(Ingredient.ofItems(ore)),
-				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
-		offerForging(exporter, materialName + "_ingot_from_deepslate_ore", List.of(Ingredient.ofItems(deepslateOre)),
+		
+		offerForging(exporter, materialName + "_ingot_forging", List.of(Ingredient.ofItems(raw)),
 				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
 		
 		offerIngotCompacting(exporter, ingot, block, nugget);
@@ -316,7 +329,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 		if (toolSet != null) offerToolSetRecipes(exporter, ingot, toolSet, smeltingTime, coolingTime, tier, xp);
 		if (armorSet != null) offerArmorSetRecipes(exporter, ingot, armorSet);
-		
 	}
 	
 	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.OreMaterialSet materialSet, ModBlocks.NetherOreBlockSet blockSet) {
@@ -333,9 +345,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		int smeltingTime = 200 * tier, coolingTime = 200 * tier;
 		float xp = 1.2f * tier;
 		
-		offerForging(exporter, materialName + "_ingot_from_raw_ore", List.of(Ingredient.ofItems(raw)),
-				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
-		offerForging(exporter, materialName + "_ingot_from_ore", List.of(Ingredient.ofItems(ore)),
+		offerForging(exporter, materialName + "_ingot_forging", List.of(Ingredient.ofItems(raw)),
 				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
 		
 		offerIngotCompacting(exporter, ingot, block, nugget);
@@ -343,7 +353,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 		if (toolSet != null) offerToolSetRecipes(exporter, ingot, toolSet, smeltingTime, coolingTime, tier, xp);
 		if (armorSet != null) offerArmorSetRecipes(exporter, ingot, armorSet);
-		
 	}
 	
 	public static void offerMaterialSetRecipes(RecipeExporter exporter, List<Ingredient> ingredients, ModItems.AlloyMaterialSet materialSet, ModBlocks.AlloyBlockSet blockSet) {
@@ -403,9 +412,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		int smeltingTime = 200 * tier, coolingTime = 200 * tier;
 		float xp = 1.2f * tier;
 		
-		offerForging(exporter, materialName + "_ingot_from_ore", List.of(Ingredient.ofItems(ore)),
-				crystal, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
-		
 		offerCrystalCompacting(exporter, crystal, block);
 		
 		if (toolSet != null) offerToolSetRecipes(exporter, crystal, toolSet, smeltingTime, coolingTime, tier, xp);
@@ -418,13 +424,26 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		ModItems.MOLD_SETS.forEach(moldSet -> offerMoldSetRecipes(exporter, moldSet));
 	}
 	
-	private void generateHideSetsRecipes(RecipeExporter exporter) {
-		ModItems.HIDE_SETS.forEach((hideSet -> offerHideSetRecipes(exporter, hideSet)));
-	}
 	
 	private void generatePebbleSetsRecipes(RecipeExporter exporter) {
 		ModItems.PEBBLE_SETS.forEach(pebbleSet -> offerPebbleSetRecipes(exporter, pebbleSet));
 	}
+	
+	
+	private void generateVanillaMaterialRecipes(RecipeExporter exporter) {
+		Map.of(
+				ModMaterials.IRON, Items.RAW_IRON,
+				ModMaterials.COPPER, Items.RAW_COPPER,
+				ModMaterials.GOLD, Items.RAW_GOLD
+		).forEach((material, item) -> {
+			int tier = material.getTier();
+			int smeltingTime = 200 * tier, coolingTime = 200 * tier;
+			float xp = 1.2f * tier;
+			offerForging(exporter, material.getId() + "_ingot_forging", List.of(Ingredient.ofItems(item)),
+					material.getMaterialItem(), ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
+		});
+	}
+	
 	
 	private void generateMaterialRecipes(RecipeExporter exporter) {
 		
@@ -441,7 +460,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		offerMaterialSetRecipes(exporter, ModItems.LEAD, ModBlocks.LEAD);
 		
 		offerMaterialSetRecipes(exporter,
-				List.of(Ingredient.ofItems(Items.IRON_INGOT), Ingredient.ofItems(Items.IRON_INGOT), Ingredient.ofItems(Items.COAL)),
+				List.of(Ingredient.ofItems(Items.IRON_INGOT), Ingredient.ofItems(Items.IRON_INGOT), Ingredient.ofItems(ModItems.COAL_COKE)),
 				ModItems.STEEL, ModBlocks.STEEL, ModItems.STEEL_ARMOR_SET, ModItems.STEEL_TOOL_SET);
 		
 		offerMaterialSetRecipes(exporter, ModItems.TITANIUM, ModBlocks.TITANIUM, ModItems.TITANIUM_ARMOR_SET, ModItems.TITANIUM_TOOL_SET);
@@ -456,27 +475,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 		offerMaterialSetRecipes(exporter, ModItems.MYTHRIL, ModBlocks.MYTHRIL, ModItems.MYTHRIL_ARMOR_SET, ModItems.MYTHRIL_TOOL_SET);
 		offerMaterialSetRecipes(exporter, ModItems.RHEXIS, ModBlocks.RHEXIS);
-		
-		
 	}
+	
 	
 	private void generateToolRecipes(RecipeExporter exporter) {
 		offerStartingToolSetsRecipes(exporter);
-		offerShapeless(exporter, RecipeCategory.TOOLS, ModItems.FIRE_STARTER, 1, List.of(Ingredient.ofItems(Items.STICK), Ingredient.ofItems(Items.STICK)), Items.STICK);
-		offerShapeless(exporter, RecipeCategory.MISC, ModItems.TWINE, 1, List.of(Ingredient.ofItems(ModItems.PLANT_FIBER), Ingredient.ofItems(ModItems.PLANT_FIBER), Ingredient.ofItems(ModItems.PLANT_FIBER)), ModItems.PLANT_FIBER);
 	}
 	
-	private void generateItemRecipes(RecipeExporter exporter) {
-		offerShapeless(exporter, RecipeCategory.MISC, ModItems.HANDLE, 1, List.of(Ingredient.ofItems(Items.STICK), Ingredient.ofItems(ModItems.LEATHER_STRAP)), Items.LEATHER);
-		offerShapeless(exporter, RecipeCategory.MISC, Items.STRING, 4, List.of(Ingredient.fromTag(ItemTags.WOOL)), Items.WHITE_WOOL);
+	
+	private void generateToolingRecipes(RecipeExporter exporter) {
+		ModItems.HIDE_SETS.forEach((hideSet -> offerHideSetRecipes(exporter, hideSet)));
 		
 		offerTooling(exporter, "leather_cutting", Ingredient.fromTag(ItemTags.SWORDS), Items.LEATHER, ModItems.LEATHER_STRAP, 2);
 		offerTooling(exporter, "flint_cutting", Ingredient.fromTag(ItemTags.SWORDS), Items.FLINT, ModItems.SHARP_FLINT, 1);
-		
-		replaceShaped(exporter, "crafting_table", RecipeCategory.MISC, Items.CRAFTING_TABLE, 1,
-				Map.of('#', Ingredient.fromTag(ItemTags.PLANKS), 'f', Ingredient.ofItems(ModItems.FLINT_SHARD), 's', Ingredient.ofItems(ModItems.SHARP_FLINT)),
-				List.of("fs", "##"), Items.FLINT);
 	}
+	
 	
 	private void generateAnvilRecipes(RecipeExporter exporter) {
 		offerAnvilRecipe(exporter, ModItems.STONE_PEBBLES.PEBBLE(), Blocks.STONE, ModBlocks.STONE_ANVIL.NORMAL());
@@ -485,23 +498,107 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		offerAnvilRecipe(exporter, ModItems.TUNGSTEN.INGOT(), ModBlocks.TUNGSTEN.BLOCK(), ModBlocks.TUNGSTEN_ANVIL.NORMAL());
 	}
 	
-	private void generateFoodRecipes(RecipeExporter exporter) {
-		ModItems.MEAT_SETS.forEach(meat -> offerAllCooking(exporter, RecipeCategory.FOOD, meat.RAW(), meat.COOKED(), 0.35f, true, true, true, false));
+	
+	private void generateForgeRecipes(RecipeExporter exporter) {
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRIMITIVE_FORGE, 1,
+				Map.of('#', Ingredient.ofItems(Items.COBBLESTONE), '-', Ingredient.ofItems(ModItems.STONE_PEBBLES.PEBBLE()), 'o', Ingredient.ofItems(Items.CLAY_BALL)),
+				List.of("o-o", "- -", "###"), ModItems.STONE_PEBBLES.PEBBLE());
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BASIC_FORGE, 1,
+				Map.of('#', Ingredient.ofItems(Items.BRICKS), '-', Ingredient.ofItems(Items.BRICK), 'o', Ingredient.ofItems(Items.CLAY_BALL)),
+				List.of("o-o", "- -", "###"), Items.BRICK);
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BASIC_FORGE, 1,
+				Map.of('#', Ingredient.ofItems(Items.SMOOTH_STONE), '-', Ingredient.ofItems(Items.STONE), 'i', Ingredient.ofItems(Items.IRON_INGOT)),
+				List.of("---", "i -", "###"), Items.STONE);
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.REFINED_FORGE, 1,
+				Map.of('#', Ingredient.ofItems(ModBlocks.STEEL.BLOCK()), '-', Ingredient.ofItems(Items.NETHER_BRICKS),
+						'i', Ingredient.ofItems(ModItems.STEEL.INGOT())),
+				List.of("---", "i -", "###"), Items.NETHER_BRICK);
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ADVANCED_FORGE, 1,
+				Map.of('#', Ingredient.ofItems(ModBlocks.STEEL.BLOCK()), '-', Ingredient.ofItems(ModBlocks.OBSIDIAN_BRICKS),
+						'i', Ingredient.ofItems(ModItems.STEEL.INGOT())),
+				List.of("---", "i -", "###"), Items.OBSIDIAN);
+		
+	}
+	
+	
+	private void generateCookingRecipes(RecipeExporter exporter) {
+		ModItems.MEAT_SETS.forEach(meat -> offerAllCooking(exporter, RecipeCategory.FOOD, meat.RAW(), meat.COOKED(), 0.35f, true, true, true));
+		offerFurnaceCooking(exporter, RecipeCategory.MISC, Items.COAL, ModItems.COAL_COKE, 1);
+	}
+	
+	private void generateDryingRecipes(RecipeExporter exporter) {
+		offerDrying(exporter, "dry_cane_drying", Ingredient.ofItems(Items.SUGAR_CANE), ModItems.DRY_CANE, 60*2*20);
+		offerDrying(exporter, "brick_drying", Ingredient.ofItems(ModItems.CLAY_BRICK), Items.BRICK, 60*2*20);
+	}
+	
+	private void generateShapedRecipes(RecipeExporter exporter) {
+		offerShaped(exporter, RecipeCategory.MISC, ModItems.CLAY_BRICK, 1, Map.of('#', Ingredient.ofItems(Items.CLAY_BALL)), List.of("##"), Items.CLAY_BALL);
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.OBSIDIAN_BRICKS, 4,
+				Map.of('#', Ingredient.ofItems(Items.OBSIDIAN)), List.of("##", "##"), Items.OBSIDIAN);
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYING_OBSIDIAN_BRICKS, 4,
+				Map.of('#', Ingredient.ofItems(Items.CRYING_OBSIDIAN)), List.of("##", "##"), Items.CRYING_OBSIDIAN);
+		
+		generateForgeRecipes(exporter);
+		generateToolRecipes(exporter);
+		generateAnvilRecipes(exporter);
+		generateMoldSetsRecipes(exporter);
+		generatePebbleSetsRecipes(exporter);
+	}
+	
+	private void generateShapelessRecipes(RecipeExporter exporter) {
+		offerShapeless(exporter, RecipeCategory.MISC, ModItems.HANDLE, 1, List.of(Ingredient.ofItems(Items.STICK), Ingredient.ofItems(ModItems.LEATHER_STRAP)), Items.LEATHER);
+		
+		offerShapeless(exporter, RecipeCategory.MISC, ModItems.LONG_STRING, 1,
+				List.of(Ingredient.ofItems(Items.STRING), Ingredient.ofItems(Items.STRING), Ingredient.ofItems(Items.STRING)), Items.STRING);
+		
+		offerShapeless(exporter, RecipeCategory.MISC, ModItems.KNITTING_KIT, 1,
+				List.of(Ingredient.ofItems(ModItems.LONG_STRING), Ingredient.ofItems(ModItems.LONG_STRING),
+						Ingredient.ofItems(Items.STICK), Ingredient.ofItems(Items.STICK)), Items.STICK);
+		
+		offerShapeless(exporter, RecipeCategory.MISC, ModItems.DRY_CANE_BUNDLE, 1,
+				List.of(Ingredient.ofItems(ModItems.DRY_CANE), Ingredient.ofItems(ModItems.DRY_CANE),
+						Ingredient.ofItems(ModItems.DRY_CANE)), ModItems.DRY_CANE);
+		
+		offerShapeless(exporter, RecipeCategory.TOOLS, ModItems.FIRE_STARTER, 1, List.of(Ingredient.ofItems(Items.STICK), Ingredient.ofItems(Items.STICK)), Items.STICK);
+		offerShapeless(exporter, RecipeCategory.MISC, ModItems.TWINE, 1, List.of(Ingredient.ofItems(ModItems.PLANT_FIBER), Ingredient.ofItems(ModItems.PLANT_FIBER), Ingredient.ofItems(ModItems.PLANT_FIBER)), ModItems.PLANT_FIBER);
+		
+		offerShapeless(exporter, RecipeCategory.MISC, Items.STICK, 1, List.of(Ingredient.fromTag(ItemTags.SAPLINGS)), Items.STICK);
+		
+	}
+	
+	private void replaceVanillaRecipes(RecipeExporter exporter) {
+		replaceShaped(exporter, "furnace", RecipeCategory.BUILDING_BLOCKS, Items.FURNACE, 1,
+				Map.of('#', Ingredient.ofItems(Items.BRICKS)), List.of("###", "# #", "###"), Items.BRICK);
+		replaceShaped(exporter, "campfire", RecipeCategory.BUILDING_BLOCKS, Items.CAMPFIRE, 1,
+				Map.of('#', Ingredient.fromTag(ItemTags.LOGS), '/', Ingredient.ofItems(Items.STICK)), List.of(" / ", "/#/", "###"), Items.STICK);
+		replaceShaped(exporter, "crafting_table", RecipeCategory.MISC, Items.CRAFTING_TABLE, 1,
+				Map.of('#', Ingredient.fromTag(ItemTags.PLANKS), 'f', Ingredient.ofItems(ModItems.FLINT_SHARD), 's', Ingredient.ofItems(ModItems.SHARP_FLINT)),
+				List.of("fs", "##"), Items.FLINT);
+		
+		replaceShaped(exporter, "chest", RecipeCategory.MISC, Items.CHEST, 1,
+				Map.of('#', Ingredient.fromTag(ItemTags.PLANKS), 'i', Ingredient.ofItems(Items.IRON_INGOT)),
+				List.of("##i", "# #", "###"), Items.IRON_INGOT);
+		replaceShaped(exporter, "barrel", RecipeCategory.MISC, Items.BARREL, 1,
+				Map.of('#', Ingredient.fromTag(ItemTags.PLANKS), 'i', Ingredient.ofItems(Items.IRON_INGOT), 's', Ingredient.fromTag(ItemTags.WOODEN_SLABS)),
+				List.of("#s#", "i i", "#s#"), Items.IRON_INGOT);
 	}
 	
 	@Override
 	public void generate(RecipeExporter exporter) {
+		generateVanillaMaterialRecipes(exporter);
 		generateMaterialRecipes(exporter);
-		generateToolRecipes(exporter);
-		generateAnvilRecipes(exporter);
 		
-		generateItemRecipes(exporter);
+		generateShapedRecipes(exporter);
+		generateShapelessRecipes(exporter);
 		
-		generateFoodRecipes(exporter);
-		generateHideSetsRecipes(exporter);
-		
-		generateMoldSetsRecipes(exporter);
-		
-		generatePebbleSetsRecipes(exporter);
+		generateDryingRecipes(exporter);
+		generateCookingRecipes(exporter);
+		generateToolingRecipes(exporter);
 	}
 }

@@ -41,7 +41,10 @@
     "minecraft:crossbow",
     // --- Other combat items ---
     "minecraft:trident",
-    "minecraft:shield"
+    "minecraft:shield",
+    "minecraft:flint_and_steel",
+
+    "minecraft:blast_furnace"
   ],
   // -----------------------------------------------------------
   // Removes an item if it contains certain Component Data. If the whole entry (or expression) is present, the item gets removed.

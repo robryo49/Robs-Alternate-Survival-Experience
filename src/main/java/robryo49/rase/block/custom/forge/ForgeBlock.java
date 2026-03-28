@@ -30,7 +30,7 @@ import java.util.List;
 
 public class ForgeBlock extends BlockWithEntity {
 	
-	public static final MapCodec<ForgeBlock> CODEC = ForgeBlock.createCodec(settings -> new ForgeBlock(settings, ForgeTiers.PRIMITIVE));
+	public static final MapCodec<ForgeBlock> CODEC = createCodec(settings -> new ForgeBlock(settings, ForgeTiers.PRIMITIVE));
 	
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	public static final BooleanProperty LIT = Properties.LIT;
@@ -110,7 +110,7 @@ public class ForgeBlock extends BlockWithEntity {
 		if (world.isClient) return null;
 		
 		return validateTicker(
-				type, ModBlockEntities.FORGE_BLOCK_ENTITY,
+				type, ModBlockEntities.FORGE_BLOCK_ENTITY_TYPE,
 				(world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1)
 		);
 	}

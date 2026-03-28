@@ -59,7 +59,7 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 	
 	
 	public ForgeBlockEntity(BlockPos pos, BlockState state) {
-		super(ModBlockEntities.FORGE_BLOCK_ENTITY, pos, state);
+		super(ModBlockEntities.FORGE_BLOCK_ENTITY_TYPE, pos, state);
 		this.forgeTier = ((ForgeBlock) state.getBlock()).getTier();
 		this.propertyDelegate = new PropertyDelegate() {
 			@Override
@@ -256,9 +256,13 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 	}
 	
 	private static void dropExperience(ServerWorld world, Vec3d pos, int multiplier, float experience) {
-		int totalXp = MathHelper.floor(multiplier * experience);
-		if (Math.random() < MathHelper.fractionalPart(multiplier * experience)) totalXp++;
-		ExperienceOrbEntity.spawn(world, pos, totalXp);
+		int i = MathHelper.floor(multiplier * experience);
+		float f = MathHelper.fractionalPart(multiplier * experience);
+		if (f != 0.0f && Math.random() < f) {
+			++i;
+		}
+		
+		ExperienceOrbEntity.spawn(world, pos, i);
 	}
 	
 	// --- Recipe Lookup ---

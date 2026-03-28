@@ -73,6 +73,8 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 	
 	@Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
 	private void rase$updateResult(CallbackInfo ci) {
+		if (this.player.getWorld().isClient) return;
+		
 		Optional<AnvilSmithingRecipe> match = rase$getRecipe();
 		
 		if (match.isEmpty()) {
