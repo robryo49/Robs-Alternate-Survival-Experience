@@ -14,6 +14,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
 import robryo49.rase.block.custom.forge.*;
+import robryo49.rase.item.ModMaterials;
 import robryo49.rase.util.ModBlockTags;
 
 import java.util.*;
@@ -29,10 +30,6 @@ public class ModBlocks {
 	// --- 1. Primitive & Utility Blocks ---
 	public static final Block CHIPPED_STONE = registerBlock("chipped_stone", 2.5f, 6.0f, BlockSoundGroup.STONE);
 	
-	// Essential for high-tier forge construction
-	public static final Block REFRACTORY_BRICK = registerBlock("refractory_brick", 4.5f, 15.0f, BlockSoundGroup.STONE,
-			List.of(BlockTags.PICKAXE_MINEABLE));
-	
 	// --- 2. Forges (Luminance + Resistance) ---
 	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
 	public static final Block ADVANCED_FORGE = registerForge("advanced_forge", ForgeTiers.ADVANCED, 7.0f, 50.0f);
@@ -40,29 +37,29 @@ public class ModBlocks {
 	// --- 3. Material Sets (Hardness / Resistance / Tool Gating) ---
 	
 	// TIER 0-1: Basic Ores (Minable by Stone)
-	public static final OreBlockSet TIN = registerOreBlockSet("tin", 3.0f, 3.0f, BlockTags.NEEDS_STONE_TOOL);
-	public static final OreBlockSet ZINC = registerOreBlockSet("zinc", 3.0f, 3.0f, BlockTags.NEEDS_STONE_TOOL);
-	public static final OreBlockSet MAGNETITE = registerOreBlockSet("magnetite", 4.0f, 6.0f, BlockTags.NEEDS_STONE_TOOL);
+	public static final OreBlockSet TIN = registerOreBlockSet(ModMaterials.TIN, 3.0f, 3.0f);
+	public static final OreBlockSet ZINC = registerOreBlockSet(ModMaterials.ZINC, 3.0f, 3.0f);
+	public static final OreBlockSet MAGNETITE = registerOreBlockSet(ModMaterials.MAGNETITE, 4.0f, 6.0f);
 	
 	// TIER 2: Bronze Age (Minable by Bronze)
-	public static final AlloyBlockSet BRONZE = registerAlloyBlockSet("bronze", 6.0f, 15.0f, ModBlockTags.NEEDS_BRONZE_TOOL);
-	public static final OreBlockSet SILVER = registerOreBlockSet("silver", 5.0f, 6.0f, ModBlockTags.NEEDS_BRONZE_TOOL);
-	public static final OreBlockSet LEAD = registerOreBlockSet("lead", 6.5f, 30.0f, ModBlockTags.NEEDS_BRONZE_TOOL);
+	public static final AlloyBlockSet BRONZE = registerAlloyBlockSet(ModMaterials.BRONZE, 6.0f, 15.0f);
+	public static final OreBlockSet SILVER = registerOreBlockSet(ModMaterials.SILVER, 5.0f, 6.0f);
+	public static final OreBlockSet LEAD = registerOreBlockSet(ModMaterials.LEAD, 6.5f, 30.0f);
 	
 	// TIER 3: Iron/Steel Age (Minable by Steel/Iron)
-	public static final AlloyBlockSet STEEL = registerAlloyBlockSet("steel", 12.0f, 45.0f, BlockTags.NEEDS_IRON_TOOL);
-	public static final OreBlockSet TITANIUM = registerOreBlockSet("titanium", 15.0f, 35.0f, BlockTags.NEEDS_IRON_TOOL);
-	public static final OreBlockSet PLATINUM = registerOreBlockSet("platinum", 12.0f, 20.0f, BlockTags.NEEDS_IRON_TOOL);
+	public static final AlloyBlockSet STEEL = registerAlloyBlockSet(ModMaterials.STEEL, 8.0f, 45.0f);
+	public static final OreBlockSet TITANIUM = registerOreBlockSet(ModMaterials.TITANIUM, 10.0f, 35.0f);
+	public static final OreBlockSet PLATINUM = registerOreBlockSet(ModMaterials.PLATINUM, 8.0f, 20.0f);
 	
 	// TIER 4: Exotic Metals (Minable by Titanium/Diamond)
-	public static final OreBlockSet TUNGSTEN = registerOreBlockSet("tungsten", 30.0f, 80.0f, BlockTags.NEEDS_DIAMOND_TOOL);
-	public static final OreBlockSet PALLADIUM = registerOreBlockSet("palladium", 18.0f, 25.0f, BlockTags.NEEDS_DIAMOND_TOOL);
-	public static final NetherOreBlockSet COBALT = registerNetherOreBlockSet("cobalt", 22.0f, 20.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	public static final OreBlockSet TUNGSTEN = registerOreBlockSet(ModMaterials.TUNGSTEN, 20.0f, 80.0f);
+	public static final OreBlockSet PALLADIUM = registerOreBlockSet(ModMaterials.PALLADIUM, 12.0f, 25.0f);
+	public static final NetherOreBlockSet COBALT = registerNetherOreBlockSet(ModMaterials.COBALT, 15.0f, 20.0f);
 	
 	// TIER 5: Mythic (Extreme Resistance)
-	public static final AlloyBlockSet SCANDIUM = registerAlloyBlockSet("scandium", 35.0f, 70.0f, BlockTags.NEEDS_DIAMOND_TOOL);
-	public static final OreBlockSet MYTHRIL = registerOreBlockSet("mythril", 45.0f, 1200.0f, BlockTags.NEEDS_DIAMOND_TOOL);
-	public static final NetherCrystalBlockSet RHEXIS = registerNetherCrystalBlockSet("rhexis", 50.0f, 1200.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	public static final AlloyBlockSet SCANDIUM = registerAlloyBlockSet(ModMaterials.SCANDIUM, 22.0f, 70.0f);
+	public static final OreBlockSet MYTHRIL = registerOreBlockSet(ModMaterials.MYTHRIL, 30.0f, 1200.0f);
+	public static final NetherCrystalBlockSet RHEXIS = registerNetherCrystalBlockSet(ModMaterials.RHEXIS, 35.0f, 1200.0f);
 	
 	// --- 4. Anvils ---
 	public static final SmithingAnvilBlockSet STONE_ANVIL = registerSmithingAnvilBlockSet("stone", SmithingAnvilMaterials.STONE);
@@ -79,32 +76,39 @@ public class ModBlocks {
 				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), Models.COOKER);
 	}
 	
-	public static AlloyBlockSet registerAlloyBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
-		return new AlloyBlockSet(registerBlock(name + "_block", strength, resistance, BlockSoundGroup.METAL,
-				List.of(BlockTags.PICKAXE_MINEABLE, toolTier)));
+	public static AlloyBlockSet registerAlloyBlockSet(ModMaterials material, float strength, float resistance) {
+		String id = material.getId();
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
+		return new AlloyBlockSet(registerBlock(id + "_block", strength, resistance, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)));
 	}
 	
-	public static OreBlockSet registerOreBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
+	public static OreBlockSet registerOreBlockSet(ModMaterials material, float strength, float resistance) {
+		String id = material.getId();
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
 		return new OreBlockSet(
-				registerBlock(name + "_ore", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.STONE_ORES, toolTier)),
-				registerBlock("deepslate_" + name + "_ore", strength * 1.6f, resistance * 1.6f, BlockSoundGroup.DEEPSLATE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.DEEPSLATE_ORES, toolTier)),
-				registerBlock(name + "_block", strength, resistance + 5.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTier)),
-				registerBlock("raw_" + name + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTier))
+				registerBlock(id + "_ore", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.STONE_ORES, toolTag)),
+				registerBlock("deepslate_" + id + "_ore", strength * 1.6f, resistance * 1.6f, BlockSoundGroup.DEEPSLATE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.DEEPSLATE_ORES, toolTag)),
+				registerBlock(id + "_block", strength, resistance + 5.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)),
+				registerBlock("raw_" + id + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
 		);
 	}
 	
-	public static NetherOreBlockSet registerNetherOreBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
+	public static NetherOreBlockSet registerNetherOreBlockSet(ModMaterials material, float strength, float resistance) {
+		String id = material.getId();
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
 		return new NetherOreBlockSet(
-				registerBlock("nether_" + name + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTier)),
-				registerBlock(name + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTier)),
-				registerBlock("raw_" + name + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTier))
+				registerBlock("nether_" + id + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTag)),
+				registerBlock(id + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)),
+				registerBlock("raw_" + id + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
 		);
 	}
 	
-	public static NetherCrystalBlockSet registerNetherCrystalBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
+	public static NetherCrystalBlockSet registerNetherCrystalBlockSet(ModMaterials material, float strength, float resistance) {
+		String id = material.getId();
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
 		return new NetherCrystalBlockSet(
-				registerBlock("nether_" + name + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTier)),
-				registerBlock(name + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTier))
+				registerBlock("nether_" + id + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTag)),
+				registerBlock(id + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
 		);
 	}
 	

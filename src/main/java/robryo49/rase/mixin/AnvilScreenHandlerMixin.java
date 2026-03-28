@@ -48,19 +48,27 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 			return Optional.empty();
 		}
 		
-		boolean validAnvil = this.context.get((world, pos) ->
-				world.getBlockState(pos).getBlock() instanceof SmithingAnvilBlock
-		).orElse(false);
+		Optional<Integer> anvilTier = this.context.get((world, pos) -> {
+			Block block = world.getBlockState(pos).getBlock();
+			if (block instanceof SmithingAnvilBlock smithingAnvil) {
+				return smithingAnvil.getMaterial().getTier();
+			}
+			return -1;
+		});
 		
-		if (!validAnvil) {
+		if (anvilTier.isEmpty() || anvilTier.get() < 0) {
 			return Optional.empty();
 		}
 		
+		int tier = anvilTier.get();
+		
 		return this.player.getWorld().getRecipeManager().getFirstMatch(
-				ModRecipes.ANVIL_SMITHING_RECIPE_TYPE,
-				new AnvilSmithingRecipe.Input(left, right),
-				this.player.getWorld()
-		).map(net.minecraft.recipe.RecipeEntry::value);
+						ModRecipes.ANVIL_SMITHING_RECIPE_TYPE,
+						new AnvilSmithingRecipe.Input(left, right),
+						this.player.getWorld()
+				)
+				.map(net.minecraft.recipe.RecipeEntry::value)
+				.filter(recipe -> tier >= recipe.tier());
 	}
 	
 	@Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)

@@ -54,6 +54,7 @@ public class ModItems {
 	public static final Item HANDLE = registerItem("handle");
 	public static final Item FIRE_STARTER = registerItem("fire_starter", new FireStarterItem(new Item.Settings().maxDamage(64), 80, 0.02f));
 	
+	public static final Item COAL_COKE = registerItem("coal_coke");
 	// --- Material Sets ---
 	
 	public static final OreMaterialSet TIN = registerOreMaterialSet("tin");

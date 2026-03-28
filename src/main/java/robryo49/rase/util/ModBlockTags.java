@@ -27,9 +27,18 @@ public class ModBlockTags {
 	
 	// --- Block Tag Registrations
 	
-	public static final TagKey<Block> NEEDS_BRONZE_TOOL = createTag("needs_bronze_tool");
-	public static final TagKey<Block> INCORRECT_FOR_BRONZE_TOOL = createTag("incorrect_for_bronze_tool");
-	
+	public static final TagKey<Block> NEEDS_TIER_0_TOOLS = createTag("needs_tier_0_tool");
+	public static final TagKey<Block> INCORRECT_FOR_TIER_0_TOOLS = createTag("incorrect_for_tier_0_tool");
+	public static final TagKey<Block> NEEDS_TIER_1_TOOLS = createTag("needs_tier_1_tool");
+	public static final TagKey<Block> INCORRECT_FOR_TIER_1_TOOLS = createTag("incorrect_for_tier_1_tool");
+	public static final TagKey<Block> NEEDS_TIER_2_TOOLS = createTag("needs_tier_2_tool");
+	public static final TagKey<Block> INCORRECT_FOR_TIER_2_TOOLS = createTag("incorrect_for_tier_2_tool");
+	public static final TagKey<Block> NEEDS_TIER_3_TOOLS = createTag("needs_tier_3_tool");
+	public static final TagKey<Block> INCORRECT_FOR_TIER_3_TOOLS = createTag("incorrect_for_tier_3_tool");
+	public static final TagKey<Block> NEEDS_TIER_4_TOOLS = createTag("needs_tier_4_tool");
+	public static final TagKey<Block> INCORRECT_FOR_TIER_4_TOOLS = createTag("incorrect_for_tier_4_tool");
+	public static final TagKey<Block> NEEDS_TIER_5_TOOLS = createTag("needs_tier_5_tool");
+	public static final TagKey<Block> INCORRECT_FOR_TIER_5_TOOLS = createTag("incorrect_for_tier_5_tool");
 	
 	public static final TagKey<Block> FORGES = createTag("forges");
 	public static final TagKey<Block> ANVILS = createTag("anvils");
@@ -53,6 +62,34 @@ public class ModBlockTags {
 	));
 	
 	public static final TagKey<Block> ORES = createTagWithParents("ores", List.of(STONE_ORES, DEEPSLATE_ORES, NETHER_ORES));
+	
+	
+	
+	public static TagKey<Block> getIncorrectForTier(int tier) {
+		return switch (tier) {
+			case 0 -> INCORRECT_FOR_TIER_0_TOOLS;
+			case 1 -> INCORRECT_FOR_TIER_1_TOOLS;
+			case 2 -> INCORRECT_FOR_TIER_2_TOOLS;
+			case 3 -> INCORRECT_FOR_TIER_3_TOOLS;
+			case 4 -> INCORRECT_FOR_TIER_4_TOOLS;
+			case 5 -> INCORRECT_FOR_TIER_5_TOOLS;
+			default -> throw new IllegalStateException("Unexpected tier value: " + tier);
+		};
+	}
+	
+	public static TagKey<Block> getNeedsTier(int tier) {
+		return switch (tier) {
+			case 0 -> NEEDS_TIER_0_TOOLS;
+			case 1 -> NEEDS_TIER_1_TOOLS;
+			case 2 -> NEEDS_TIER_2_TOOLS;
+			case 3 -> NEEDS_TIER_3_TOOLS;
+			case 4 -> NEEDS_TIER_4_TOOLS;
+			case 5 -> NEEDS_TIER_5_TOOLS;
+			default -> throw new IllegalStateException("Unexpected tier value: " + tier);
+		};
+	}
+	
+	
 	
 	// --- Core Tag Registration Logic ---
 	
@@ -78,6 +115,11 @@ public class ModBlockTags {
 		ALL.add(tagKey);
 		
 		return tagKey;
+	}
+	
+	
+	private static void addToTag(TagKey<Block> tagKey, List<Block> blocks) {
+		blocks.forEach(TAGS.computeIfAbsent(tagKey, k -> new ArrayList<>())::add);
 	}
 	
 	public static void registerBlockTags() {

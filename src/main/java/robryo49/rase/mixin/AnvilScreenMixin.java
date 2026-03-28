@@ -1,5 +1,6 @@
 package robryo49.rase.mixin;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AnvilScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -23,15 +24,10 @@ import robryo49.rase.mixin.accessor.ForgingScreenHandlerAccessor;
 import robryo49.rase.recipe.custom.AnvilSmithingRecipe;
 import robryo49.rase.recipe.ModRecipes;
 
+import java.util.Optional;
+
 @Mixin(AnvilScreen.class)
 public abstract class AnvilScreenMixin extends HandledScreen<AnvilScreenHandler> {
-	
-	@Shadow
-	private TextFieldWidget nameField;
-	
-	@Shadow
-	@Final
-	private static Identifier TEXT_FIELD_DISABLED_TEXTURE;
 	
 	public AnvilScreenMixin(AnvilScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
@@ -46,13 +42,19 @@ public abstract class AnvilScreenMixin extends HandledScreen<AnvilScreenHandler>
 		ScreenHandlerContext context =
 				((ForgingScreenHandlerAccessor) this.handler).rase$getContext();
 		
-		boolean validAnvil = context.get((world, pos) ->
-				world.getBlockState(pos).getBlock() instanceof SmithingAnvilBlock
-		).orElse(false);
+		Optional<Integer> anvilTier = context.get((world, pos) -> {
+			Block block = world.getBlockState(pos).getBlock();
+			if (block instanceof SmithingAnvilBlock smithingAnvil) {
+				return smithingAnvil.getMaterial().getTier();
+			}
+			return -1;
+		});
 		
-		if (!validAnvil) {
+		if (anvilTier.isEmpty() || anvilTier.get() < 0) {
 			return false;
 		}
+		
+		int tier = anvilTier.get();
 		
 		ItemStack left = this.handler.getSlot(0).getStack();
 		ItemStack right = this.handler.getSlot(1).getStack();
@@ -65,39 +67,6 @@ public abstract class AnvilScreenMixin extends HandledScreen<AnvilScreenHandler>
 				ModRecipes.ANVIL_SMITHING_RECIPE_TYPE,
 				new AnvilSmithingRecipe.Input(left, right),
 				this.client.world
-		).isPresent();
-	}
-	
-	@Inject(method = "drawBackground", at = @At("TAIL"))
-	private void rase$drawBackground(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo ci) {
-		if (rase$isCustomRecipe()) {
-			context.drawGuiTexture(TEXT_FIELD_DISABLED_TEXTURE, this.x + 59, this.y + 20, 110, 16);
-		}
-	}
-	
-	@Inject(method = "onSlotUpdate", at = @At("TAIL"))
-	private void rase$onSlotUpdate(ScreenHandler handler, int slotId, ItemStack stack, CallbackInfo ci) {
-		if (slotId < 0 || slotId > 2) {
-			return;
-		}
-		
-		ItemStack left = handler.getSlot(0).getStack();
-		boolean isCustom = rase$isCustomRecipe();
-		
-		
-		if (isCustom) {
-			nameField.setChangedListener(s -> {});
-			nameField.setText("");
-			nameField.setEditable(false);
-			nameField.setFocused(false);
-			nameField.setChangedListener(this::rase$onNameChanged);
-		}
-	}
-	
-	@Unique
-	private void rase$onNameChanged(String newName) {
-		if (!rase$isCustomRecipe()) {
-			this.handler.setNewItemName(newName);
-		}
+		).map(entry -> tier >= entry.value().tier()).orElse(false);
 	}
 }

@@ -8,6 +8,7 @@ import net.minecraft.block.TallPlantBlock;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -40,171 +41,92 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 	
 	
 	
-	public void addDrops(List<Block> blocks) {
+	
+	public void addDrop(List<Block> blocks) {
 		for (Block block: blocks) addDrop(block);
 	}
-	
-	public void addPebbleDrop(Block block, Item pebble) {
+	public void addDrop(Block block, Item item, int minCount, int maxCount) {
 		addDrop(
 				block,
 				dropsWithSilkTouch(
 						block,
 						applyExplosionDecay(
 								block,
-								ItemEntry.builder(pebble)
+								ItemEntry.builder(item)
 										.apply(SetCountLootFunction.builder(
-												UniformLootNumberProvider.create(2, 4)
+												UniformLootNumberProvider.create(minCount, maxCount)
 										))
 						)
 				)
 		);
 	}
 	
-	public void addPebbleDrop(ModItems.PebbleSet pebbleSet) {
-		addPebbleDrop(pebbleSet.SOURCE_BLOCK(), pebbleSet.PEBBLE());
+	public void addDrop(ModItems.OreMaterialSet materialSet, ModBlocks.OreBlockSet blockSet) {
+		addDrop(blockSet.ORE(), oreDrops(blockSet.ORE(), materialSet.RAW()));
+		addDrop(blockSet.DEEPSLATE_ORE(), oreDrops(blockSet.DEEPSLATE_ORE(), materialSet.RAW()));
+		addDrop(blockSet.BLOCK());
+		addDrop(blockSet.RAW_BLOCK());
+	}
+	public void addDrop(ModItems.OreMaterialSet materialSet, ModBlocks.NetherOreBlockSet blockSet) {
+		addDrop(blockSet.NETHER_ORE(), oreDrops(blockSet.NETHER_ORE(), materialSet.RAW()));
+		addDrop(blockSet.BLOCK());
+		addDrop(blockSet.RAW_BLOCK());
+	}
+	public void addDrop(ModItems.AlloyMaterialSet materialSet, ModBlocks.AlloyBlockSet blockSet) {
+		addDrop(blockSet.BLOCK());
+	}
+	public void addDrop(ModItems.CrystalMaterialSet materialSet, ModBlocks.CrystalBlockSet blockSet) {
+		addDrop(blockSet.ORE(), oreDrops(blockSet.ORE(), materialSet.CRYSTAL()));
+		addDrop(blockSet.DEEPSLATE_ORE(), oreDrops(blockSet.DEEPSLATE_ORE(), materialSet.CRYSTAL()));
+		addDrop(blockSet.BLOCK());
+	}
+	public void addDrop(ModItems.CrystalMaterialSet materialSet, ModBlocks.NetherCrystalBlockSet blockSet) {
+		addDrop(blockSet.NETHER_ORE(), oreDrops(blockSet.NETHER_ORE(), materialSet.CRYSTAL()));
+		addDrop(blockSet.BLOCK());
 	}
 	
-	public void addPebbleDrops(List<ModItems.PebbleSet> pebbles) {
-		pebbles.forEach(this::addPebbleDrop);
+	public void addDrop(ModBlocks.SmithingAnvilBlockSet anvil) {
+		addDrop(anvil.NORMAL());
+		addDrop(anvil.CHIPPED());
+		addDrop(anvil.DAMAGED());
 	}
 	
 	
-	
-	private LootPool plantFiberPool() {
-		return LootPool.builder()
-				.with(ItemEntry.builder(ModItems.PLANT_FIBER)
-						.conditionally(MatchToolLootCondition.builder(
-								ItemPredicate.Builder.create().tag(ItemTags.SWORDS)
-						))
-						.conditionally(SurvivesExplosionLootCondition.builder())
-						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 2)))
-						.apply(ApplyBonusLootFunction.uniformBonusCount(
-								registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
-										.getOrThrow(Enchantments.FORTUNE), 2
-						))
-				)
-				.build();
+	public void generateMaterialBlockDrops() {
+		addDrop(ModItems.TIN, ModBlocks.TIN);
+		addDrop(ModItems.ZINC, ModBlocks.ZINC);
+		addDrop(ModItems.MAGNETITE, ModBlocks.MAGNETITE);
+		addDrop(ModItems.BRONZE, ModBlocks.BRONZE);
+		addDrop(ModItems.SILVER, ModBlocks.SILVER);
+		addDrop(ModItems.LEAD, ModBlocks.LEAD);
+		addDrop(ModItems.STEEL, ModBlocks.STEEL);
+		addDrop(ModItems.TITANIUM, ModBlocks.TITANIUM);
+		addDrop(ModItems.PLATINUM, ModBlocks.PLATINUM);
+		addDrop(ModItems.TUNGSTEN, ModBlocks.TUNGSTEN);
+		addDrop(ModItems.PALLADIUM, ModBlocks.PALLADIUM);
+		addDrop(ModItems.COBALT, ModBlocks.COBALT);
+		addDrop(ModItems.SCANDIUM, ModBlocks.SCANDIUM);
+		addDrop(ModItems.MYTHRIL, ModBlocks.MYTHRIL);
+		addDrop(ModItems.RHEXIS, ModBlocks.RHEXIS);
+	}
+	public void generateAnvilDrops() {
+		addDrop(ModBlocks.STONE_ANVIL);
+		addDrop(ModBlocks.LEAD_ANVIL);
+		addDrop(ModBlocks.TITANIUM_ANVIL);
+		addDrop(ModBlocks.TUNGSTEN_ANVIL);
+	}
+	public void generateBlockDrops() {
+		addDrop(List.of(
+				ModBlocks.PRIMITIVE_FORGE,
+				ModBlocks.ADVANCED_FORGE
+		));
 	}
 	
-	public void addShortGrassPlantFiberDrop() {
-		addDrop(Blocks.SHORT_GRASS, LootTable.builder()
-				.pool(LootPool.builder()
-						.with(AlternativeEntry.builder(
-								ItemEntry.builder(Blocks.SHORT_GRASS)
-										.conditionally(MatchToolLootCondition.builder(
-												ItemPredicate.Builder.create().items(Items.SHEARS)
-										)),
-								ItemEntry.builder(Items.WHEAT_SEEDS)
-										.conditionally(RandomChanceLootCondition.builder(0.125f))
-										.apply(ApplyBonusLootFunction.uniformBonusCount(
-												registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
-														.getOrThrow(Enchantments.FORTUNE), 2
-										))
-										.apply(ExplosionDecayLootFunction.builder())
-						))
-				)
-				.pool(plantFiberPool())
-		);
-	}
-	
-	public void addFernPlantFiberDrop() {
-		addDrop(Blocks.FERN, LootTable.builder()
-				.pool(LootPool.builder()
-						.with(AlternativeEntry.builder(
-								ItemEntry.builder(Blocks.FERN)
-										.conditionally(MatchToolLootCondition.builder(
-												ItemPredicate.Builder.create().items(Items.SHEARS)
-										)),
-								ItemEntry.builder(Items.WHEAT_SEEDS)
-										.conditionally(RandomChanceLootCondition.builder(0.125f))
-										.apply(ApplyBonusLootFunction.uniformBonusCount(
-												registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
-														.getOrThrow(Enchantments.FORTUNE), 2
-										))
-										.apply(ExplosionDecayLootFunction.builder())
-						))
-				)
-				.pool(plantFiberPool())
-		);
-	}
-	
-	public void addTallGrassPlantFiberDrop() {
-		addDrop(Blocks.TALL_GRASS, LootTable.builder()
-				.pool(LootPool.builder()
-						.conditionally(BlockStatePropertyLootCondition.builder(Blocks.TALL_GRASS)
-								.properties(StatePredicate.Builder.create().exactMatch(TallPlantBlock.HALF, DoubleBlockHalf.LOWER))
-						)
-						.conditionally(LocationCheckLootCondition.builder(
-								LocationPredicate.Builder.create().block(
-										BlockPredicate.Builder.create()
-												.blocks(Blocks.TALL_GRASS)
-												.state(StatePredicate.Builder.create().exactMatch(TallPlantBlock.HALF, DoubleBlockHalf.UPPER))
-								), new BlockPos(0, 1, 0)
-						))
-						.with(AlternativeEntry.builder(
-								ItemEntry.builder(Blocks.SHORT_GRASS)
-										.conditionally(MatchToolLootCondition.builder(
-												ItemPredicate.Builder.create().items(Items.SHEARS)
-										))
-										.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2))),
-								ItemEntry.builder(Items.WHEAT_SEEDS)
-										.conditionally(SurvivesExplosionLootCondition.builder())
-										.conditionally(RandomChanceLootCondition.builder(0.125f))
-						))
-				)
-				.pool(LootPool.builder()
-						.conditionally(BlockStatePropertyLootCondition.builder(Blocks.TALL_GRASS)
-								.properties(StatePredicate.Builder.create().exactMatch(TallPlantBlock.HALF, DoubleBlockHalf.UPPER))
-						)
-						.conditionally(LocationCheckLootCondition.builder(
-								LocationPredicate.Builder.create().block(
-										BlockPredicate.Builder.create()
-												.blocks(Blocks.TALL_GRASS)
-												.state(StatePredicate.Builder.create().exactMatch(TallPlantBlock.HALF, DoubleBlockHalf.LOWER))
-								), new BlockPos(0, -1, 0)
-						))
-						.with(AlternativeEntry.builder(
-								ItemEntry.builder(Blocks.SHORT_GRASS)
-										.conditionally(MatchToolLootCondition.builder(
-												ItemPredicate.Builder.create().items(Items.SHEARS)
-										))
-										.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2))),
-								ItemEntry.builder(Items.WHEAT_SEEDS)
-										.conditionally(SurvivesExplosionLootCondition.builder())
-										.conditionally(RandomChanceLootCondition.builder(0.125f))
-						))
-				)
-				.pool(plantFiberPool())
-		);
-	}
-	
-	public void addPlantFiberDrops() {
-		addFernPlantFiberDrop();
-		addShortGrassPlantFiberDrop();
-		addTallGrassPlantFiberDrop();
-	}
-	
-	public void addGravelFlintDrop() {
-		addDrop(Blocks.GRAVEL, LootTable.builder()
-				.pool(LootPool.builder()
-						.with(AlternativeEntry.builder(
-								ItemEntry.builder(Items.FLINT)
-										.conditionally(RandomChanceLootCondition.builder(0.2f))
-										.apply(ExplosionDecayLootFunction.builder()),
-								ItemEntry.builder(Blocks.GRAVEL)
-										.apply(ExplosionDecayLootFunction.builder())
-						))
-				)
-		);
-	}
 	
 	@Override
 	public void generate() {
-		addPebbleDrops(ModItems.PEBBLE_SETS);
-		addPlantFiberDrops();
-		addGravelFlintDrop();
-		
-		
-		addPebbleDrop(ModBlocks.CHIPPED_STONE, ModItems.STONE_PEBBLES.PEBBLE());
+		generateMaterialBlockDrops();
+		generateAnvilDrops();
+		generateBlockDrops();
 	}
 }

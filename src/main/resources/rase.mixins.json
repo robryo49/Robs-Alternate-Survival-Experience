@@ -9,6 +9,7 @@
     "FallingBlockEntityMixin",
     "PlayerEntityMixin",
     "RecipeRemoverMixin",
+    "SwordDurabilityMixin",
     "accessor.ForgingScreenHandlerAccessor"
   ],
   "injectors": {

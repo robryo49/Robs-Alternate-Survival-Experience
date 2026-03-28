@@ -1,12 +1,14 @@
 package robryo49.rase.item.custom;
 
 
+import robryo49.rase.item.ModMaterials;
+
 public enum MoldMaterials {
 	WET_CLAY("wet_clay", 0, 1, 1),
 	CLAY("clay", 1, 3, 1.5f),
-	LEAD("lead", 2, 6, 1f),
-	TITANIUM("titanium", 3, 10, 0.8f),
-	TUNGSTEN("tungsten", 4, 16, 0.6f),
+	LEAD(ModMaterials.LEAD, 6, 1f),
+	TITANIUM(ModMaterials.TITANIUM, 10, 0.8f),
+	TUNGSTEN(ModMaterials.TUNGSTEN, 16, 0.6f),
 	;
 	
 	private final String name;
@@ -22,6 +24,17 @@ public enum MoldMaterials {
 	) {
 		this.name = name;
 		this.tier = tier;
+		this.durability = durability;
+		this.coolingFactor = coolingFactor;
+	}
+	
+	MoldMaterials(
+			ModMaterials material,
+			int durability,
+			float coolingFactor
+	) {
+		this.name = material.getId();
+		this.tier = material.getSuperiorTier();
 		this.durability = durability;
 		this.coolingFactor = coolingFactor;
 	}
