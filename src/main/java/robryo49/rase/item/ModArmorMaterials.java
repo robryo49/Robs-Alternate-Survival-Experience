@@ -3,6 +3,7 @@ package robryo49.rase.item;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModArmorMaterials {
+	public static final RegistryEntry<ArmorMaterial> BRONZE = registerArmorMaterial("bronze", ModItems.BRONZE.INGOT(),
+			2, 6, 4, 2, 4, 15, 0, 0);
 	
 	
 	// --- Material Registration ---

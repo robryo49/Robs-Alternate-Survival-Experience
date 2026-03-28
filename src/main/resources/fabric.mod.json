@@ -17,6 +17,8 @@
 	"entrypoints": {
 		"main": [
           "robryo49.rase.Rase"
+		],"client": [
+			"robryo49.rase.RaseClient"
 		],
 		"fabric-datagen": [
 			"robryo49.rase.RaseDataGenerator"

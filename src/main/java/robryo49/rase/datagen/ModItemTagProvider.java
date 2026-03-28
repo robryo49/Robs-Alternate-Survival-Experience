@@ -17,12 +17,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 		super(output, completableFuture);
 	}
 	
-	@Override
-	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-		ModItems.TAGS.forEach(this::addItemsToTag);
-		ModItemTags.TAGS.forEach(this::addTagsToTag);
-	}
-	
 	
 	private void addItemsToTag(TagKey<Item> tagKey, List<Item> items) {
 		FabricTagBuilder builder = getOrCreateTagBuilder(tagKey);
@@ -32,5 +26,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 	private void addTagsToTag(TagKey<Item> tagKey, List<TagKey<Item>> tags) {
 		FabricTagBuilder builder = getOrCreateTagBuilder(tagKey);
 		tags.forEach(builder::addOptionalTag);
+	}
+	
+	@Override
+	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+		ModItems.TAGS.forEach(this::addItemsToTag);
+		ModItemTags.TAGS.forEach(this::addItemsToTag);
+		ModItemTags.PARENT_TAGS.forEach(this::addTagsToTag);
 	}
 }

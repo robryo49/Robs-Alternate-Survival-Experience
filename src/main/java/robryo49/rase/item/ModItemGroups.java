@@ -12,42 +12,50 @@ import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModItemGroups {
 	
 	// --- Collections ---
 	
-	public static final List<ItemGroup> ALL = List.of();
+	public static final List<ItemGroup> ALL = new ArrayList<>();
 	public static final List<ItemGroup> TRANSLATABLE = ALL;
 	
 	// --- Group Registrations ---
 	
 	
+	public static final ItemGroup MOD_ITEMS = registerItemGroup("rase_items", ModItems.BRONZE.INGOT(), ModItems.ALL);
+	public static final ItemGroup MOD_BLOCKS = registerItemGroup("rase_blocks", ModBlocks.BRONZE_BLOCK, ModBlocks.ALL);
+	
 	
 	// --- Core Registration Logic ---
 	
 	public static ItemGroup registerItemGroup(String id, Item displayItem, List<Item> items) {
-		return Registry.register(Registries.ITEM_GROUP,
+		ItemGroup itemGroup = Registry.register(Registries.ITEM_GROUP,
 				Identifier.of(Rase.MOD_ID, id),
 				FabricItemGroup.builder()
 						.icon(() -> new ItemStack(displayItem))
 						.displayName(Text.translatable("itemgroup.rase." + id))
 						.entries((displayContext, entries) -> {for (Item item: items) entries.add(item);})
 						.build());
+		ALL.add(itemGroup);
+		return itemGroup;
 	}
 	
 	public static ItemGroup registerItemGroup(String id, Block displayBlock, List<Block> blocks) {
-		return Registry.register(Registries.ITEM_GROUP,
+		ItemGroup itemGroup = Registry.register(Registries.ITEM_GROUP,
 				Identifier.of(Rase.MOD_ID, id),
 				FabricItemGroup.builder()
 						.icon(() -> new ItemStack(displayBlock))
 						.displayName(Text.translatable("itemgroup.rase." + id))
 						.entries((displayContext, entries) -> {for (Block block: blocks) entries.add(block);})
 						.build());
+		ALL.add(itemGroup);
+		return itemGroup;
 	}
 	
-	public static void registerItemGroups() {
+	public static void registerModItemGroups() {
 		Rase.LOGGER.info("Registering Item Groups for " + Rase.MOD_ID);
 		
 	}

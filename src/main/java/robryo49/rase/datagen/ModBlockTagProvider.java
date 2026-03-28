@@ -3,6 +3,7 @@ package robryo49.rase.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
 import robryo49.rase.block.ModBlocks;
@@ -37,6 +38,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 	@Override
 	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
 		ModBlocks.TAGS.forEach(this::addBlocksToTag);
+		ModBlockTags.TAGS.forEach(this::addBlocksToTag);
 		ModBlockTags.PARENT_TAGS.forEach(this::addTagsToTag);
 	}
 }

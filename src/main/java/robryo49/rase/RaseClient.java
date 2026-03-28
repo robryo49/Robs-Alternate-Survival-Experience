@@ -1,10 +1,36 @@
 package robryo49.rase;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.util.Identifier;
+import robryo49.rase.item.ModItems;
+import robryo49.rase.item.custom.MoldItem;
+
+import java.util.List;
 
 public class RaseClient implements ClientModInitializer {
+	
+	
+	public void registerMoldSetsModelPredicates(List<ModItems.MoldSet> moldSets) {
+		moldSets.forEach((moldSet) -> {
+			registerMoldItemModelPredicate(moldSet.INGOT());
+			registerMoldItemModelPredicate(moldSet.PICKAXE());
+			registerMoldItemModelPredicate(moldSet.AXE());
+			registerMoldItemModelPredicate(moldSet.SWORD());
+			registerMoldItemModelPredicate(moldSet.SHOVEL());
+			registerMoldItemModelPredicate(moldSet.HOE());
+		});
+	}
+	
+	public void registerMoldItemModelPredicate(MoldItem moldItem) {
+		ModelPredicateProviderRegistry.register(moldItem, Identifier.of(Rase.MOD_ID, "filled"),
+				(stack, world, entity, seed) -> stack.get(MoldItem.STORED_ITEM_COMPONENT) != null ? 1.0F : 0.0F);
+	}
+	
 	@Override
 	public void onInitializeClient() {
-	
+		Rase.LOGGER.info("Initializing client for rase");
+		
+		registerMoldSetsModelPredicates(ModItems.MOLD_SETS);
 	}
 }
