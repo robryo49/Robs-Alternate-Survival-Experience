@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "rase",
+	"version": "${version}",
+	"name": "Rob's Alternate Survival Experience",
+	"description": "Completely alters the vanilla survival experience in a 'fun' way",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://github.com/robryo49",
+		"sources": "https://github.com/robryo49"
+	},
+	"license": "MIT",
+	"icon": "assets/rase/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "robryo49.rase.Rase"
+		],
+		"fabric-datagen": [
+			"robryo49.rase.RaseDataGenerator"
+		]
+	},
+	"mixins": [
+		"rase.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
