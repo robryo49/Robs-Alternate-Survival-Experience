@@ -12,7 +12,7 @@ import robryo49.rase.block.entity.custom.ForgeBlockEntity;
 public class ModBlockEntities {
 	
 	public static final BlockEntityType<ForgeBlockEntity> FORGE_BLOCK_ENTITY =
-			Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Rase.MOD_ID, "forge_block_entity"),
+			Registry.register(Registries.BLOCK_ENTITY_TYPE, Rase.getIdentifier("forge_block_entity"),
 					BlockEntityType.Builder.create(ForgeBlockEntity::new,
 							ModBlocks.PRIMITIVE_FORGE,
 							ModBlocks.ADVANCED_FORGE

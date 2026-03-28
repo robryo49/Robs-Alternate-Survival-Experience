@@ -1,160 +1,190 @@
 package robryo49.rase.block;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.TexturedModel;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.client.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
-import robryo49.rase.block.custom.forge.ForgeBlock;
-import robryo49.rase.block.custom.forge.ForgeTiers;
+import robryo49.rase.block.custom.forge.*;
 import robryo49.rase.util.ModBlockTags;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public class ModBlocks {
 	
-	// --- Collections ---
-	
-	
+	// --- Collections for DataGen and Registry ---
 	public static final List<Block> ALL = new ArrayList<>();
-	public static final List<Block> TRANSLATABLE = ALL;
-	
-	public static final Map<Models, List<Block>> MODELS = new HashMap<>();
-	public static final Map<RegistryKey<ItemGroup>, List<Block>> GROUPS = new HashMap<>();
+	public static final Map<Models, List<Block>> MODELS = new EnumMap<>(Models.class);
 	public static final Map<TagKey<Block>, List<Block>> TAGS = new HashMap<>();
 	
-	public enum Models {
-		
-		CUBE_ALL(BlockStateModelGenerator::registerSimpleCubeAll),
-		ORIENTABLE((generator, block) -> generator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE)),
-		COOKER((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE));
-		
-		private final BiConsumer<BlockStateModelGenerator, Block> generator;
-		
-		Models(BiConsumer<BlockStateModelGenerator, Block> generator) {
-			this.generator = generator;
-		}
-		
-		public void generate(BlockStateModelGenerator generator, Block block) {
-			this.generator.accept(generator, block);
-		}
-		
-		public void generate(BlockStateModelGenerator generator, List<Block> blocks) {
-			blocks.forEach((block) -> generate(generator, block));
-		}
+	// --- 1. Primitive & Utility Blocks ---
+	public static final Block CHIPPED_STONE = registerBlock("chipped_stone", 2.5f, 6.0f, BlockSoundGroup.STONE);
+	
+	// Essential for high-tier forge construction
+	public static final Block REFRACTORY_BRICK = registerBlock("refractory_brick", 4.5f, 15.0f, BlockSoundGroup.STONE,
+			List.of(BlockTags.PICKAXE_MINEABLE));
+	
+	// --- 2. Forges (Luminance + Resistance) ---
+	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
+	public static final Block ADVANCED_FORGE = registerForge("advanced_forge", ForgeTiers.ADVANCED, 7.0f, 50.0f);
+	
+	// --- 3. Material Sets (Hardness / Resistance / Tool Gating) ---
+	
+	// TIER 0-1: Basic Ores (Minable by Stone)
+	public static final OreBlockSet TIN = registerOreBlockSet("tin", 3.0f, 3.0f, BlockTags.NEEDS_STONE_TOOL);
+	public static final OreBlockSet ZINC = registerOreBlockSet("zinc", 3.0f, 3.0f, BlockTags.NEEDS_STONE_TOOL);
+	public static final OreBlockSet MAGNETITE = registerOreBlockSet("magnetite", 4.0f, 6.0f, BlockTags.NEEDS_STONE_TOOL);
+	
+	// TIER 2: Bronze Age (Minable by Bronze)
+	public static final AlloyBlockSet BRONZE = registerAlloyBlockSet("bronze", 6.0f, 15.0f, ModBlockTags.NEEDS_BRONZE_TOOL);
+	public static final OreBlockSet SILVER = registerOreBlockSet("silver", 5.0f, 6.0f, ModBlockTags.NEEDS_BRONZE_TOOL);
+	public static final OreBlockSet LEAD = registerOreBlockSet("lead", 6.5f, 30.0f, ModBlockTags.NEEDS_BRONZE_TOOL);
+	
+	// TIER 3: Iron/Steel Age (Minable by Steel/Iron)
+	public static final AlloyBlockSet STEEL = registerAlloyBlockSet("steel", 12.0f, 45.0f, BlockTags.NEEDS_IRON_TOOL);
+	public static final OreBlockSet TITANIUM = registerOreBlockSet("titanium", 15.0f, 35.0f, BlockTags.NEEDS_IRON_TOOL);
+	public static final OreBlockSet PLATINUM = registerOreBlockSet("platinum", 12.0f, 20.0f, BlockTags.NEEDS_IRON_TOOL);
+	
+	// TIER 4: Exotic Metals (Minable by Titanium/Diamond)
+	public static final OreBlockSet TUNGSTEN = registerOreBlockSet("tungsten", 30.0f, 80.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	public static final OreBlockSet PALLADIUM = registerOreBlockSet("palladium", 18.0f, 25.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	public static final NetherOreBlockSet COBALT = registerNetherOreBlockSet("cobalt", 22.0f, 20.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	
+	// TIER 5: Mythic (Extreme Resistance)
+	public static final AlloyBlockSet SCANDIUM = registerAlloyBlockSet("scandium", 35.0f, 70.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	public static final OreBlockSet MYTHRIL = registerOreBlockSet("mythril", 45.0f, 1200.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	public static final NetherCrystalBlockSet RHEXIS = registerNetherCrystalBlockSet("rhexis", 50.0f, 1200.0f, BlockTags.NEEDS_DIAMOND_TOOL);
+	
+	// --- 4. Anvils ---
+	public static final SmithingAnvilBlockSet STONE_ANVIL = registerSmithingAnvilBlockSet("stone", SmithingAnvilMaterials.STONE);
+	public static final SmithingAnvilBlockSet LEAD_ANVIL = registerSmithingAnvilBlockSet("lead", SmithingAnvilMaterials.LEAD);
+	public static final SmithingAnvilBlockSet TITANIUM_ANVIL = registerSmithingAnvilBlockSet("titanium", SmithingAnvilMaterials.TITANIUM);
+	public static final SmithingAnvilBlockSet TUNGSTEN_ANVIL = registerSmithingAnvilBlockSet("tungsten", SmithingAnvilMaterials.TUNGSTEN);
+	
+	// --- Helper Logic & Registration Wrappers ---
+	
+	private static Block registerForge(String name, ForgeTiers tier, float strength, float resistance) {
+		return registerBlock(name, new ForgeBlock(AbstractBlock.Settings.create()
+						.strength(strength, resistance)
+						.luminance(state -> state.get(ForgeBlock.LIT) ? 13 : 0), tier),
+				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), Models.COOKER);
 	}
 	
-	
-	// --- Block Registrations ---
-	
-	
-	public static final Block PRIMITIVE_FORGE = registerBlock("primitive_forge",
-			new ForgeBlock(AbstractBlock.Settings.create().luminance(state -> state.get(ForgeBlock.LIT) ? 13 : 0),
-					ForgeTiers.PRIMITIVE), List.of(BlockTags.PICKAXE_MINEABLE), Models.COOKER);
-	
-	public static final Block ADVANCED_FORGE = registerBlock("advanced_forge",
-			new ForgeBlock(AbstractBlock.Settings.create().luminance(state -> state.get(ForgeBlock.LIT) ? 13 : 0),
-					ForgeTiers.ADVANCED), List.of(BlockTags.PICKAXE_MINEABLE), Models.COOKER);
-	
-	
-	public static final Block BRONZE_BLOCK = registerMaterialBlock("bronze", 1, ModBlockTags.NEEDS_BRONZE_TOOL);
-	public static final OreBlockSet TIN = registerOreBlockSet("tin", 1, ModBlockTags.NEEDS_BRONZE_TOOL);
-	
-	// --- Ore Specific Registration Methods ---
-	
-	
-	public record OreBlockSet(Block ORE, Block DEEPSLATE_ORE, Block BLOCK, Block RAW_BLOCK) {}
-	public record NetherOreBlockSet(Block NETHER_ORE, Block BLOCK, Block RAW_BLOCK) {}
-	
-	private static Block registerMaterialBlock(String materialName, float strength, TagKey<Block> toolTier) {
-		return registerBlock(materialName + "_block", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.METAL)),
-				List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL);
+	public static AlloyBlockSet registerAlloyBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
+		return new AlloyBlockSet(registerBlock(name + "_block", strength, resistance, BlockSoundGroup.METAL,
+				List.of(BlockTags.PICKAXE_MINEABLE, toolTier)));
 	}
 	
-	private static OreBlockSet registerOreBlockSet(String materialName, float strength, TagKey<Block> toolTier) {
+	public static OreBlockSet registerOreBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
 		return new OreBlockSet(
-				registerBlock(materialName + "_ore", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.STONE)),
-						List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL),
-				registerBlock("deepslate_" + materialName + "_ore", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)),
-						List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL),
-				registerBlock(materialName + "_block", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.METAL)),
-						List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL),
-				registerBlock("raw_" + materialName + "_block", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.STONE)),
-						List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL)
+				registerBlock(name + "_ore", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.STONE_ORES, toolTier)),
+				registerBlock("deepslate_" + name + "_ore", strength * 1.6f, resistance * 1.6f, BlockSoundGroup.DEEPSLATE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.DEEPSLATE_ORES, toolTier)),
+				registerBlock(name + "_block", strength, resistance + 5.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTier)),
+				registerBlock("raw_" + name + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTier))
 		);
 	}
 	
-	private static NetherOreBlockSet registerNetherOreBlockSet(String name, float strength, TagKey<Block> toolTier) {
+	public static NetherOreBlockSet registerNetherOreBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
 		return new NetherOreBlockSet(
-				registerBlock("nether_" + name + "_ore", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.NETHER_ORE)),
-						List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL),
-				registerBlock(name + "_block", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.METAL)),
-						List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL),
-				registerBlock("raw_" + name + "_block", new Block(AbstractBlock.Settings.create().strength(strength).requiresTool().sounds(BlockSoundGroup.STONE)),
-						List.of(BlockTags.PICKAXE_MINEABLE, toolTier), Models.CUBE_ALL)
+				registerBlock("nether_" + name + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTier)),
+				registerBlock(name + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTier)),
+				registerBlock("raw_" + name + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTier))
 		);
 	}
 	
+	public static NetherCrystalBlockSet registerNetherCrystalBlockSet(String name, float strength, float resistance, TagKey<Block> toolTier) {
+		return new NetherCrystalBlockSet(
+				registerBlock("nether_" + name + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTier)),
+				registerBlock(name + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTier))
+		);
+	}
 	
 	// --- Core Registration Logic ---
 	
-	
-	private static Block registerBlock(String name, Block block) {
-		return registerBlock(name, block, List.of(), Models.CUBE_ALL);
+	public static Block registerBlock(String name, float strength, float resistance, BlockSoundGroup sound) {
+		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound)), List.of(), Models.CUBE_ALL);
 	}
 	
-	private static Block registerBlock(String name, Block block, List<TagKey<Block>> tags) {
-		return registerBlock(name, block, tags, Models.CUBE_ALL);
+	public static Block registerBlock(String name, float strength, float resistance, BlockSoundGroup sound, List<TagKey<Block>> tags) {
+		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound).requiresTool()), tags, Models.CUBE_ALL);
 	}
 	
-	private static Block registerBlock(String name, Block block, Models model) {
-		return registerBlock(name, block, List.of(), model);
-	}
-	
-	private static Block registerBlock(String name, Block block, List<TagKey<Block>> tags, Models model) {
-		registerBlockItem(name, block);
+	public static Block registerBlock(String name, Block block, List<TagKey<Block>> tags, Models model) {
+		Identifier id = Rase.getIdentifier(name);
 		
-		Block registeredBlock = Registry.register(Registries.BLOCK, Identifier.of(Rase.MOD_ID, name), block);
+		// Register Block and Item
+		Block registeredBlock = Registry.register(Registries.BLOCK, id, block);
+		Registry.register(Registries.ITEM, id, new BlockItem(registeredBlock, new Item.Settings()));
 		
+		// Internal Tracking
 		ALL.add(registeredBlock);
 		MODELS.computeIfAbsent(model, k -> new ArrayList<>()).add(registeredBlock);
-		
-		tags.forEach(tagKey -> TAGS.computeIfAbsent(tagKey, k -> new ArrayList<>()).add(registeredBlock));
+		tags.forEach(tag -> TAGS.computeIfAbsent(tag, k -> new ArrayList<>()).add(registeredBlock));
 		
 		return registeredBlock;
 	}
 	
-	private static void registerBlockItem(String name, Block block) {
-		Registry.register(Registries.ITEM, Identifier.of(Rase.MOD_ID, name), new BlockItem(block, new Item.Settings()));
+	// --- Anvil Implementation ---
+	
+	public static SmithingAnvilBlockSet registerSmithingAnvilBlockSet(String name, SmithingAnvilMaterials material) {
+		return new SmithingAnvilBlockSet(
+				(SmithingAnvilBlock) registerBlock(name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL),
+				(SmithingAnvilBlock) registerBlock("chipped_" + name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL),
+				(SmithingAnvilBlock) registerBlock("damaged_" + name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL)
+		);
 	}
 	
+	public record SmithingAnvilBlockSet(SmithingAnvilBlock NORMAL, SmithingAnvilBlock CHIPPED, SmithingAnvilBlock DAMAGED) {
+		public SmithingAnvilBlockSet(SmithingAnvilBlock NORMAL, SmithingAnvilBlock CHIPPED, SmithingAnvilBlock DAMAGED) {
+			this.NORMAL = NORMAL; this.CHIPPED = CHIPPED; this.DAMAGED = DAMAGED;
+			this.NORMAL.setAnvilBlockSet(this); this.CHIPPED.setAnvilBlockSet(this); this.DAMAGED.setAnvilBlockSet(this);
+		}
+	}
 	
-	// --- Item Group Logic ---
+	public record AlloyBlockSet(Block BLOCK) {}
+	public record CrystalBlockSet(Block ORE, Block DEEPSLATE_ORE, Block BLOCK) {}
+	public record OreBlockSet(Block ORE, Block DEEPSLATE_ORE, Block BLOCK, Block RAW_BLOCK) {}
+	public record NetherOreBlockSet(Block NETHER_ORE, Block BLOCK, Block RAW_BLOCK) {}
+	public record NetherCrystalBlockSet(Block NETHER_ORE, Block BLOCK) {}
 	
+	// --- Model Enumeration Logic ---
 	
-	
-	
-	private static void addToItemGroup(RegistryKey<ItemGroup> groupRegistryKey, List<Block> blocks) {
-		ItemGroupEvents.modifyEntriesEvent(groupRegistryKey).register(entries -> blocks.forEach(entries::add));
+	public enum Models {
+		CUBE_ALL(BlockStateModelGenerator::registerSimpleCubeAll),
+		ORIENTABLE((generator, block) -> generator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE)),
+		COOKER((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE)),
+		ANVIL((generator, block) -> {
+			TextureKey BODY = TextureKey.of("body");
+			TextureKey TOP = TextureKey.of("top");
+			Identifier blockId = Registries.BLOCK.getId(block);
+			String path = blockId.getPath();
+			
+			TextureMap textures = new TextureMap()
+					.put(BODY, Identifier.of(blockId.getNamespace(), "block/" + path.replace("chipped_", "").replace("damaged_", "")))
+					.put(TOP, Identifier.of(blockId.getNamespace(), "block/" + path + "_top"));
+			
+			Model model = new Model(Optional.of(Identifier.of("minecraft", "block/anvil")), Optional.empty(), BODY, TOP);
+			Identifier modelId = model.upload(block, textures, generator.modelCollector);
+			generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block, BlockStateVariant.create().put(VariantSettings.MODEL, modelId))
+					.coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates()));
+		});
+		
+		private final BiConsumer<BlockStateModelGenerator, Block> generator;
+		Models(BiConsumer<BlockStateModelGenerator, Block> generator) { this.generator = generator; }
+		public void generate(BlockStateModelGenerator gen, Block block) { this.generator.accept(gen, block); }
+		public void generate(BlockStateModelGenerator gen, List<Block> blocks) { blocks.forEach(block -> generate(gen, block)); }
 	}
 	
 	public static void registerModBlocks() {
-		Rase.LOGGER.info("Registering Blocks for " + Rase.MOD_ID);
-		GROUPS.forEach(ModBlocks::addToItemGroup);
+		Rase.LOGGER.info("Hardening the world: Registering Blocks for " + Rase.MOD_ID);
 	}
 }

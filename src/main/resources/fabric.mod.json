@@ -15,13 +15,11 @@
 	"icon": "assets/rase/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-          "robryo49.rase.Rase"
-		],"client": [
-			"robryo49.rase.RaseClient"
-		],
-		"fabric-datagen": [
-			"robryo49.rase.RaseDataGenerator"
+		"main": ["robryo49.rase.Rase"],
+		"client": ["robryo49.rase.RaseClient"],
+		"fabric-datagen": ["robryo49.rase.RaseDataGenerator"],
+		"emi": [
+			"robryo49.rase.compat.emi.RaseEmiPlugin"
 		]
 	},
 	"mixins": [
@@ -31,6 +29,8 @@
 		"fabricloader": ">=0.18.4",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"item_obliterator": ">=3.1.1",
+		"necronomicon": ">=1.4.2"
 	}
 }

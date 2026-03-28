@@ -4,13 +4,17 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
@@ -21,7 +25,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import robryo49.rase.block.entity.ModBlockEntities;
 import robryo49.rase.block.entity.custom.ForgeBlockEntity;
-import robryo49.rase.block.custom.forge.ForgeTiers.ForgeTier;
+
+import java.util.List;
 
 public class ForgeBlock extends BlockWithEntity {
 	
@@ -30,9 +35,9 @@ public class ForgeBlock extends BlockWithEntity {
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	public static final BooleanProperty LIT = Properties.LIT;
 	
-	private final ForgeTier tier;
+	private final ForgeTiers tier;
 	
-	public ForgeBlock(Settings settings, ForgeTier forgeTier) {
+	public ForgeBlock(Settings settings, ForgeTiers forgeTier) {
 		super(settings);
 		this.tier = forgeTier;
 		this.setDefaultState(this.stateManager.getDefaultState()
@@ -51,7 +56,7 @@ public class ForgeBlock extends BlockWithEntity {
 		return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 	}
 	
-	public ForgeTier getTier() {
+	public ForgeTiers getTier() {
 		return tier;
 	}
 	
@@ -108,5 +113,17 @@ public class ForgeBlock extends BlockWithEntity {
 				type, ModBlockEntities.FORGE_BLOCK_ENTITY,
 				(world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1)
 		);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
+		tooltip.add(Text.empty());
+		tooltip.add(
+				Text.translatable("item.rase.mold.tooltip.tier")
+						.append(": ")
+						.formatted(net.minecraft.util.Formatting.GRAY)
+						.append(Text.literal(String.valueOf(getTier())).formatted(net.minecraft.util.Formatting.GOLD)));
+		
+		super.appendTooltip(stack, context, tooltip, options);
 	}
 }

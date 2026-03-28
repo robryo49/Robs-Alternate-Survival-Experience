@@ -1,6 +1,8 @@
 package robryo49.rase.item.custom;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.component.ComponentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -18,6 +20,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ClickType;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import robryo49.rase.Rase;
@@ -29,7 +32,7 @@ public class MoldItem extends Item {
 	
 	public static final ComponentType<ItemStack> STORED_ITEM_COMPONENT = Registry.register(
 			Registries.DATA_COMPONENT_TYPE,
-			Identifier.of(Rase.MOD_ID, "stored_item"),
+			Rase.getIdentifier("stored_item"),
 			ComponentType.<ItemStack>builder()
 					.codec(ItemStack.CODEC)
 					.packetCodec(ItemStack.PACKET_CODEC)
@@ -38,7 +41,7 @@ public class MoldItem extends Item {
 	
 	public static final ComponentType<Integer> COOLING_TIME = Registry.register(
 			Registries.DATA_COMPONENT_TYPE,
-			Identifier.of(Rase.MOD_ID, "cooling_time"),
+			Rase.getIdentifier("cooling_time"),
 			ComponentType.<Integer>builder()
 					.codec(Codec.INT)
 					.packetCodec(PacketCodecs.INTEGER)
@@ -47,34 +50,34 @@ public class MoldItem extends Item {
 	
 	public static final ComponentType<Integer> COOLING_START_TIME = Registry.register(
 			Registries.DATA_COMPONENT_TYPE,
-			Identifier.of(Rase.MOD_ID, "cooling_start_time"),
+			Rase.getIdentifier("cooling_start_time"),
 			ComponentType.<Integer>builder()
 					.codec(Codec.INT)
 					.packetCodec(PacketCodecs.INTEGER)
 					.build()
 	);
 	
-	private final MoldMaterials.MoldMaterial material;
+	private final MoldMaterials material;
 	private final TagKey<Item> acceptedItems;
 	private final String patternName;
 	
-	public MoldItem(Settings settings, MoldMaterials.MoldMaterial material, TagKey<Item> acceptedItems, String patternName) {
-		super(settings.maxCount(1).maxDamage(material.durability()));
+	public MoldItem(Settings settings, MoldMaterials material, TagKey<Item> acceptedItems, String patternName) {
+		super(settings.maxCount(1).maxDamage(material.getDurability()));
 		this.material = material;
 		this.acceptedItems = acceptedItems;
 		this.patternName = patternName;
 	}
 	
-	public MoldMaterials.MoldMaterial getMaterial() {
+	public MoldMaterials getMaterial() {
 		return material;
 	}
 	
 	public String getMaterialName() {
-		return material.name();
+		return material.getName();
 	}
 	
-	public ForgeTiers.ForgeTier getForgeTier() {
-		return material.forgeTier();
+	public int getTier() {
+		return material.getTier();
 	}
 	
 	public String getPatternName() {
@@ -145,7 +148,7 @@ public class MoldItem extends Item {
 	}
 	
 	public static void startCooling(ItemStack mold, int time, World world) {
-		setCoolingTime(mold, time);
+		setCoolingTime(mold, Math.round(((MoldItem) mold.getItem()).getMaterial().getCoolingFactor() * time));
 		setCoolingStartTime(mold, Math.round(world.getTime()));
 	}
 	
@@ -191,26 +194,37 @@ public class MoldItem extends Item {
 	
 	@Override
 	public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-		if (!hasStoredItem(stack)) return;
 		
-		// Show stored item
-		tooltip.add(Text.translatable("item.rase.mold.tooltip.held_item")
-				.append(": ").append(getStoredItem(stack).getName()));
+		tooltip.add(Text.empty());
+		tooltip.add(
+				Text.translatable("item.rase.mold.tooltip.tier")
+				.append(": ")
+				.formatted(Formatting.GRAY)
+				.append(Text.literal(String.valueOf(getTier())).formatted(Formatting.GOLD)));
 		
-		// Get the client world for the time check
-		net.minecraft.client.world.ClientWorld world = net.minecraft.client.MinecraftClient.getInstance().world;
-		if (world != null) {
-			long ticksLeft = getCoolingTime(stack) + getCoolingStartTime(stack) - world.getTime();
+		if (hasStoredItem(stack)) {
 			
-			if (ticksLeft > 0) {
-				float seconds = ticksLeft / 20.0f;
-				tooltip.add(Text.translatable("item.rase.mold.tooltip.cooling_time")
-						.append(": " + String.format("%.1fs", seconds))
-						.formatted(net.minecraft.util.Formatting.RED));
-			} else {
-				tooltip.add(Text.translatable("item.rase.mold.tooltip.cooled")
-						.formatted(net.minecraft.util.Formatting.GREEN));
+			tooltip.add(Text.translatable("item.rase.mold.tooltip.held_item")
+					.formatted(Formatting.GRAY)
+					.append(": ")
+					.append(getStoredItem(stack).getName().copy().formatted(Formatting.AQUA)));
+			
+			ClientWorld world = MinecraftClient.getInstance().world;
+			if (world != null) {
+				long ticksLeft = getCoolingTime(stack) + getCoolingStartTime(stack) - world.getTime();
+				
+				if (ticksLeft > 0) {
+					float seconds = ticksLeft / 20.0f;
+					tooltip.add(
+							Text.translatable("item.rase.mold.tooltip.cooling_time").append(String.format(": %.1fs", seconds)).formatted(Formatting.RED)
+					);
+				} else {
+					tooltip.add(
+							Text.translatable("item.rase.mold.tooltip.cooled").formatted(Formatting.GREEN)
+					);
+				}
 			}
+			tooltip.add(Text.empty());
 		}
 	}
 }

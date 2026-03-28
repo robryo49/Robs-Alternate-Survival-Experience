@@ -12,9 +12,14 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import robryo49.rase.block.custom.forge.ForgeTiers;
 import robryo49.rase.block.entity.custom.ForgeBlockEntity;
 import robryo49.rase.item.custom.MoldItem;
+import robryo49.rase.recipe.ModRecipes;
 import robryo49.rase.screen.ModScreenHandlers;
+import robryo49.rase.util.ModItemTags;
+
+import java.util.Objects;
 
 public class ForgeScreenHandler extends ScreenHandler {
 	
@@ -36,15 +41,19 @@ public class ForgeScreenHandler extends ScreenHandler {
 		this.blockEntity = (ForgeBlockEntity) blockEntity;
 		this.propertyDelegate = propertyDelegate;
 		
-		for (int i = 0; i < 4; i++) addSlot(new Slot(inventory, ForgeBlockEntity.INPUT_SLOT_0 + i, INPUT_X + i * 18, INPUT_Y));
+		for (int i = 0; i < 4; i++) addSlot(new Slot(inventory, ForgeBlockEntity.INPUT_SLOT_0 + i, INPUT_X + i * 18, INPUT_Y) {
+			@Override public boolean canInsert(ItemStack stack) {return isValidIngredient(stack); }
+		});
 		
-		addSlot(new Slot(inventory, ForgeBlockEntity.FUEL_SLOT, FUEL_X, FUEL_Y));
+		addSlot(new Slot(inventory, ForgeBlockEntity.FUEL_SLOT, FUEL_X, FUEL_Y) {
+			@Override public boolean canInsert(ItemStack stack) {return AbstractFurnaceBlockEntity.canUseAsFuel(stack); }
+		});
 		
 		addSlot(new Slot(inventory, ForgeBlockEntity.OUTPUT_SLOT, OUTPUT_X, OUTPUT_Y) {
 			@Override
 			public boolean canInsert(ItemStack stack) {
 				if (stack.getItem() instanceof MoldItem moldItem) {
-					return moldItem.getForgeTier().tier() >= ((ForgeBlockEntity) blockEntity).getForgeTier().tier();
+					return moldItem.getTier() >= ((ForgeBlockEntity) blockEntity).getForgeTier().getTier();
 				} else return false;
 			}
 			
@@ -73,6 +82,14 @@ public class ForgeScreenHandler extends ScreenHandler {
 		return Math.ceilDiv(getBurnTime() * 14, Math.max(getFuelTime(), 1));
 	}
 	
+	private boolean isValidIngredient(ItemStack stack) {
+		return Objects.requireNonNull(blockEntity.getWorld()).getRecipeManager()
+				.listAllOfType(ModRecipes.FORGE_RECIPE_TYPE)
+				.stream()
+				.anyMatch(entry -> entry.value().ingredients().stream()
+						.anyMatch(ingredient -> ingredient.test(stack)));
+	}
+	
 	@Override
 	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack result = ItemStack.EMPTY;
@@ -83,22 +100,36 @@ public class ForgeScreenHandler extends ScreenHandler {
 		ItemStack original = slot.getStack();
 		result = original.copy();
 		
-		// Output slot
 		if (index == ForgeBlockEntity.OUTPUT_SLOT) {
 			if (!insertItem(original, 6, 42, true)) return ItemStack.EMPTY;
 			slot.onQuickTransfer(original, result);
 		}
-		// Player inventory
-		else if (index >= 6) {
-			if (AbstractFurnaceBlockEntity.canUseAsFuel(original)) {
+		else if (index < 6) {
+			if (!insertItem(original, 6, 42, false)) return ItemStack.EMPTY;
+		}
+		else {
+			if (original.isIn(ModItemTags.MOLDS)) {
+				if (!insertItem(original, ForgeBlockEntity.OUTPUT_SLOT, ForgeBlockEntity.OUTPUT_SLOT + 1, false)
+						&& !insertItem(original, ForgeBlockEntity.INPUT_SLOT_0, ForgeBlockEntity.INPUT_SLOT_3 + 1, false)) {
+					if (index < 33 ? !insertItem(original, 33, 42, false) : !insertItem(original, 6, 33, false))
+						return ItemStack.EMPTY;
+				}
+			} else if (AbstractFurnaceBlockEntity.canUseAsFuel(original)) {
 				if (!insertItem(original, ForgeBlockEntity.FUEL_SLOT, ForgeBlockEntity.FUEL_SLOT + 1, false)
-						&& !insertItem(original, ForgeBlockEntity.INPUT_SLOT_0, ForgeBlockEntity.INPUT_SLOT_3 + 1, false)) return ItemStack.EMPTY;
-			} else if (!insertItem(original, ForgeBlockEntity.INPUT_SLOT_0, ForgeBlockEntity.INPUT_SLOT_3 + 1, false)) {
-				if (index < 33 ? !insertItem(original, 33, 42, false) : !insertItem(original, 6, 33, false)) return ItemStack.EMPTY;
+						&& !insertItem(original, ForgeBlockEntity.INPUT_SLOT_0, ForgeBlockEntity.INPUT_SLOT_3 + 1, false)) {
+					if (index < 33 ? !insertItem(original, 33, 42, false) : !insertItem(original, 6, 33, false))
+						return ItemStack.EMPTY;
+				}
+			} else {
+				if (!isValidIngredient(original)) {
+					if (index < 33 ? !insertItem(original, 33, 42, false) : !insertItem(original, 6, 33, false))
+						return ItemStack.EMPTY;
+				} else if (!insertItem(original, ForgeBlockEntity.INPUT_SLOT_0, ForgeBlockEntity.INPUT_SLOT_3 + 1, false)) {
+					if (index < 33 ? !insertItem(original, 33, 42, false) : !insertItem(original, 6, 33, false))
+						return ItemStack.EMPTY;
+				}
 			}
 		}
-		// Machine inventory -> player
-		else if (!insertItem(original, 6, 42, false)) return ItemStack.EMPTY;
 		
 		if (original.isEmpty()) slot.setStack(ItemStack.EMPTY);
 		else slot.markDirty();
@@ -130,4 +161,7 @@ public class ForgeScreenHandler extends ScreenHandler {
 	public int getBurnTime() { return propertyDelegate.get(2); }
 	public int getFuelTime() { return propertyDelegate.get(3); }
 	
+	public ForgeTiers getForgeTier() {
+		return blockEntity.getForgeTier();
+	}
 }

@@ -13,6 +13,7 @@ public class RaseDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModItemTagProvider::new);
 		pack.addProvider(ModLanguageProvider::new);
 		pack.addProvider(ModLootTableProvider::new);
+		pack.addProvider(ModEntityLootTableProvider::new);
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 	}

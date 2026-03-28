@@ -11,9 +11,9 @@ import robryo49.rase.Rase;
 
 public class ForgeScreen extends HandledScreen<ForgeScreenHandler> {
 	
-	private static final Identifier GUI_TEXTURE   = Identifier.of(Rase.MOD_ID, "textures/gui/forge/forge_gui.png");
-	private static final Identifier ARROW_TEXTURE = Identifier.of(Rase.MOD_ID, "textures/gui/forge/burn_progress.png");
-	private static final Identifier FLAME_TEXTURE = Identifier.of(Rase.MOD_ID, "textures/gui/forge/lit_progress.png");
+	private static final Identifier GUI_TEXTURE   = Rase.getIdentifier("textures/gui/forge/forge_gui.png");
+	private static final Identifier ARROW_TEXTURE = Rase.getIdentifier("textures/gui/forge/burn_progress.png");
+	private static final Identifier FLAME_TEXTURE = Rase.getIdentifier("textures/gui/forge/lit_progress.png");
 	
 	public ForgeScreen(ForgeScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);

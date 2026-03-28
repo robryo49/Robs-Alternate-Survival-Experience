@@ -21,28 +21,16 @@ import java.util.function.BiConsumer;
 
 public class ModModelProvider extends FabricModelProvider {
 	
-	private static final Map<Model, BiConsumer<BlockStateModelGenerator, Block>> MODEL_GENERATORS = Map.of(
-			Models.CUBE_ALL, BlockStateModelGenerator::registerSimpleCubeAll,
-			
-			Models.ORIENTABLE, (blockStateModelGenerator, block) -> {
-				if (block instanceof ForgeBlock) blockStateModelGenerator.registerCooker(block, TexturedModel.ORIENTABLE);
-				else blockStateModelGenerator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE);
-			}
-	);
-	
 	public ModModelProvider(FabricDataOutput output) {
 		super(output);
 	}
 	
-	public void registerBlockStateModels(BlockStateModelGenerator blockStateModelGenerator, List<Block> blocks, Model model) {
-		BiConsumer<BlockStateModelGenerator, Block> generator = MODEL_GENERATORS.getOrDefault(model, BlockStateModelGenerator::registerSimpleCubeAll);
-		blocks.forEach(block -> generator.accept(blockStateModelGenerator, block));
-	}
 	
 	@Override
 	public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-		ModBlocks.MODELS.forEach((ModBlocks.Models model, List<Block> blocks) -> model.generate(blockStateModelGenerator, blocks));
+		ModBlocks.MODELS.forEach((model, blocks) -> model.generate(blockStateModelGenerator, blocks));
 	}
+	
 	
 	
 	public void registerItemModel(ItemModelGenerator itemModelGenerator, Model model, Item item) {
@@ -67,7 +55,7 @@ public class ModModelProvider extends FabricModelProvider {
 			json.addProperty("parent", "minecraft:item/generated");
 			
 			JsonObject textures = new JsonObject();
-			textures.addProperty("layer0", Rase.MOD_ID + ":item/mold_base_" + moldItem.getMaterialName());
+			textures.addProperty("layer0", Rase.MOD_ID + ":item/" + moldItem.getMaterialName() + "_mold_base");
 			textures.addProperty("layer1",  Rase.MOD_ID + ":item/mold_pattern_" + moldItem.getPatternName());
 			textures.addProperty("layer2",  Rase.MOD_ID + ":item/mold_pattern_" + moldItem.getPatternName() + "_filled");
 			json.add("textures", textures);
@@ -80,7 +68,7 @@ public class ModModelProvider extends FabricModelProvider {
 			json.addProperty("parent", "minecraft:item/generated");
 			
 			JsonObject textures = new JsonObject();
-			textures.addProperty("layer0", Rase.MOD_ID + ":item/mold_base_" + moldItem.getMaterialName());
+			textures.addProperty("layer0", Rase.MOD_ID + ":item/" + moldItem.getMaterialName() + "_mold_base");
 			textures.addProperty("layer1",  Rase.MOD_ID + ":item/mold_pattern_" + moldItem.getPatternName());
 			json.add("textures", textures);
 			
@@ -88,7 +76,7 @@ public class ModModelProvider extends FabricModelProvider {
 			JsonObject overrideObj = new JsonObject();
 			
 			JsonObject predicate = new JsonObject();
-			predicate.addProperty(Identifier.of(Rase.MOD_ID, "filled").toString(), 1.0f);
+			predicate.addProperty(Rase.getIdentifier("filled").toString(), 1.0f);
 			
 			overrideObj.add("predicate", predicate);
 			overrideObj.addProperty("model", filledModelId.toString());

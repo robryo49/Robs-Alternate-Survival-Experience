@@ -31,12 +31,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import robryo49.rase.block.custom.forge.ForgeBlock;
-import robryo49.rase.block.custom.forge.ForgeTiers.ForgeTier;
+import robryo49.rase.block.custom.forge.ForgeTiers;
 import robryo49.rase.block.entity.ImplementedInventory;
 import robryo49.rase.block.entity.ModBlockEntities;
 import robryo49.rase.item.custom.MoldItem;
-import robryo49.rase.recipe.ForgeRecipe;
-import robryo49.rase.recipe.ForgeRecipeInput;
+import robryo49.rase.recipe.custom.ForgeRecipe;
 import robryo49.rase.recipe.ModRecipes;
 import robryo49.rase.screen.custom.ForgeScreenHandler;
 
@@ -51,9 +50,10 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 	
 	private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6, ItemStack.EMPTY);
 	private int cookTime = 0, cookTimeTotal = 200, burnTime = 0, fuelTime = 0;
-	private final ForgeTier forgeTier;
+	private final ForgeTiers forgeTier;
 	private boolean active = true;
 	private final Object2IntOpenHashMap<Identifier> recipesUsed = new Object2IntOpenHashMap<>();
+	private Identifier currentRecipeId = null;
 	
 	protected final PropertyDelegate propertyDelegate;
 	
@@ -116,16 +116,29 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 			if (!isBurning() && tryConsumeFuel()) dirty = true;
 			
 			if (isBurning()) {
+				Optional<RecipeEntry<ForgeRecipe>> recipe = getCurrentRecipe();
+				Identifier newRecipeId = recipe.map(RecipeEntry::id).orElse(null);
+				
+				if (!java.util.Objects.equals(currentRecipeId, newRecipeId)) {
+					currentRecipeId = newRecipeId;
+					cookTime = 0;
+					cookTimeTotal = recipe.map(r -> forgeTier.getSmeltingTime(r.value().cookTime())).orElse(200);
+				}
+				
 				if (cookTime == 0) cookTimeTotal = getCurrentCookTime();
 				cookTime++;
 				
 				if (cookTime >= cookTimeTotal) {
 					craftCurrentRecipe(world);
+					currentRecipeId = null;
 					cookTime = 0;
 					dirty = true;
 				}
 			} else decreaseCookTime();
-		} else decreaseCookTime();
+		} else {
+			currentRecipeId = null;
+			decreaseCookTime();
+		}
 		
 		if (wasBurning != isBurning()) {
 			world.setBlockState(pos, state.with(ForgeBlock.LIT, isBurning()), Block.NOTIFY_ALL);
@@ -140,13 +153,13 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 		Direction facing = state.get(ForgeBlock.FACING);
 		BlockPos forgeCorePos = pos.offset(facing.getOpposite());
 		
-		if (!world.getBlockState(forgeCorePos).isIn(forgeTier.coreTag())) return false;
+		if (!forgeTier.isCore(world.getBlockState(forgeCorePos))) return false;
 		
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
 				for (int z = -1; z <= 1; z++) {
 					BlockPos checkPos = forgeCorePos.add(x, y, z);
-					if (!world.getBlockState(checkPos).isIn(forgeTier.shellTag()) && !checkPos.equals(pos) && !checkPos.equals(forgeCorePos)) {
+					if (!forgeTier.isShell(world.getBlockState(checkPos)) && !checkPos.equals(pos) && !checkPos.equals(forgeCorePos)) {
 						return false;
 					}
 				}
@@ -182,11 +195,17 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 	}
 	
 	private void craftCurrentRecipe(World world) {
-		getCurrentRecipe().ifPresent( (recipe) -> {
+		getCurrentRecipe().ifPresent(recipe -> {
 			List<Ingredient> remaining = new ArrayList<>(recipe.value().ingredients());
-			for (int slot = INPUT_SLOT_0; slot <= INPUT_SLOT_3; slot++) {
+			
+			int slot = INPUT_SLOT_0;
+			
+			int attempts = 0;
+			int maxAttempts = remaining.size() * (INPUT_SLOT_3 + 1);
+			
+			while (!remaining.isEmpty() && attempts++ < maxAttempts) {
 				ItemStack stack = getStack(slot);
-				if (stack.isEmpty()) continue;
+				
 				for (int i = 0; i < remaining.size(); i++) {
 					if (remaining.get(i).test(stack)) {
 						removeStack(slot, 1);
@@ -194,7 +213,10 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 						break;
 					}
 				}
+				
+				slot = (slot + 1) % (INPUT_SLOT_3 + 1);
 			}
+			
 			ItemStack result = recipe.value().result().copy();
 			ItemStack mold = getStack(OUTPUT_SLOT);
 			
@@ -244,10 +266,10 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 		if (getWorld() == null) return Optional.empty();
 		return getWorld().getRecipeManager().getFirstMatch(
 						ModRecipes.FORGE_RECIPE_TYPE,
-						new ForgeRecipeInput(getStack(INPUT_SLOT_0), getStack(INPUT_SLOT_1),
+						new ForgeRecipe.Input(getStack(INPUT_SLOT_0), getStack(INPUT_SLOT_1),
 								getStack(INPUT_SLOT_2), getStack(INPUT_SLOT_3), getStack(OUTPUT_SLOT)),
 						getWorld())
-				.filter(r -> forgeTier.tier() >= r.value().minTier());
+				.filter(r -> forgeTier.getTier() >= r.value().tier());
 	}
 	
 	private boolean canSmelt() {
@@ -270,7 +292,7 @@ public class ForgeBlockEntity extends BlockEntity implements ExtendedScreenHandl
 	
 	private boolean isActive() { return active; }
 	
-	public ForgeTier getForgeTier() {
+	public ForgeTiers getForgeTier() {
 		return forgeTier;
 	}
 	

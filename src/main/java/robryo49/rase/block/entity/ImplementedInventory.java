@@ -1,4 +1,4 @@
-package robryo49.rase.block.entity; // Change this to your actual package
+package robryo49.rase.block.entity;
 
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
@@ -7,16 +7,12 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * A simple interface for testable SidedInventory implementations.
- */
+
 @FunctionalInterface
 public interface ImplementedInventory extends SidedInventory {
 	
-	// Gets the item list from the block entity
 	DefaultedList<ItemStack> getItems();
 	
-	// Creates an inventory from the item list
 	static ImplementedInventory of(DefaultedList<ItemStack> items) {
 		return () -> items;
 	}
@@ -89,9 +85,7 @@ public interface ImplementedInventory extends SidedInventory {
 	}
 	
 	@Override
-	default void markDirty() {
-		// Overridden by BlockEntity
-	}
+	default void markDirty() {}
 	
 	@Override
 	default boolean canPlayerUse(net.minecraft.entity.player.PlayerEntity player) {

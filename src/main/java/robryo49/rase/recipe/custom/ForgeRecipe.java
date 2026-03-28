@@ -1,4 +1,4 @@
-package robryo49.rase.recipe;
+package robryo49.rase.recipe.custom;
 
 
 import com.mojang.serialization.Codec;
@@ -13,12 +13,15 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.input.RecipeInput;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import robryo49.rase.item.custom.MoldItem;
+import robryo49.rase.recipe.ModRecipes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +34,9 @@ public record ForgeRecipe(
 		TagKey<Item> moldTagKey,
 		int cookTime,
 		int coolTime,
-		int minTier,
+		int tier,
 		float experience
-) implements Recipe<ForgeRecipeInput> {
+) implements Recipe<ForgeRecipe.Input> {
 	
 	public static final PacketCodec<RegistryByteBuf, ForgeRecipe> PACKET_CODEC = new PacketCodec<>() {
 		@Override
@@ -56,7 +59,7 @@ public record ForgeRecipe(
 			Identifier.PACKET_CODEC.encode(buf, recipe.moldTagKey().id());
 			buf.writeInt(recipe.cookTime());
 			buf.writeInt(recipe.coolTime());
-			buf.writeInt(recipe.minTier());
+			buf.writeInt(recipe.tier());
 			buf.writeFloat(recipe.experience());
 		}
 	};
@@ -69,33 +72,41 @@ public record ForgeRecipe(
 	}
 	
 	@Override
-	public boolean matches(ForgeRecipeInput input, World world) {
+	public boolean matches(Input input, World world) {
 		if (world.isClient) return false;
-		
 		if (!input.mold().isIn(moldTagKey)) return false;
 		
-		List<Ingredient> remaining = new ArrayList<>(ingredients);
+		if ((input.mold().getItem() instanceof MoldItem moldItem)) if (moldItem.getTier() < tier) return false;
 		
+		List<Ingredient> unmatched = new ArrayList<>(ingredients);
+		
+		List<ItemStack> available = new ArrayList<>();
 		for (int slot = 0; slot < input.getSize(); slot++) {
 			ItemStack stack = input.getStackInSlot(slot);
-			if (stack.isEmpty()) continue;
-			
-			boolean matched = false;
-			for (int i = 0; i < remaining.size(); i++) {
-				if (remaining.get(i).test(stack)) {
-					remaining.remove(i);
-					matched = true;
+			if (!stack.isEmpty()) {
+				for (int i = 0; i < stack.getCount(); i++) {
+					available.add(stack.copyWithCount(1));
+				}
+			}
+		}
+		
+		for (Ingredient ingredient : unmatched) {
+			boolean found = false;
+			for (int i = 0; i < available.size(); i++) {
+				if (ingredient.test(available.get(i))) {
+					available.remove(i);
+					found = true;
 					break;
 				}
 			}
-			if (!matched) return false;
+			if (!found) return false;
 		}
 		
-		return remaining.isEmpty();
+		return true;
 	}
 	
 	@Override
-	public ItemStack craft(ForgeRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
+	public ItemStack craft(Input input, RegistryWrapper.WrapperLookup lookup) {
 		return result.copy();
 	}
 	
@@ -111,7 +122,7 @@ public record ForgeRecipe(
 	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return ModRecipes.FORGE_SERIALIZER;
+		return ModRecipes.FORGE_RECIPE_SERIALIZER;
 	}
 	
 	@Override
@@ -128,20 +139,17 @@ public record ForgeRecipe(
 						TagKey.codec(RegistryKeys.ITEM).fieldOf("mold_tag").forGetter(ForgeRecipe::moldTagKey),
 						Codec.INT.fieldOf("cook_time").forGetter(ForgeRecipe::cookTime),
 						Codec.INT.fieldOf("cool_time").forGetter(ForgeRecipe::coolTime),
-						Codec.INT.fieldOf("min_tier").forGetter(ForgeRecipe::minTier),
+						Codec.INT.fieldOf("tier").forGetter(ForgeRecipe::tier),
 						Codec.FLOAT.fieldOf("experience").forGetter(ForgeRecipe::experience)
 				).apply(instance, ForgeRecipe::new)
 		);
 		
-		// REFACTORED PART: Manual PacketCodec implementation
 		public static final PacketCodec<RegistryByteBuf, ForgeRecipe> PACKET_CODEC = new PacketCodec<>() {
 			@Override
 			public ForgeRecipe decode(RegistryByteBuf buf) {
-				// Read them in the EXACT same order they are defined in your record
 				List<Ingredient> ingredients = Ingredient.PACKET_CODEC.collect(PacketCodecs.toList()).decode(buf);
 				ItemStack result = ItemStack.PACKET_CODEC.decode(buf);
 				
-				// Convert the Identifier back to a TagKey
 				Identifier moldTagId = Identifier.PACKET_CODEC.decode(buf);
 				TagKey<Item> moldTagKey = TagKey.of(RegistryKeys.ITEM, moldTagId);
 				
@@ -162,7 +170,7 @@ public record ForgeRecipe(
 				
 				buf.writeInt(recipe.cookTime());
 				buf.writeInt(recipe.coolTime());
-				buf.writeInt(recipe.minTier());
+				buf.writeInt(recipe.tier());
 				buf.writeFloat(recipe.experience());
 			}
 		};
@@ -179,4 +187,26 @@ public record ForgeRecipe(
 		}
 	}
 	
+	public record Input(
+			ItemStack slot1, ItemStack slot2,
+			ItemStack slot3, ItemStack slot4,
+			ItemStack mold
+	) implements RecipeInput {
+		
+		@Override
+		public ItemStack getStackInSlot(int slot) {
+			return switch (slot) {
+				case 0 -> slot1;
+				case 1 -> slot2;
+				case 2 -> slot3;
+				case 3 -> slot4;
+				default -> ItemStack.EMPTY;
+			};
+		}
+		
+		@Override
+		public int getSize() {
+			return 4;
+		}
+	}
 }

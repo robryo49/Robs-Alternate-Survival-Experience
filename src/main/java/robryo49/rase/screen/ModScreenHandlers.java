@@ -14,7 +14,7 @@ import robryo49.rase.screen.custom.ForgeScreenHandler;
 public class ModScreenHandlers {
 	
 	public static final ScreenHandlerType<ForgeScreenHandler> FORGE_SCREEN_HANDLER =
-			Registry.register(Registries.SCREEN_HANDLER, Identifier.of(Rase.MOD_ID, "forge_screen_handler"),
+			Registry.register(Registries.SCREEN_HANDLER, Rase.getIdentifier("forge_screen_handler"),
 					new ExtendedScreenHandlerType<>(ForgeScreenHandler::new, BlockPos.PACKET_CODEC));
 	
 	

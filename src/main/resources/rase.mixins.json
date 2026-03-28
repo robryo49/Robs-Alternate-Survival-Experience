@@ -1,12 +1,24 @@
 {
-	"required": true,
-	"package": "robryo49.rase.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "robryo49.rase.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AnvilScreenHandlerMixin",
+    "BlockStateMixin",
+    "BlockTransformMixin",
+    "FallingBlockEntityMixin",
+    "PlayerEntityMixin",
+    "RecipeRemoverMixin",
+    "accessor.ForgingScreenHandlerAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "AnvilScreenMixin",
+    "ClientInteractionMixin"
+  ]
 }

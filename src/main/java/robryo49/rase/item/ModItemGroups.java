@@ -26,14 +26,14 @@ public class ModItemGroups {
 	
 	
 	public static final ItemGroup MOD_ITEMS = registerItemGroup("rase_items", ModItems.BRONZE.INGOT(), ModItems.ALL);
-	public static final ItemGroup MOD_BLOCKS = registerItemGroup("rase_blocks", ModBlocks.BRONZE_BLOCK, ModBlocks.ALL);
+	public static final ItemGroup MOD_BLOCKS = registerItemGroup("rase_blocks", ModBlocks.BRONZE.BLOCK(), ModBlocks.ALL);
 	
 	
 	// --- Core Registration Logic ---
 	
 	public static ItemGroup registerItemGroup(String id, Item displayItem, List<Item> items) {
 		ItemGroup itemGroup = Registry.register(Registries.ITEM_GROUP,
-				Identifier.of(Rase.MOD_ID, id),
+				Rase.getIdentifier(id),
 				FabricItemGroup.builder()
 						.icon(() -> new ItemStack(displayItem))
 						.displayName(Text.translatable("itemgroup.rase." + id))
@@ -45,7 +45,7 @@ public class ModItemGroups {
 	
 	public static ItemGroup registerItemGroup(String id, Block displayBlock, List<Block> blocks) {
 		ItemGroup itemGroup = Registry.register(Registries.ITEM_GROUP,
-				Identifier.of(Rase.MOD_ID, id),
+				Rase.getIdentifier(id),
 				FabricItemGroup.builder()
 						.icon(() -> new ItemStack(displayBlock))
 						.displayName(Text.translatable("itemgroup.rase." + id))

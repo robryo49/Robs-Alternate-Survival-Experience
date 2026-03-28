@@ -6,14 +6,16 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.text.TranslatableTextContent;
 import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
 import robryo49.rase.block.custom.forge.ForgeTiers;
 import robryo49.rase.item.ModItemGroups;
 import robryo49.rase.item.ModItems;
+import robryo49.rase.util.ModBlockTags;
+import robryo49.rase.util.ModItemTags;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +36,8 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 	public String translate(Item item) {return convertTranslationKey(item.getTranslationKey());}
 	public String translate(Block block) {return convertTranslationKey(block.getTranslationKey());}
 	public String translate(ItemGroup group) {return convertTranslationKey(((TranslatableTextContent) group.getDisplayName().getContent()).getKey());}
-	public String translate(ForgeTiers.ForgeTier forgeTier) {return convertTranslationKey(forgeTier.getTranslationKey());}
+	public String translate(ForgeTiers forgeTier) {return convertTranslationKey(forgeTier.getTranslationKey());}
+	public String translate(TagKey<?> tagKey) {return convertTranslationKey(tagKey.getTranslationKey());}
 	
 	public void generateItemTranslations(TranslationBuilder translationBuilder, List<Item> items) {
 		for (Item item : items) translationBuilder.add(item, translate(item));
@@ -52,25 +55,47 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 		);
 	}
 	
-	public void generateForgeTierTranslations(TranslationBuilder translationBuilder, List<ForgeTiers.ForgeTier> forgeTiers) {
-		forgeTiers.forEach(forgeTier ->
-				translationBuilder.add(forgeTier.getTranslationKey(), translate(forgeTier)));
+	public void generateForgeTierTranslations(TranslationBuilder translationBuilder, ForgeTiers[] forgeTiers) {
+		List.of(forgeTiers).forEach(forgeTier ->
+				generateTranslation(translationBuilder, forgeTier.getTranslationKey()));
+	}
+	
+	public void generateItemTagsTranslations(TranslationBuilder translationBuilder, List<TagKey<Item>> itemTags) {
+		itemTags.forEach(itemTagKey -> generateTranslation(translationBuilder, itemTagKey.getTranslationKey()));
+	}
+	public void generateBlockTagsTranslations(TranslationBuilder translationBuilder, List<TagKey<Block>> itemTags) {
+		itemTags.forEach(blockTagKey -> generateTranslation(translationBuilder, blockTagKey.getTranslationKey()));
 	}
 	
 	public void generateTooltip(TranslationBuilder translationBuilder, String item, String id, String text) {
 		translationBuilder.add("item." + Rase.MOD_ID + "." + item + ".tooltip." + id, text);
 	}
 	
+	public void generateRecipeCategoriesTranslations(TranslationBuilder translationBuilder) {
+		generateTranslation(translationBuilder, "emi.category.rase.anvil_smithing");
+		generateTranslation(translationBuilder, "emi.category.rase.forge");
+	}
+	
+	
+	public void generateTranslation(TranslationBuilder translationBuilder, String translationKey) {
+		translationBuilder.add(translationKey, convertTranslationKey(translationKey));
+	}
+	
 	
 	@Override
 	public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
-		generateItemTranslations(translationBuilder, ModItems.TRANSLATABLE);
-		generateBlockTranslations(translationBuilder, ModBlocks.TRANSLATABLE);
-		generateItemGroupTranslations(translationBuilder, ModItemGroups.TRANSLATABLE);
-		generateForgeTierTranslations(translationBuilder, ForgeTiers.TRANSLATABLE);
+		generateItemTranslations(translationBuilder, ModItems.ALL);
+		generateBlockTranslations(translationBuilder, ModBlocks.ALL);
+		generateItemGroupTranslations(translationBuilder, ModItemGroups.ALL);
+		generateForgeTierTranslations(translationBuilder, ForgeTiers.values());
+		generateItemTagsTranslations(translationBuilder, ModItemTags.ALL);
+		generateBlockTagsTranslations(translationBuilder, ModBlockTags.ALL);
+		generateRecipeCategoriesTranslations(translationBuilder);
 		
 		generateTooltip(translationBuilder, "mold", "cooling_time", "Cooling Time");
 		generateTooltip(translationBuilder, "mold", "held_item", "Held Item");
 		generateTooltip(translationBuilder, "mold", "cooled", "Cooled");
+		generateTooltip(translationBuilder, "mold", "material", "Material");
+		generateTooltip(translationBuilder, "mold", "tier", "Tier");
 	}
 }
