@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "rase:wet_clay_axe_mold"
+  },
+  "result": {
+    "id": "rase:clay_axe_mold"
+  }
+}

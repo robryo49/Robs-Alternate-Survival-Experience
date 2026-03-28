@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_oak_log",
+  "criteria": {
+    "get_oak_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Oak Planks",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:oak_planks"
+    },
+    "title": "Planked Up"
+  },
+  "requirements": [
+    [
+      "get_oak_planks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

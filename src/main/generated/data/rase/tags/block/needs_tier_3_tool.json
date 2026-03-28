@@ -1,0 +1,17 @@
+{
+  "values": [
+    "rase:palladium_ore",
+    "rase:deepslate_palladium_ore",
+    "rase:palladium_block",
+    "rase:raw_palladium_block",
+    "rase:nether_cobalt_ore",
+    "rase:cobalt_block",
+    "rase:raw_cobalt_block",
+    "minecraft:emerald_ore",
+    "minecraft:emerald_block",
+    "minecraft:deepslate_emerald_ore",
+    "minecraft:diamond_ore",
+    "minecraft:diamond_block",
+    "minecraft:deepslate_diamond_ore"
+  ]
+}

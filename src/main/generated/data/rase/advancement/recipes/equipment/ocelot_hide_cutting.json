@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ocelot_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:ocelot_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_ocelot_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:ocelot_hide_cutting"
+    ]
+  }
+}

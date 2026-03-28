@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rase:item/lead_mold_base",
+    "layer1": "rase:item/mold_pattern_shovel",
+    "layer2": "rase:item/mold_pattern_shovel_filled"
+  }
+}

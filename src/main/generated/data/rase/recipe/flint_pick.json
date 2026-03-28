@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "rase:sharp_flint"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "s": {
+      "tag": "rase:strings"
+    }
+  },
+  "pattern": [
+    "#s",
+    "/#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:flint_pick"
+  }
+}

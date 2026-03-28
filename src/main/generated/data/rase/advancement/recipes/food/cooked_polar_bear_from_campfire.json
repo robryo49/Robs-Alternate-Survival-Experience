@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_polar_bear": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:raw_polar_bear"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rase:cooked_polar_bear_from_campfire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_polar_bear"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:cooked_polar_bear_from_campfire"
+    ]
+  }
+}

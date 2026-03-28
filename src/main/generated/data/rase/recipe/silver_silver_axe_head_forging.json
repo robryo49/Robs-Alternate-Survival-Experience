@@ -1,0 +1,23 @@
+{
+  "type": "rase:forging",
+  "cook_time": 400,
+  "cool_time": 400,
+  "experience": 2.4,
+  "ingredients": [
+    {
+      "item": "rase:silver_ingot"
+    },
+    {
+      "item": "rase:silver_ingot"
+    },
+    {
+      "item": "rase:silver_ingot"
+    }
+  ],
+  "mold_tag": "#rase:axe_head_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:silver_axe_head"
+  },
+  "tier": 2
+}

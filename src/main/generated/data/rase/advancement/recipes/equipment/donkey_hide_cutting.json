@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_donkey_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:donkey_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_donkey_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:donkey_hide_cutting"
+    ]
+  }
+}

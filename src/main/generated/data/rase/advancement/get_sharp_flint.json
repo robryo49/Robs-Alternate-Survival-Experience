@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_flint_hatchet",
+  "criteria": {
+    "get_sharp_flint": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:sharp_flint"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Sharp Flint",
+    "icon": {
+      "count": 1,
+      "id": "rase:sharp_flint"
+    },
+    "title": "It's Sharper !"
+  },
+  "requirements": [
+    [
+      "get_sharp_flint"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

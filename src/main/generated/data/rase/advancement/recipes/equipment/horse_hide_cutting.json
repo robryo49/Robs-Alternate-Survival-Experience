@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_horse_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:horse_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_horse_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:horse_hide_cutting"
+    ]
+  }
+}

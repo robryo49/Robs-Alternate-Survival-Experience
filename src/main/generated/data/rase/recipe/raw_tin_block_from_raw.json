@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    },
+    {
+      "item": "rase:raw_tin"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_tin_block"
+  }
+}

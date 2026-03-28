@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    },
+    {
+      "item": "rase:raw_magnetite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_magnetite_block"
+  }
+}

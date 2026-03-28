@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rase:block/cobalt_block"
+    }
+  }
+}

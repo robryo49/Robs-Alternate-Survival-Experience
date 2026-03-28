@@ -32,40 +32,40 @@ public class ModBlocks {
 	
 	// --- 2. Forges (Luminance + Resistance) ---
 	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
-	public static final Block ADVANCED_FORGE = registerForge("advanced_forge", ForgeTiers.ADVANCED, 7.0f, 50.0f);
+	public static final Block BASIC_FORGE = registerForge("basic_forge", ForgeTiers.BASIC, 7.0f, 50.0f);
+	public static final Block REFINED_FORGE = registerForge("refined_forge", ForgeTiers.REFINED, 10.0f, 80.0f);
+	public static final Block ADVANCED_FORGE = registerForge("advanced_forge", ForgeTiers.ADVANCED, 15.0f, 100.0f);
+	public static final Block ETHEREAL_FORGE = registerForge("ethereal_forge", ForgeTiers.ETHEREAL, 20.0f, 1200.0f);
+	
+	
 	
 	// --- 3. Material Sets (Hardness / Resistance / Tool Gating) ---
 	
-	// TIER 0-1: Basic Ores (Minable by Stone)
 	public static final OreBlockSet TIN = registerOreBlockSet(ModMaterials.TIN, 3.0f, 3.0f);
 	public static final OreBlockSet ZINC = registerOreBlockSet(ModMaterials.ZINC, 3.0f, 3.0f);
 	public static final OreBlockSet MAGNETITE = registerOreBlockSet(ModMaterials.MAGNETITE, 4.0f, 6.0f);
 	
-	// TIER 2: Bronze Age (Minable by Bronze)
 	public static final AlloyBlockSet BRONZE = registerAlloyBlockSet(ModMaterials.BRONZE, 6.0f, 15.0f);
 	public static final OreBlockSet SILVER = registerOreBlockSet(ModMaterials.SILVER, 5.0f, 6.0f);
 	public static final OreBlockSet LEAD = registerOreBlockSet(ModMaterials.LEAD, 6.5f, 30.0f);
 	
-	// TIER 3: Iron/Steel Age (Minable by Steel/Iron)
 	public static final AlloyBlockSet STEEL = registerAlloyBlockSet(ModMaterials.STEEL, 8.0f, 45.0f);
 	public static final OreBlockSet TITANIUM = registerOreBlockSet(ModMaterials.TITANIUM, 10.0f, 35.0f);
 	public static final OreBlockSet PLATINUM = registerOreBlockSet(ModMaterials.PLATINUM, 8.0f, 20.0f);
 	
-	// TIER 4: Exotic Metals (Minable by Titanium/Diamond)
 	public static final OreBlockSet TUNGSTEN = registerOreBlockSet(ModMaterials.TUNGSTEN, 20.0f, 80.0f);
 	public static final OreBlockSet PALLADIUM = registerOreBlockSet(ModMaterials.PALLADIUM, 12.0f, 25.0f);
 	public static final NetherOreBlockSet COBALT = registerNetherOreBlockSet(ModMaterials.COBALT, 15.0f, 20.0f);
 	
-	// TIER 5: Mythic (Extreme Resistance)
 	public static final AlloyBlockSet SCANDIUM = registerAlloyBlockSet(ModMaterials.SCANDIUM, 22.0f, 70.0f);
 	public static final OreBlockSet MYTHRIL = registerOreBlockSet(ModMaterials.MYTHRIL, 30.0f, 1200.0f);
 	public static final NetherCrystalBlockSet RHEXIS = registerNetherCrystalBlockSet(ModMaterials.RHEXIS, 35.0f, 1200.0f);
 	
 	// --- 4. Anvils ---
-	public static final SmithingAnvilBlockSet STONE_ANVIL = registerSmithingAnvilBlockSet("stone", SmithingAnvilMaterials.STONE);
-	public static final SmithingAnvilBlockSet LEAD_ANVIL = registerSmithingAnvilBlockSet("lead", SmithingAnvilMaterials.LEAD);
-	public static final SmithingAnvilBlockSet TITANIUM_ANVIL = registerSmithingAnvilBlockSet("titanium", SmithingAnvilMaterials.TITANIUM);
-	public static final SmithingAnvilBlockSet TUNGSTEN_ANVIL = registerSmithingAnvilBlockSet("tungsten", SmithingAnvilMaterials.TUNGSTEN);
+	public static final SmithingAnvilBlockSet STONE_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.STONE);
+	public static final SmithingAnvilBlockSet LEAD_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.LEAD);
+	public static final SmithingAnvilBlockSet TITANIUM_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.TITANIUM);
+	public static final SmithingAnvilBlockSet TUNGSTEN_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.TUNGSTEN);
 	
 	// --- Helper Logic & Registration Wrappers ---
 	
@@ -78,37 +78,47 @@ public class ModBlocks {
 	
 	public static AlloyBlockSet registerAlloyBlockSet(ModMaterials material, float strength, float resistance) {
 		String id = material.getId();
-		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
-		return new AlloyBlockSet(registerBlock(id + "_block", strength, resistance, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)));
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getInferiorTier());
+		return new AlloyBlockSet(registerBlock(id + "_block", strength, resistance,
+				BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)));
 	}
 	
 	public static OreBlockSet registerOreBlockSet(ModMaterials material, float strength, float resistance) {
 		String id = material.getId();
-		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getInferiorTier());
 		return new OreBlockSet(
-				registerBlock(id + "_ore", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.STONE_ORES, toolTag)),
-				registerBlock("deepslate_" + id + "_ore", strength * 1.6f, resistance * 1.6f, BlockSoundGroup.DEEPSLATE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.DEEPSLATE_ORES, toolTag)),
-				registerBlock(id + "_block", strength, resistance + 5.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)),
-				registerBlock("raw_" + id + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
+				registerBlock(id + "_ore", strength, resistance,
+						BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.STONE_ORES, toolTag)),
+				registerBlock("deepslate_" + id + "_ore", strength * 1.6f, resistance * 1.6f,
+						BlockSoundGroup.DEEPSLATE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.DEEPSLATE_ORES, toolTag)),
+				registerBlock(id + "_block", strength, resistance + 5.0f,
+						BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)),
+				registerBlock("raw_" + id + "_block", strength, resistance,
+						BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
 		);
 	}
 	
 	public static NetherOreBlockSet registerNetherOreBlockSet(ModMaterials material, float strength, float resistance) {
 		String id = material.getId();
-		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getInferiorTier());
 		return new NetherOreBlockSet(
-				registerBlock("nether_" + id + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTag)),
-				registerBlock(id + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)),
-				registerBlock("raw_" + id + "_block", strength, resistance, BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
+				registerBlock("nether_" + id + "_ore", strength, resistance,
+						BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTag)),
+				registerBlock(id + "_block", strength, resistance + 10.0f,
+						BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag)),
+				registerBlock("raw_" + id + "_block", strength, resistance,
+						BlockSoundGroup.STONE, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
 		);
 	}
 	
 	public static NetherCrystalBlockSet registerNetherCrystalBlockSet(ModMaterials material, float strength, float resistance) {
 		String id = material.getId();
-		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getTier());
+		TagKey<Block> toolTag = ModBlockTags.getNeedsTier(material.getInferiorTier());
 		return new NetherCrystalBlockSet(
-				registerBlock("nether_" + id + "_ore", strength, resistance, BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTag)),
-				registerBlock(id + "_block", strength, resistance + 10.0f, BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
+				registerBlock("nether_" + id + "_ore", strength, resistance,
+						BlockSoundGroup.NETHER_ORE, List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.NETHER_ORES, toolTag)),
+				registerBlock(id + "_block", strength, resistance + 10.0f,
+						BlockSoundGroup.METAL, List.of(BlockTags.PICKAXE_MINEABLE, toolTag))
 		);
 	}
 	
@@ -139,7 +149,8 @@ public class ModBlocks {
 	
 	// --- Anvil Implementation ---
 	
-	public static SmithingAnvilBlockSet registerSmithingAnvilBlockSet(String name, SmithingAnvilMaterials material) {
+	public static SmithingAnvilBlockSet registerSmithingAnvilBlockSet(SmithingAnvilMaterials material) {
+		String name = material.getName();
 		return new SmithingAnvilBlockSet(
 				(SmithingAnvilBlock) registerBlock(name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL),
 				(SmithingAnvilBlock) registerBlock("chipped_" + name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL),

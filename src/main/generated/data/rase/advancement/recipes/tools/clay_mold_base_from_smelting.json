@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rase:clay_mold_base_from_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wet_clay_mold_base": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:wet_clay_mold_base"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wet_clay_mold_base"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:clay_mold_base_from_smelting"
+    ]
+  }
+}

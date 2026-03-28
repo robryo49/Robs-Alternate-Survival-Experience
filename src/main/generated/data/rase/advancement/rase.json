@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "rase": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "description": "Good Luck !",
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:dirt"
+    },
+    "title": "Rase"
+  },
+  "requirements": [
+    [
+      "rase"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

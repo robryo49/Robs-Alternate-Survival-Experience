@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    },
+    {
+      "item": "rase:raw_silver"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_silver_block"
+  }
+}

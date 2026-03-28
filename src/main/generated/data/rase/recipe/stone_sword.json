@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "rase:stone_sword_blade"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "s": {
+      "tag": "rase:strings"
+    }
+  },
+  "pattern": [
+    "#",
+    "s",
+    "/"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:stone_sword"
+  }
+}

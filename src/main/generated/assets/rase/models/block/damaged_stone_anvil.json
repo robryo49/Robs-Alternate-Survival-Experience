@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/anvil",
+  "textures": {
+    "body": "rase:block/stone_anvil",
+    "top": "rase:block/damaged_stone_anvil_top"
+  }
+}

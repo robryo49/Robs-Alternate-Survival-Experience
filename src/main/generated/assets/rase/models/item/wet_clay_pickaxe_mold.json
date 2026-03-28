@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "rase:item/wet_clay_pickaxe_mold_filled",
+      "predicate": {
+        "rase:filled": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "rase:item/wet_clay_mold_base",
+    "layer1": "rase:item/mold_pattern_pickaxe"
+  }
+}

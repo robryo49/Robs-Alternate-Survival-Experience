@@ -40,9 +40,15 @@ public class RaseEmiPlugin implements EmiPlugin {
 		
 		
 		registry.addWorkstation(FORGE_CATEGORY, EmiStack.of(ModBlocks.PRIMITIVE_FORGE));
+		registry.addWorkstation(FORGE_CATEGORY, EmiStack.of(ModBlocks.BASIC_FORGE));
+		registry.addWorkstation(FORGE_CATEGORY, EmiStack.of(ModBlocks.REFINED_FORGE));
 		registry.addWorkstation(FORGE_CATEGORY, EmiStack.of(ModBlocks.ADVANCED_FORGE));
+		registry.addWorkstation(FORGE_CATEGORY, EmiStack.of(ModBlocks.ETHEREAL_FORGE));
 		
 		registry.addWorkstation(ANVIL_SMITHING_CATEGORY, EmiStack.of(ModBlocks.STONE_ANVIL.NORMAL()));
+		registry.addWorkstation(ANVIL_SMITHING_CATEGORY, EmiStack.of(ModBlocks.LEAD_ANVIL.NORMAL()));
+		registry.addWorkstation(ANVIL_SMITHING_CATEGORY, EmiStack.of(ModBlocks.TITANIUM_ANVIL.NORMAL()));
+		registry.addWorkstation(ANVIL_SMITHING_CATEGORY, EmiStack.of(ModBlocks.TUNGSTEN_ANVIL.NORMAL()));
 		
 		for (RecipeEntry<ForgeRecipe> entry :
 				registry.getRecipeManager().listAllOfType(ModRecipes.FORGE_RECIPE_TYPE)) {

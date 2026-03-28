@@ -1,0 +1,17 @@
+{
+  "type": "rase:forging",
+  "cook_time": 1000,
+  "cool_time": 1000,
+  "experience": 6.0,
+  "ingredients": [
+    {
+      "item": "rase:scandium_ingot"
+    }
+  ],
+  "mold_tag": "#rase:shovel_head_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:scandium_shovel_head"
+  },
+  "tier": 5
+}

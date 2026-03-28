@@ -1,0 +1,20 @@
+{
+  "type": "rase:forging",
+  "cook_time": 1000,
+  "cool_time": 1000,
+  "experience": 6.0,
+  "ingredients": [
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    }
+  ],
+  "mold_tag": "#rase:sword_blade_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:mythril_sword_blade"
+  },
+  "tier": 5
+}

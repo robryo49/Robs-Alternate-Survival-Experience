@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "tag": "rase:pickaxe_heads"
+    },
+    {
+      "item": "rase:titanium_mold_base"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:titanium_pickaxe_mold"
+  }
+}

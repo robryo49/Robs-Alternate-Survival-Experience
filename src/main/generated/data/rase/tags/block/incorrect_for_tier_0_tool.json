@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#rase:needs_tier_1_tool",
+      "required": false
+    },
+    {
+      "id": "#rase:incorrect_for_tier_1_tool",
+      "required": false
+    }
+  ]
+}

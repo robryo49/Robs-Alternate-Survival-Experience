@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    },
+    {
+      "item": "rase:magnetite_nugget"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:magnetite_ingot"
+  }
+}

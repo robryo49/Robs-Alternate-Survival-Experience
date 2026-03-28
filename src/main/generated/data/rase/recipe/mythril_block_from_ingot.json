@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:mythril_block"
+  }
+}

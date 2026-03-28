@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    },
+    {
+      "item": "rase:palladium_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:palladium_block"
+  }
+}

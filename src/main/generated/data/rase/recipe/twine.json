@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rase:plant_fiber"
+    },
+    {
+      "item": "rase:plant_fiber"
+    },
+    {
+      "item": "rase:plant_fiber"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:twine"
+  }
+}

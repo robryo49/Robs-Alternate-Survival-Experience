@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "rase:block/damaged_titanium_anvil",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "rase:block/damaged_titanium_anvil"
+    },
+    "facing=south": {
+      "model": "rase:block/damaged_titanium_anvil",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rase:block/damaged_titanium_anvil",
+      "y": 270
+    }
+  }
+}

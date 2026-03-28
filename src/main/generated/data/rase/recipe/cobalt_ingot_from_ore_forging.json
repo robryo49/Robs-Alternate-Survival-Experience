@@ -1,0 +1,17 @@
+{
+  "type": "rase:forging",
+  "cook_time": 800,
+  "cool_time": 800,
+  "experience": 4.8,
+  "ingredients": [
+    {
+      "item": "rase:nether_cobalt_ore"
+    }
+  ],
+  "mold_tag": "#rase:ingot_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:cobalt_ingot"
+  },
+  "tier": 4
+}

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    },
+    {
+      "item": "rase:zinc_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:zinc_block"
+  }
+}

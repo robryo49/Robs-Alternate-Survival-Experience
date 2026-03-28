@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rase:titanium_block"
+    },
+    "-": {
+      "item": "rase:titanium_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    " - ",
+    "---"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:titanium_anvil"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_flint_knife",
+  "criteria": {
+    "get_plant_fiber": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:plant_fiber"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Plant Fiber",
+    "icon": {
+      "count": 1,
+      "id": "rase:plant_fiber"
+    },
+    "title": "U Need Fiber"
+  },
+  "requirements": [
+    [
+      "get_plant_fiber"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

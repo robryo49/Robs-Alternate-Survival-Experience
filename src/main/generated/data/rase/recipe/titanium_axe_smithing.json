@@ -1,0 +1,15 @@
+{
+  "type": "rase:anvil_smithing",
+  "addition": {
+    "item": "rase:titanium_axe_head"
+  },
+  "base": {
+    "item": "rase:handle"
+  },
+  "level_cost": 0,
+  "result": {
+    "count": 1,
+    "id": "rase:titanium_axe"
+  },
+  "tier": 2
+}

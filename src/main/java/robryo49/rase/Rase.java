@@ -26,9 +26,9 @@ public class Rase implements ModInitializer {
 	public void onInitialize() {
 		ModBlockTags.registerBlockTags();
 		ModItemTags.registerItemTags();
-		ModItemGroups.registerModItemGroups();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModItemGroups.registerModItemGroups();
 		
 		ModEvents.registerModEvents();
 		ModBlockEntities.registerModBlockEntities();

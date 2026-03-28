@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_stone_pebbles",
+  "criteria": {
+    "get_stone_pickaxe_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:stone_pickaxe_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Stone Pickaxe Head",
+    "icon": {
+      "count": 1,
+      "id": "rase:stone_pickaxe_head"
+    },
+    "title": "Is it a Head ?"
+  },
+  "requirements": [
+    [
+      "get_stone_pickaxe_head"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

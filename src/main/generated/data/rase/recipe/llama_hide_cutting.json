@@ -1,0 +1,14 @@
+{
+  "type": "rase:tooling",
+  "category": "equipment",
+  "input": {
+    "item": "rase:llama_hide"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:leather"
+  },
+  "tool": {
+    "tag": "minecraft:swords"
+  }
+}

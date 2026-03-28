@@ -55,23 +55,39 @@ public class ModItems {
 	public static final Item FIRE_STARTER = registerItem("fire_starter", new FireStarterItem(new Item.Settings().maxDamage(64), 80, 0.02f));
 	
 	public static final Item COAL_COKE = registerItem("coal_coke");
+	
+	
+	// --- Pebbles ---
+	
+	public static final PebbleSet ANDESITE_PEBBLES = registerPebbleSet(Blocks.ANDESITE);
+	public static final PebbleSet BASALT_PEBBLES = registerPebbleSet(Blocks.BASALT);
+	public static final PebbleSet CALCITE_PEBBLES = registerPebbleSet(Blocks.CALCITE);
+	public static final PebbleSet DEEPSLATE_PEBBLES = registerPebbleSet(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
+	public static final PebbleSet DIORITE_PEBBLES = registerPebbleSet(Blocks.DIORITE);
+	public static final PebbleSet END_STONE_PEBBLES = registerPebbleSet(Blocks.END_STONE);
+	public static final PebbleSet GRANITE_PEBBLES = registerPebbleSet(Blocks.GRANITE);
+	public static final PebbleSet RED_SANDSTONE_PEBBLES = registerPebbleSet(Blocks.RED_SANDSTONE);
+	public static final PebbleSet SANDSTONE_PEBBLES = registerPebbleSet(Blocks.SANDSTONE);
+	public static final PebbleSet STONE_PEBBLES = registerPebbleSet(Blocks.STONE, Blocks.COBBLESTONE);
+	
+	
 	// --- Material Sets ---
 	
-	public static final OreMaterialSet TIN = registerOreMaterialSet("tin");
-	public static final OreMaterialSet ZINC = registerOreMaterialSet("zinc");
-	public static final OreMaterialSet MAGNETITE = registerOreMaterialSet("magnetite");
-	public static final AlloyMaterialSet BRONZE = registerAlloyMaterialSet("bronze");
-	public static final OreMaterialSet SILVER = registerOreMaterialSet("silver");
-	public static final OreMaterialSet LEAD = registerOreMaterialSet("lead");
-	public static final AlloyMaterialSet STEEL = registerAlloyMaterialSet("steel");
-	public static final OreMaterialSet TITANIUM = registerOreMaterialSet("titanium");
-	public static final OreMaterialSet PLATINUM = registerOreMaterialSet("platinum");
-	public static final OreMaterialSet TUNGSTEN = registerOreMaterialSet("tungsten");
-	public static final OreMaterialSet PALLADIUM = registerOreMaterialSet("palladium");
-	public static final OreMaterialSet COBALT = registerOreMaterialSet("cobalt");
-	public static final AlloyMaterialSet SCANDIUM = registerAlloyMaterialSet("scandium");
-	public static final OreMaterialSet MYTHRIL = registerOreMaterialSet("mythril");
-	public static final CrystalMaterialSet RHEXIS = registerCrystalMaterialSet("rhexis");
+	public static final OreMaterialSet TIN = registerOreMaterialSet(ModMaterials.TIN);
+	public static final OreMaterialSet ZINC = registerOreMaterialSet(ModMaterials.ZINC);
+	public static final OreMaterialSet MAGNETITE = registerOreMaterialSet(ModMaterials.MAGNETITE);
+	public static final AlloyMaterialSet BRONZE = registerAlloyMaterialSet(ModMaterials.BRONZE);
+	public static final OreMaterialSet SILVER = registerOreMaterialSet(ModMaterials.SILVER);
+	public static final OreMaterialSet LEAD = registerOreMaterialSet(ModMaterials.LEAD);
+	public static final AlloyMaterialSet STEEL = registerAlloyMaterialSet(ModMaterials.STEEL);
+	public static final OreMaterialSet TITANIUM = registerOreMaterialSet(ModMaterials.TITANIUM);
+	public static final OreMaterialSet PLATINUM = registerOreMaterialSet(ModMaterials.PLATINUM);
+	public static final OreMaterialSet TUNGSTEN = registerOreMaterialSet(ModMaterials.TUNGSTEN);
+	public static final OreMaterialSet PALLADIUM = registerOreMaterialSet(ModMaterials.PALLADIUM);
+	public static final OreMaterialSet COBALT = registerOreMaterialSet(ModMaterials.COBALT);
+	public static final AlloyMaterialSet SCANDIUM = registerAlloyMaterialSet(ModMaterials.SCANDIUM);
+	public static final OreMaterialSet MYTHRIL = registerOreMaterialSet(ModMaterials.MYTHRIL);
+	public static final CrystalMaterialSet RHEXIS = registerCrystalMaterialSet(ModMaterials.RHEXIS);
 	
 	
 	// --- Tool Sets ---
@@ -79,34 +95,35 @@ public class ModItems {
 	public static final Item FLINT_KNIFE = registerSwordItem("flint_knife", ModToolMaterials.FLINT, true);
 	public static final Item FLINT_HATCHET = registerAxeItem("flint_hatchet", ModToolMaterials.FLINT, true);
 	public static final Item FLINT_PICK = registerPickaxeItem("flint_pick", ModToolMaterials.FLINT, true);
-	public static final ToolSet STONE_TOOL_SET = registerToolSet("stone", ModToolMaterials.STONE, true);
-	public static final ToolSet BRONZE_TOOL_SET = registerToolSet("bronze", ModToolMaterials.BRONZE);
-	public static final ToolSet SILVER_TOOL_SET = registerToolSet("silver", ModToolMaterials.SILVER);
-	public static final ToolSet STEEL_TOOL_SET = registerToolSet("steel", ModToolMaterials.STEEL);
-	public static final ToolSet TITANIUM_TOOL_SET = registerToolSet("titanium", ModToolMaterials.TITANIUM);
-	public static final ToolSet COBALT_TOOL_SET = registerToolSet("cobalt", ModToolMaterials.COBALT);
-	public static final ToolSet SCANDIUM_TOOL_SET = registerToolSet("scandium", ModToolMaterials.SCANDIUM);
-	public static final ToolSet MYTHRIL_TOOL_SET = registerToolSet("mythril", ModToolMaterials.MYTHRIL);
+	public static final ToolSet STONE_TOOL_SET = registerToolSet(ModToolMaterials.STONE, true);
+	public static final ToolSet BRONZE_TOOL_SET = registerToolSet(ModToolMaterials.BRONZE);
+	public static final ToolSet SILVER_TOOL_SET = registerToolSet(ModToolMaterials.SILVER);
+	public static final ToolSet STEEL_TOOL_SET = registerToolSet(ModToolMaterials.STEEL);
+	public static final ToolSet TITANIUM_TOOL_SET = registerToolSet(ModToolMaterials.TITANIUM);
+	public static final ToolSet COBALT_TOOL_SET = registerToolSet(ModToolMaterials.COBALT);
+	public static final ToolSet SCANDIUM_TOOL_SET = registerToolSet(ModToolMaterials.SCANDIUM);
+	public static final ToolSet MYTHRIL_TOOL_SET = registerToolSet(ModToolMaterials.MYTHRIL);
 	
 	
 	// --- Armor Sets ---
 	
-	public static final ArmorSet BRONZE_ARMOR_SET = registerArmorSet("bronze", ModArmorMaterials.BRONZE, 15);
-	public static final ArmorSet SILVER_ARMOR_SET = registerArmorSet("silver", ModArmorMaterials.SILVER, 12);
-	public static final ArmorSet STEEL_ARMOR_SET = registerArmorSet("steel", ModArmorMaterials.STEEL, 25);
-	public static final ArmorSet TITANIUM_ARMOR_SET = registerArmorSet("titanium", ModArmorMaterials.TITANIUM, 35);
-	public static final ArmorSet COBALT_ARMOR_SET = registerArmorSet("cobalt", ModArmorMaterials.COBALT, 30);
-	public static final ArmorSet SCANDIUM_ARMOR_SET = registerArmorSet("scandium", ModArmorMaterials.SCANDIUM, 45);
-	public static final ArmorSet MYTHRIL_ARMOR_SET = registerArmorSet("mythril", ModArmorMaterials.MYTHRIL, 50);
+	public static final ArmorSet BRONZE_ARMOR_SET = registerArmorSet(ModArmorMaterials.BRONZE, 15);
+	public static final ArmorSet SILVER_ARMOR_SET = registerArmorSet(ModArmorMaterials.SILVER, 12);
+	public static final ArmorSet STEEL_ARMOR_SET = registerArmorSet(ModArmorMaterials.STEEL, 25);
+	public static final ArmorSet TITANIUM_ARMOR_SET = registerArmorSet(ModArmorMaterials.TITANIUM, 35);
+	public static final ArmorSet COBALT_ARMOR_SET = registerArmorSet(ModArmorMaterials.COBALT, 30);
+	public static final ArmorSet SCANDIUM_ARMOR_SET = registerArmorSet(ModArmorMaterials.SCANDIUM, 45);
+	public static final ArmorSet MYTHRIL_ARMOR_SET = registerArmorSet(ModArmorMaterials.MYTHRIL, 50);
 	
 	
 	// --- Molds ---
 	
-	public static final MoldSet WET_CLAY_MOLD_SET = registerMoldSet("wet_clay", MoldMaterials.WET_CLAY, Items.CLAY_BALL);
-	public static final MoldSet CLAY_MOLD_SET = registerMoldSet("clay", MoldMaterials.CLAY, WET_CLAY_MOLD_SET);
-	public static final MoldSet LEAD_MOLD_SET = registerMoldSet("lead", MoldMaterials.LEAD, LEAD.INGOT);
-	public static final MoldSet TITANIUM_MOLD_SET = registerMoldSet("titanium", MoldMaterials.TITANIUM, TITANIUM.INGOT);
-	public static final MoldSet TUNGSTEN_MOLD_SET = registerMoldSet("tungsten", MoldMaterials.TUNGSTEN, TUNGSTEN.INGOT);
+	public static final MoldSet WET_CLAY_MOLD_SET = registerMoldSet(MoldMaterials.WET_CLAY, Items.CLAY_BALL);
+	public static final MoldSet CLAY_MOLD_SET = registerMoldSet(MoldMaterials.CLAY, WET_CLAY_MOLD_SET);
+	public static final MoldSet LEAD_MOLD_SET = registerMoldSet(MoldMaterials.LEAD, LEAD.INGOT);
+	public static final MoldSet TITANIUM_MOLD_SET = registerMoldSet(MoldMaterials.TITANIUM, TITANIUM.INGOT);
+	public static final MoldSet TUNGSTEN_MOLD_SET = registerMoldSet(MoldMaterials.TUNGSTEN, TUNGSTEN.INGOT);
+	public static final MoldSet OBSIDIAN_MOLD_SET = registerMoldSet(MoldMaterials.OBSIDIAN, Items.OBSIDIAN);
 	
 	
 	// --- Food ---
@@ -145,32 +162,19 @@ public class ModItems {
 	public static final HideSet WOLF_HIDE = registerHideItem(EntityType.WOLF);
 	
 	
-	// --- Pebbles ---
-	
-	public static final PebbleSet ANDESITE_PEBBLES = registerPebbleSet(Blocks.ANDESITE);
-	public static final PebbleSet BASALT_PEBBLES = registerPebbleSet(Blocks.BASALT);
-	public static final PebbleSet CALCITE_PEBBLES = registerPebbleSet(Blocks.CALCITE);
-	public static final PebbleSet DEEPSLATE_PEBBLES = registerPebbleSet(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
-	public static final PebbleSet DIORITE_PEBBLES = registerPebbleSet(Blocks.DIORITE);
-	public static final PebbleSet END_STONE_PEBBLES = registerPebbleSet(Blocks.END_STONE);
-	public static final PebbleSet GRANITE_PEBBLES = registerPebbleSet(Blocks.GRANITE);
-	public static final PebbleSet RED_SANDSTONE_PEBBLES = registerPebbleSet(Blocks.RED_SANDSTONE);
-	public static final PebbleSet SANDSTONE_PEBBLES = registerPebbleSet(Blocks.SANDSTONE);
-	public static final PebbleSet STONE_PEBBLES = registerPebbleSet(Blocks.STONE, Blocks.COBBLESTONE);
-	
 	// --- HELPER RECORDS ---
 	
 	public record HideSet(EntityType<?> entity, Item HIDE) {}
 	public record MeatSet(EntityType<?> entity, Item RAW, Item COOKED) {}
 	public record PebbleSet(Item PEBBLE, Block SOURCE_BLOCK, Block RECONSTRUCTED_BLOCK) {}
 	
-	public record OreMaterialSet(String name, Item INGOT, Item NUGGET, Item RAW) {}
-	public record AlloyMaterialSet(String name, Item INGOT, Item NUGGET) {}
-	public record CrystalMaterialSet(String name, Item CRYSTAL) {}
+	public record OreMaterialSet(String name, int tier, Item INGOT, Item NUGGET, Item RAW) {}
+	public record AlloyMaterialSet(String name, int tier, Item INGOT, Item NUGGET) {}
+	public record CrystalMaterialSet(String name, int tier, Item CRYSTAL) {}
 	
-	public record ArmorSet(String materialName, ArmorItem HELMET, ArmorItem CHESTPLATE, ArmorItem LEGGINGS, ArmorItem BOOTS) {}
+	public record ArmorSet(String name, ArmorItem HELMET, ArmorItem CHESTPLATE, ArmorItem LEGGINGS, ArmorItem BOOTS) {}
 	
-	public record ToolSet(String materialName, SwordItem SWORD, Item SWORD_BLADE, AxeItem AXE, Item AXE_HEAD, PickaxeItem PICKAXE, Item PICKAXE_HEAD, ShovelItem SHOVEL, Item SHOVEL_HEAD, HoeItem HOE, Item HOE_HEAD) {}
+	public record ToolSet(String name, int tier, SwordItem SWORD, Item SWORD_BLADE, AxeItem AXE, Item AXE_HEAD, PickaxeItem PICKAXE, Item PICKAXE_HEAD, ShovelItem SHOVEL, Item SHOVEL_HEAD, HoeItem HOE, Item HOE_HEAD) {}
 	
 	public record MoldSet(Item BASE, MoldItem INGOT, MoldItem PICKAXE, MoldItem AXE, MoldItem SWORD, MoldItem SHOVEL, MoldItem HOE, @Nullable MoldSet FROM_SMELTING, @Nullable ItemConvertible INGREDIENT) {
 		public MoldMaterials getMaterial() { return INGOT.getMaterial(); }
@@ -200,20 +204,24 @@ public class ModItems {
 	public static Item registerItem(String name, Item item, List<TagKey<Item>> tags) { return registerItem(name, item, tags, Models.GENERATED); }
 	
 	
-	public static OreMaterialSet registerOreMaterialSet(String name) {
-		return new OreMaterialSet(name, registerItem(name + "_ingot", ModItemTags.INGOTS), registerItem(name + "_nugget"), registerItem("raw_" + name));
+	public static OreMaterialSet registerOreMaterialSet(ModMaterials material) {
+		String name = material.getId();
+		return new OreMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS), registerItem(name + "_nugget"), registerItem("raw_" + name));
 	}
 	
-	public static AlloyMaterialSet registerAlloyMaterialSet(String name) {
-		return new AlloyMaterialSet(name, registerItem(name + "_ingot", ModItemTags.INGOTS), registerItem(name + "_nugget"));
+	public static AlloyMaterialSet registerAlloyMaterialSet(ModMaterials material) {
+		String name = material.getId();
+		return new AlloyMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS), registerItem(name + "_nugget"));
 	}
 	
-	public static CrystalMaterialSet registerCrystalMaterialSet(String name) {
-		return new CrystalMaterialSet(name, registerItem(name));
+	public static CrystalMaterialSet registerCrystalMaterialSet(ModMaterials material) {
+		String name = material.getId();
+		return new CrystalMaterialSet(name, material.getTier(), registerItem(name));
 	}
 	
 	
-	public static ArmorSet registerArmorSet(String name, RegistryEntry<ArmorMaterial> material, int multiplier) {
+	public static ArmorSet registerArmorSet(RegistryEntry<ArmorMaterial> material, int multiplier) {
+		String name = material.getIdAsString().replace(Rase.MOD_ID + ":", "");
 		return new ArmorSet(name, registerArmorItem(name + "_helmet", material, multiplier, ArmorItem.Type.HELMET, ItemTags.HEAD_ARMOR),
 				registerArmorItem(name + "_chestplate", material, multiplier, ArmorItem.Type.CHESTPLATE, ItemTags.CHEST_ARMOR),
 				registerArmorItem(name + "_leggings", material, multiplier, ArmorItem.Type.LEGGINGS, ItemTags.LEG_ARMOR),
@@ -225,12 +233,16 @@ public class ModItems {
 	}
 	
 	
-	public static ToolSet registerToolSet(String materialName, ToolMaterial material) {
-		return registerToolSet(materialName, material, false);
+	public static ToolSet registerToolSet(ModToolMaterials material) {
+		return registerToolSet(material.getName(), material.getTier(), material, false);
 	}
 	
-	public static ToolSet registerToolSet(String materialName, ToolMaterial material, boolean isPrimitive) {
-		return new ToolSet(materialName,
+	public static ToolSet registerToolSet(ModToolMaterials material, boolean isPrimitive) {
+		return registerToolSet(material.getName(), material.getTier(), material, isPrimitive);
+	}
+	
+	public static ToolSet registerToolSet(String materialName, int tier, ToolMaterial material, boolean isPrimitive) {
+		return new ToolSet(materialName, tier,
 				registerSwordItem(materialName + "_sword", material, isPrimitive), registerItem(materialName + "_sword_blade", ModItemTags.SWORD_BLADES),
 				registerAxeItem(materialName + "_axe", material, isPrimitive), registerItem(materialName + "_axe_head", ModItemTags.AXE_HEADS),
 				registerPickaxeItem(materialName + "_pickaxe", material, isPrimitive), registerItem(materialName + "_pickaxe_head", ModItemTags.PICKAXE_HEADS),
@@ -316,7 +328,8 @@ public class ModItems {
 		return set;
 	}
 	
-	public static MoldSet registerMoldSet(String materialName, MoldMaterials moldMaterial, ItemConvertible ingredient) {
+	public static MoldSet registerMoldSet(MoldMaterials moldMaterial, ItemConvertible ingredient) {
+		String materialName = moldMaterial.getName();
 		MoldSet moldset = new MoldSet(registerBaseMoldItem(moldMaterial),
 				registerMoldItem("ingot", moldMaterial, ModItemTags.INGOTS, ModItemTags.INGOT_MOLDS),
 				registerMoldItem("pickaxe", moldMaterial, ModItemTags.PICKAXE_HEADS, ModItemTags.PICKAXE_HEAD_MOLDS),
@@ -329,7 +342,8 @@ public class ModItems {
 		return moldset;
 	}
 	
-	public static MoldSet registerMoldSet(String materialName, MoldMaterials moldMaterial, MoldSet fromSmelting) {
+	public static MoldSet registerMoldSet(MoldMaterials moldMaterial, MoldSet fromSmelting) {
+		String materialName = moldMaterial.getName();
 		MoldSet moldset = new MoldSet(
 				registerBaseMoldItem(moldMaterial),
 				registerMoldItem("ingot", moldMaterial, ModItemTags.INGOTS, ModItemTags.INGOT_MOLDS),

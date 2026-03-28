@@ -1,0 +1,17 @@
+{
+  "type": "rase:forging",
+  "cook_time": 800,
+  "cool_time": 800,
+  "experience": 4.8,
+  "ingredients": [
+    {
+      "item": "rase:palladium_ore"
+    }
+  ],
+  "mold_tag": "#rase:ingot_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:palladium_ingot"
+  },
+  "tier": 4
+}

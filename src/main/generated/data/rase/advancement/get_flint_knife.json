@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_flint_shard",
+  "criteria": {
+    "get_flint_knife": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:flint_knife"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Flint Knife",
+    "icon": {
+      "count": 1,
+      "id": "rase:flint_knife"
+    },
+    "title": "It's Sharp !"
+  },
+  "requirements": [
+    [
+      "get_flint_knife"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

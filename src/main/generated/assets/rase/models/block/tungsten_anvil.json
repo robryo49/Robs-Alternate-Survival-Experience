@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/anvil",
+  "textures": {
+    "body": "rase:block/tungsten_anvil",
+    "top": "rase:block/tungsten_anvil_top"
+  }
+}

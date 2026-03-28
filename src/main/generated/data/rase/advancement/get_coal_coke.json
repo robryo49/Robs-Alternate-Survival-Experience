@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_coal",
+  "criteria": {
+    "get_coal_coke": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:coal_coke"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Coal Coke",
+    "icon": {
+      "count": 1,
+      "id": "rase:coal_coke"
+    },
+    "title": "Not This Coke"
+  },
+  "requirements": [
+    [
+      "get_coal_coke"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

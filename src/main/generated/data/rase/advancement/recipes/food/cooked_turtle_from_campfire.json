@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_turtle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:raw_turtle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rase:cooked_turtle_from_campfire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_turtle"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:cooked_turtle_from_campfire"
+    ]
+  }
+}

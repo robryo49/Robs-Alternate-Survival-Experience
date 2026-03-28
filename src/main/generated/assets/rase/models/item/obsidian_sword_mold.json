@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "rase:item/obsidian_sword_mold_filled",
+      "predicate": {
+        "rase:filled": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "rase:item/obsidian_mold_base",
+    "layer1": "rase:item/mold_pattern_sword"
+  }
+}

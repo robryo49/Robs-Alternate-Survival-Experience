@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_stone_pickaxe",
+  "criteria": {
+    "get_raw_copper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:raw_copper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Raw Copper",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:raw_copper"
+    },
+    "title": "Beans ?"
+  },
+  "requirements": [
+    [
+      "get_raw_copper"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

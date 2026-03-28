@@ -1,0 +1,20 @@
+{
+  "type": "rase:forging",
+  "cook_time": 1000,
+  "cool_time": 1000,
+  "experience": 6.0,
+  "ingredients": [
+    {
+      "item": "rase:mythril_ingot"
+    },
+    {
+      "item": "rase:mythril_ingot"
+    }
+  ],
+  "mold_tag": "#rase:hoe_head_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:mythril_hoe_head"
+  },
+  "tier": 5
+}

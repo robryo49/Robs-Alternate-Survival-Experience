@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mooshroom_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:mooshroom_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_mooshroom_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:mooshroom_hide_cutting"
+    ]
+  }
+}

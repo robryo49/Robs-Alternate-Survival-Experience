@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_wolf_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:wolf_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wolf_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:wolf_hide_cutting"
+    ]
+  }
+}

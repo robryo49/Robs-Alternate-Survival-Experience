@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    },
+    {
+      "item": "rase:raw_mythril"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_mythril_block"
+  }
+}

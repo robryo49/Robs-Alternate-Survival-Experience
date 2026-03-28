@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "rase:item/lead_ingot_mold_filled",
+      "predicate": {
+        "rase:filled": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "rase:item/lead_mold_base",
+    "layer1": "rase:item/mold_pattern_ingot"
+  }
+}

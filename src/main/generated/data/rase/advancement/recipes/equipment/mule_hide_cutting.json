@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mule_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:mule_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_mule_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:mule_hide_cutting"
+    ]
+  }
+}

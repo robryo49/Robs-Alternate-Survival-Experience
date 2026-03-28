@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_stone_pickaxe",
+  "criteria": {
+    "get_raw_tin": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:raw_tin"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Raw Tin",
+    "icon": {
+      "count": 1,
+      "id": "rase:raw_tin"
+    },
+    "title": "Tin-y Progress"
+  },
+  "requirements": [
+    [
+      "get_raw_tin"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

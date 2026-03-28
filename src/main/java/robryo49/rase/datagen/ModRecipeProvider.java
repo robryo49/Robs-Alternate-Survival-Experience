@@ -238,7 +238,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 				toolSet.SHOVEL_HEAD(), ModItemTags.SHOVEL_HEAD_MOLDS,
 				toolSet.HOE_HEAD(), ModItemTags.HOE_HEAD_MOLDS
 		);
-		String materialName = toolSet.materialName();
+		String materialName = toolSet.name();
 		
 		parts.forEach((head, mold) -> {
 			int count = (head == toolSet.SHOVEL_HEAD()) ? 1 : (head == toolSet.AXE_HEAD() || head == toolSet.PICKAXE_HEAD() ? 3 : 2);
@@ -290,11 +290,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	}
 	
 	
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.OreMaterialSet materialSet, ModBlocks.OreBlockSet blockSet) {
-		offerMaterialSetRecipes(exporter, tier, materialSet, blockSet, null, null);
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.OreMaterialSet materialSet, ModBlocks.OreBlockSet blockSet) {
+		offerMaterialSetRecipes(exporter, materialSet, blockSet, null, null);
 	}
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.OreMaterialSet materialSet, ModBlocks.OreBlockSet blockSet,
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.OreMaterialSet materialSet, ModBlocks.OreBlockSet blockSet,
 	                                           @Nullable ModItems.ArmorSet armorSet, @Nullable ModItems.ToolSet toolSet) {
+		int tier = materialSet.tier();
 		
 		String materialName = materialSet.name();
 		Item ingot = materialSet.INGOT(), nugget = materialSet.NUGGET(), raw = materialSet.RAW();
@@ -318,11 +319,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 	}
 	
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.OreMaterialSet materialSet, ModBlocks.NetherOreBlockSet blockSet) {
-		offerMaterialSetRecipes(exporter, tier, materialSet, blockSet, null, null);
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.OreMaterialSet materialSet, ModBlocks.NetherOreBlockSet blockSet) {
+		offerMaterialSetRecipes(exporter, materialSet, blockSet, null, null);
 	}
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.OreMaterialSet materialSet, ModBlocks.NetherOreBlockSet blockSet,
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.OreMaterialSet materialSet, ModBlocks.NetherOreBlockSet blockSet,
 	                                           @Nullable ModItems.ArmorSet armorSet, @Nullable ModItems.ToolSet toolSet) {
+		int tier = materialSet.tier();
 		
 		String materialName = materialSet.name();
 		Item ingot = materialSet.INGOT(), nugget = materialSet.NUGGET(), raw = materialSet.RAW();
@@ -344,11 +346,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 	}
 	
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, List<Ingredient> ingredients, ModItems.AlloyMaterialSet materialSet, ModBlocks.AlloyBlockSet blockSet) {
-		offerMaterialSetRecipes(exporter, tier, ingredients, materialSet, blockSet, null, null);
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, List<Ingredient> ingredients, ModItems.AlloyMaterialSet materialSet, ModBlocks.AlloyBlockSet blockSet) {
+		offerMaterialSetRecipes(exporter, ingredients, materialSet, blockSet, null, null);
 	}
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, List<Ingredient> ingredients, ModItems.AlloyMaterialSet materialSet, ModBlocks.AlloyBlockSet blockSet,
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, List<Ingredient> ingredients, ModItems.AlloyMaterialSet materialSet, ModBlocks.AlloyBlockSet blockSet,
 	                                           @Nullable ModItems.ArmorSet armorSet, @Nullable ModItems.ToolSet toolSet) {
+		int tier = materialSet.tier();
 		
 		String materialName = materialSet.name();
 		Item ingot = materialSet.INGOT(), nugget = materialSet.NUGGET();
@@ -366,11 +369,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		if (armorSet != null) offerArmorSetRecipes(exporter, ingot, armorSet);
 	}
 	
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.CrystalMaterialSet materialSet, ModBlocks.CrystalBlockSet blockSet) {
-		offerMaterialSetRecipes(exporter, tier, materialSet, blockSet, null, null);
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.CrystalMaterialSet materialSet, ModBlocks.CrystalBlockSet blockSet) {
+		offerMaterialSetRecipes(exporter, materialSet, blockSet, null, null);
 	}
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.CrystalMaterialSet materialSet, ModBlocks.CrystalBlockSet blockSet,
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.CrystalMaterialSet materialSet, ModBlocks.CrystalBlockSet blockSet,
 	                                           @Nullable ModItems.ArmorSet armorSet, @Nullable ModItems.ToolSet toolSet) {
+		int tier = materialSet.tier();
 		
 		String materialName = materialSet.name();
 		Item crystal = materialSet.CRYSTAL();
@@ -385,11 +389,12 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		if (armorSet != null) offerArmorSetRecipes(exporter, crystal, armorSet);
 	}
 	
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.CrystalMaterialSet materialSet, ModBlocks.NetherCrystalBlockSet blockSet) {
-		offerMaterialSetRecipes(exporter, tier, materialSet, blockSet, null, null);
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.CrystalMaterialSet materialSet, ModBlocks.NetherCrystalBlockSet blockSet) {
+		offerMaterialSetRecipes(exporter, materialSet, blockSet, null, null);
 	}
-	public static void offerMaterialSetRecipes(RecipeExporter exporter, int tier, ModItems.CrystalMaterialSet materialSet, ModBlocks.NetherCrystalBlockSet blockSet,
+	public static void offerMaterialSetRecipes(RecipeExporter exporter, ModItems.CrystalMaterialSet materialSet, ModBlocks.NetherCrystalBlockSet blockSet,
 	                                           @Nullable ModItems.ArmorSet armorSet, @Nullable ModItems.ToolSet toolSet) {
+		int tier = materialSet.tier();
 		
 		String materialName = materialSet.name();
 		Item crystal = materialSet.CRYSTAL();
@@ -423,34 +428,34 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	
 	private void generateMaterialRecipes(RecipeExporter exporter) {
 		
-		offerMaterialSetRecipes(exporter, 1, ModItems.TIN, ModBlocks.TIN);
-		offerMaterialSetRecipes(exporter, 1, ModItems.ZINC, ModBlocks.ZINC);
-		offerMaterialSetRecipes(exporter, 1, ModItems.MAGNETITE, ModBlocks.MAGNETITE);
+		offerMaterialSetRecipes(exporter, ModItems.TIN, ModBlocks.TIN);
+		offerMaterialSetRecipes(exporter, ModItems.ZINC, ModBlocks.ZINC);
+		offerMaterialSetRecipes(exporter, ModItems.MAGNETITE, ModBlocks.MAGNETITE);
 		
-		offerMaterialSetRecipes(exporter, 1,
+		offerMaterialSetRecipes(exporter,
 				List.of(Ingredient.ofItems(Items.COPPER_INGOT), Ingredient.ofItems(Items.COPPER_INGOT),
 						Ingredient.ofItems(Items.COPPER_INGOT), Ingredient.ofItems(ModItems.TIN.INGOT())),
 				ModItems.BRONZE, ModBlocks.BRONZE, ModItems.BRONZE_ARMOR_SET, ModItems.BRONZE_TOOL_SET);
 		
-		offerMaterialSetRecipes(exporter, 1, ModItems.SILVER, ModBlocks.SILVER, ModItems.SILVER_ARMOR_SET, ModItems.SILVER_TOOL_SET);
-		offerMaterialSetRecipes(exporter, 1, ModItems.LEAD, ModBlocks.LEAD);
+		offerMaterialSetRecipes(exporter, ModItems.SILVER, ModBlocks.SILVER, ModItems.SILVER_ARMOR_SET, ModItems.SILVER_TOOL_SET);
+		offerMaterialSetRecipes(exporter, ModItems.LEAD, ModBlocks.LEAD);
 		
-		offerMaterialSetRecipes(exporter, 1,
+		offerMaterialSetRecipes(exporter,
 				List.of(Ingredient.ofItems(Items.IRON_INGOT), Ingredient.ofItems(Items.IRON_INGOT), Ingredient.ofItems(Items.COAL)),
 				ModItems.STEEL, ModBlocks.STEEL, ModItems.STEEL_ARMOR_SET, ModItems.STEEL_TOOL_SET);
 		
-		offerMaterialSetRecipes(exporter, 1, ModItems.TITANIUM, ModBlocks.TITANIUM, ModItems.TITANIUM_ARMOR_SET, ModItems.TITANIUM_TOOL_SET);
-		offerMaterialSetRecipes(exporter, 1, ModItems.PLATINUM, ModBlocks.PLATINUM);
-		offerMaterialSetRecipes(exporter, 1, ModItems.TUNGSTEN, ModBlocks.TUNGSTEN);
-		offerMaterialSetRecipes(exporter, 1, ModItems.PALLADIUM, ModBlocks.PALLADIUM);
-		offerMaterialSetRecipes(exporter, 1, ModItems.COBALT, ModBlocks.COBALT, ModItems.COBALT_ARMOR_SET, ModItems.COBALT_TOOL_SET);
+		offerMaterialSetRecipes(exporter, ModItems.TITANIUM, ModBlocks.TITANIUM, ModItems.TITANIUM_ARMOR_SET, ModItems.TITANIUM_TOOL_SET);
+		offerMaterialSetRecipes(exporter, ModItems.PLATINUM, ModBlocks.PLATINUM);
+		offerMaterialSetRecipes(exporter, ModItems.TUNGSTEN, ModBlocks.TUNGSTEN);
+		offerMaterialSetRecipes(exporter, ModItems.PALLADIUM, ModBlocks.PALLADIUM);
+		offerMaterialSetRecipes(exporter, ModItems.COBALT, ModBlocks.COBALT, ModItems.COBALT_ARMOR_SET, ModItems.COBALT_TOOL_SET);
 		
-		offerMaterialSetRecipes(exporter, 1,
+		offerMaterialSetRecipes(exporter,
 				List.of(Ingredient.ofItems(ModItems.PALLADIUM.INGOT()), Ingredient.ofItems(ModItems.PLATINUM.INGOT())),
 				ModItems.SCANDIUM, ModBlocks.SCANDIUM, ModItems.SCANDIUM_ARMOR_SET, ModItems.SCANDIUM_TOOL_SET);
 		
-		offerMaterialSetRecipes(exporter, 1, ModItems.MYTHRIL, ModBlocks.MYTHRIL, ModItems.MYTHRIL_ARMOR_SET, ModItems.MYTHRIL_TOOL_SET);
-		offerMaterialSetRecipes(exporter, 1, ModItems.RHEXIS, ModBlocks.RHEXIS);
+		offerMaterialSetRecipes(exporter, ModItems.MYTHRIL, ModBlocks.MYTHRIL, ModItems.MYTHRIL_ARMOR_SET, ModItems.MYTHRIL_TOOL_SET);
+		offerMaterialSetRecipes(exporter, ModItems.RHEXIS, ModBlocks.RHEXIS);
 		
 		
 	}

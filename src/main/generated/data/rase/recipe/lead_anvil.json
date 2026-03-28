@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rase:lead_block"
+    },
+    "-": {
+      "item": "rase:lead_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    " - ",
+    "---"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:lead_anvil"
+  }
+}

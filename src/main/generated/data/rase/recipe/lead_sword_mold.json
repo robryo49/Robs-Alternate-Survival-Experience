@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "tag": "rase:sword_blades"
+    },
+    {
+      "item": "rase:lead_mold_base"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:lead_sword_mold"
+  }
+}

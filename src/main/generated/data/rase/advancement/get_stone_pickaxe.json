@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_stone_pickaxe_head",
+  "criteria": {
+    "get_stone_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:stone_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Stone Pickaxe",
+    "icon": {
+      "count": 1,
+      "id": "rase:stone_pickaxe"
+    },
+    "title": "It's a Pickaxe !"
+  },
+  "requirements": [
+    [
+      "get_stone_pickaxe"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

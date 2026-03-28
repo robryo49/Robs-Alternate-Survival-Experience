@@ -1,0 +1,22 @@
+{
+  "values": [
+    "rase:tin_ore",
+    "rase:zinc_ore",
+    "rase:magnetite_ore",
+    "rase:silver_ore",
+    "rase:lead_ore",
+    "rase:titanium_ore",
+    "rase:platinum_ore",
+    "rase:tungsten_ore",
+    "rase:palladium_ore",
+    "rase:mythril_ore",
+    "minecraft:coal_ore",
+    "minecraft:copper_ore",
+    "minecraft:diamond_ore",
+    "minecraft:gold_ore",
+    "minecraft:emerald_ore",
+    "minecraft:iron_ore",
+    "minecraft:lapis_ore",
+    "minecraft:redstone_ore"
+  ]
+}

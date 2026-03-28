@@ -1,0 +1,16 @@
+{
+  "values": [
+    "rase:stone_anvil",
+    "rase:chipped_stone_anvil",
+    "rase:damaged_stone_anvil",
+    "rase:lead_anvil",
+    "rase:chipped_lead_anvil",
+    "rase:damaged_lead_anvil",
+    "rase:titanium_anvil",
+    "rase:chipped_titanium_anvil",
+    "rase:damaged_titanium_anvil",
+    "rase:tungsten_anvil",
+    "rase:chipped_tungsten_anvil",
+    "rase:damaged_tungsten_anvil"
+  ]
+}

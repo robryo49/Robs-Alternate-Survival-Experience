@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_flint",
+  "criteria": {
+    "get_flint_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:flint_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Flint Shard",
+    "icon": {
+      "count": 1,
+      "id": "rase:flint_shard"
+    },
+    "title": "It's Tiny !"
+  },
+  "requirements": [
+    [
+      "get_flint_shard"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

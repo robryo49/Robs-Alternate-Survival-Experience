@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rase:tungsten_block"
+    },
+    "-": {
+      "item": "rase:tungsten_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    " - ",
+    "---"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:tungsten_anvil"
+  }
+}

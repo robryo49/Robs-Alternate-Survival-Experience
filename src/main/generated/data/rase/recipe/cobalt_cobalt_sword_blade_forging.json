@@ -1,0 +1,20 @@
+{
+  "type": "rase:forging",
+  "cook_time": 800,
+  "cool_time": 800,
+  "experience": 4.8,
+  "ingredients": [
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    }
+  ],
+  "mold_tag": "#rase:sword_blade_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:cobalt_sword_blade"
+  },
+  "tier": 4
+}

@@ -5,12 +5,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.text.Text;
-import robryo49.rase.Rase;
 import robryo49.rase.util.ModBlockTags;
 
 public enum ForgeTiers {
 	PRIMITIVE("primitive", 1, 1, 1, ModBlockTags.PRIMITIVE_FORGE_SHELL, ModBlockTags.PRIMITIVE_FORGE_CORE),
-	ADVANCED("advanced", 1, 1, 1, ModBlockTags.ADVANCED_FORGE_SHELL, ModBlockTags.ADVANCED_FORGE_CORE);
+	BASIC("basic", 2, 1, 1, ModBlockTags.BASIC_FORGE_SHELL, ModBlockTags.BASIC_FORGE_CORE),
+	REFINED("refined", 3, 1, 1, ModBlockTags.REFINED_FORGE_SHELL, ModBlockTags.REFINED_FORGE_CORE),
+	ADVANCED("advanced", 4, 1, 1, ModBlockTags.ADVANCED_FORGE_SHELL, ModBlockTags.ADVANCED_FORGE_CORE),
+	ETHEREAL("ethereal", 5, 1, 1, ModBlockTags.ETHEREAL_FORGE_SHELL, ModBlockTags.ETHEREAL_FORGE_CORE)
+	;
 	
 	private final String name;
 	private final int tier;
@@ -35,7 +38,6 @@ public enum ForgeTiers {
 		
 		this.shellTag = shellTag;
 		this.coreTag = coreTag;
-		
 	}
 	
 	public int getTier() {

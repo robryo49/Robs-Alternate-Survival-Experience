@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_raw_tin",
+  "criteria": {
+    "get_tin_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:tin_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Tin Ingot",
+    "icon": {
+      "count": 1,
+      "id": "rase:tin_ingot"
+    },
+    "title": "Tined Up"
+  },
+  "requirements": [
+    [
+      "get_tin_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

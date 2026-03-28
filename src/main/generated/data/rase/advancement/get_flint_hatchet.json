@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_twine",
+  "criteria": {
+    "get_flint_hatchet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:flint_hatchet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Flint Hatchet",
+    "icon": {
+      "count": 1,
+      "id": "rase:flint_hatchet"
+    },
+    "title": "Hatchy"
+  },
+  "requirements": [
+    [
+      "get_flint_hatchet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

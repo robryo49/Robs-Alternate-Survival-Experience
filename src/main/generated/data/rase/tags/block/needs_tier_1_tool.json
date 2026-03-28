@@ -1,0 +1,20 @@
+{
+  "values": [
+    "rase:silver_ore",
+    "rase:deepslate_silver_ore",
+    "rase:silver_block",
+    "rase:raw_silver_block",
+    "rase:steel_block",
+    "rase:titanium_ore",
+    "rase:deepslate_titanium_ore",
+    "rase:titanium_block",
+    "rase:raw_titanium_block",
+    "minecraft:iron_ore",
+    "minecraft:iron_block",
+    "minecraft:deepslate_iron_ore",
+    "minecraft:raw_iron_block",
+    "minecraft:iron_bars",
+    "minecraft:iron_door",
+    "minecraft:iron_trapdoor"
+  ]
+}

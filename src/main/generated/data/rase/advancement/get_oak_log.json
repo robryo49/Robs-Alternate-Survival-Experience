@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_flint_hatchet",
+  "criteria": {
+    "get_oak_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:logs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Oak Log",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:oak_log"
+    },
+    "title": "Logging In"
+  },
+  "requirements": [
+    [
+      "get_oak_log"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

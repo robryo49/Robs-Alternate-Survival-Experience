@@ -1,0 +1,9 @@
+{
+  "values": [
+    "rase:primitive_forge",
+    "rase:basic_forge",
+    "rase:refined_forge",
+    "rase:advanced_forge",
+    "rase:ethereal_forge"
+  ]
+}

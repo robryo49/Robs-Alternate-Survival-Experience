@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "#rase:stone_ores",
+      "required": false
+    },
+    {
+      "id": "#rase:deepslate_ores",
+      "required": false
+    },
+    {
+      "id": "#rase:nether_ores",
+      "required": false
+    }
+  ]
+}

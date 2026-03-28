@@ -1,0 +1,23 @@
+{
+  "type": "rase:forging",
+  "cook_time": 200,
+  "cool_time": 200,
+  "experience": 1.2,
+  "ingredients": [
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    }
+  ],
+  "mold_tag": "#rase:pickaxe_head_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:bronze_pickaxe_head"
+  },
+  "tier": 1
+}

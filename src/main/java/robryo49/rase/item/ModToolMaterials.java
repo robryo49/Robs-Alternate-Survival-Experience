@@ -33,6 +33,8 @@ public enum ModToolMaterials implements ToolMaterial {
 	
 	;
 	
+	private final String name;
+	private final int tier;
 	private final TagKey<Block> inverseTag;
 	private final int itemDurability;
 	private final float miningSpeed;
@@ -41,28 +43,14 @@ public enum ModToolMaterials implements ToolMaterial {
 	private final Supplier<Ingredient> repairIngredient;
 	
 	ModToolMaterials(
-			final int materialTier,
-			final int itemDurability,
-			final float miningSpeed,
-			final float attackDamage,
-			final int enchantability,
-			final Supplier<Ingredient> repairIngredient
-	) {
-		this.inverseTag = ModBlockTags.getIncorrectForTier(materialTier);
-		this.itemDurability = itemDurability;
-		this.miningSpeed = miningSpeed;
-		this.attackDamage = attackDamage;
-		this.enchantability = enchantability;
-		this.repairIngredient = Suppliers.memoize(repairIngredient::get);
-	}
-	
-	ModToolMaterials(
 			final ModMaterials material,
 			final int itemDurability,
 			final float miningSpeed,
 			final float attackDamage,
 			final int enchantability
 	) {
+		this.name = material.getId();
+		this.tier = material.getTier();
 		this.inverseTag = ModBlockTags.getIncorrectForTier(material.getTier());
 		this.itemDurability = itemDurability;
 		this.miningSpeed = miningSpeed;
@@ -99,5 +87,13 @@ public enum ModToolMaterials implements ToolMaterial {
 	@Override
 	public Ingredient getRepairIngredient() {
 		return this.repairIngredient.get();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getTier() {
+		return tier;
 	}
 }

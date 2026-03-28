@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_raw_copper",
+  "criteria": {
+    "get_copper_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:copper_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Copper Ingot",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:copper_ingot"
+    },
+    "title": "Third Place"
+  },
+  "requirements": [
+    [
+      "get_copper_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

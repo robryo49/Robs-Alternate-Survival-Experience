@@ -1,0 +1,22 @@
+{
+  "values": [
+    "rase:deepslate_tin_ore",
+    "rase:deepslate_zinc_ore",
+    "rase:deepslate_magnetite_ore",
+    "rase:deepslate_silver_ore",
+    "rase:deepslate_lead_ore",
+    "rase:deepslate_titanium_ore",
+    "rase:deepslate_platinum_ore",
+    "rase:deepslate_tungsten_ore",
+    "rase:deepslate_palladium_ore",
+    "rase:deepslate_mythril_ore",
+    "minecraft:deepslate_coal_ore",
+    "minecraft:deepslate_copper_ore",
+    "minecraft:deepslate_diamond_ore",
+    "minecraft:deepslate_gold_ore",
+    "minecraft:deepslate_emerald_ore",
+    "minecraft:deepslate_iron_ore",
+    "minecraft:deepslate_lapis_ore",
+    "minecraft:deepslate_redstone_ore"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "#rase:ingot_molds",
+      "required": false
+    },
+    {
+      "id": "#rase:pickaxe_head_molds",
+      "required": false
+    },
+    {
+      "id": "#rase:axe_head_molds",
+      "required": false
+    },
+    {
+      "id": "#rase:sword_blade_molds",
+      "required": false
+    },
+    {
+      "id": "#rase:shovel_head_molds",
+      "required": false
+    },
+    {
+      "id": "#rase:hoe_head_molds",
+      "required": false
+    }
+  ]
+}

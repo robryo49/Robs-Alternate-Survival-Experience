@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    },
+    {
+      "item": "rase:raw_tungsten"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_tungsten_block"
+  }
+}

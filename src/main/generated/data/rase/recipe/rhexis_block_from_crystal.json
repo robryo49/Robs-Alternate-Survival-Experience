@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    },
+    {
+      "item": "rase:rhexis"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:rhexis_block"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "values": [
+    "rase:tin_ingot",
+    "rase:zinc_ingot",
+    "rase:magnetite_ingot",
+    "rase:bronze_ingot",
+    "rase:silver_ingot",
+    "rase:lead_ingot",
+    "rase:steel_ingot",
+    "rase:titanium_ingot",
+    "rase:platinum_ingot",
+    "rase:tungsten_ingot",
+    "rase:palladium_ingot",
+    "rase:cobalt_ingot",
+    "rase:scandium_ingot",
+    "rase:mythril_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:gold_ingot",
+    "minecraft:copper_ingot",
+    "minecraft:netherite_ingot"
+  ]
+}

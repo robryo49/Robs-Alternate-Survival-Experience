@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    },
+    {
+      "item": "rase:raw_platinum"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_platinum_block"
+  }
+}

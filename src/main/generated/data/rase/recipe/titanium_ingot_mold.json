@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "minecraft:brick"
+    },
+    {
+      "item": "rase:titanium_mold_base"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:titanium_ingot_mold"
+  }
+}

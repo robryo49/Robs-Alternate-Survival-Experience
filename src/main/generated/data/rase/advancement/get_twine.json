@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_plant_fiber",
+  "criteria": {
+    "get_twine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:twine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Twine",
+    "icon": {
+      "count": 1,
+      "id": "rase:twine"
+    },
+    "title": "Twisted Twine"
+  },
+  "requirements": [
+    [
+      "get_twine"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

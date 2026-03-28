@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_flint_pick",
+  "criteria": {
+    "get_stone_pebbles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:stone_pebbles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Stone Pebbles",
+    "icon": {
+      "count": 1,
+      "id": "rase:stone_pebbles"
+    },
+    "title": "Rockin' It"
+  },
+  "requirements": [
+    [
+      "get_stone_pebbles"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

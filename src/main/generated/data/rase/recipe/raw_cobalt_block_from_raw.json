@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    },
+    {
+      "item": "rase:raw_cobalt"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_cobalt_block"
+  }
+}

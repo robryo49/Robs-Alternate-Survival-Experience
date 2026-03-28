@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:stone"
+    },
+    "-": {
+      "item": "rase:stone_pebbles"
+    }
+  },
+  "pattern": [
+    "###",
+    " - ",
+    "---"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:stone_anvil"
+  }
+}

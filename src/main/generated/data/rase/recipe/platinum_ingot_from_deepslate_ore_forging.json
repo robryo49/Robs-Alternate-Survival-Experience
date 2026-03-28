@@ -1,0 +1,17 @@
+{
+  "type": "rase:forging",
+  "cook_time": 600,
+  "cool_time": 600,
+  "experience": 3.6000001,
+  "ingredients": [
+    {
+      "item": "rase:deepslate_platinum_ore"
+    }
+  ],
+  "mold_tag": "#rase:ingot_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:platinum_ingot"
+  },
+  "tier": 3
+}

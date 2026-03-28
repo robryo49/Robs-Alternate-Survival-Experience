@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    },
+    {
+      "item": "rase:cobalt_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:cobalt_block"
+  }
+}

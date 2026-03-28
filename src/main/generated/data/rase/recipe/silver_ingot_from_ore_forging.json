@@ -1,0 +1,17 @@
+{
+  "type": "rase:forging",
+  "cook_time": 400,
+  "cool_time": 400,
+  "experience": 2.4,
+  "ingredients": [
+    {
+      "item": "rase:silver_ore"
+    }
+  ],
+  "mold_tag": "#rase:ingot_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:silver_ingot"
+  },
+  "tier": 2
+}

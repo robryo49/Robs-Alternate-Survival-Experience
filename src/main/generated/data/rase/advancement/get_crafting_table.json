@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_oak_planks",
+  "criteria": {
+    "get_crafting_table": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:crafting_table"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Crafting Table",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:crafting_table"
+    },
+    "title": "Craft"
+  },
+  "requirements": [
+    [
+      "get_crafting_table"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

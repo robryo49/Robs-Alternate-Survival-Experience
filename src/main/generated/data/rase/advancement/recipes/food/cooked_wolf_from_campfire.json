@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_wolf": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:raw_wolf"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rase:cooked_wolf_from_campfire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_raw_wolf"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:cooked_wolf_from_campfire"
+    ]
+  }
+}

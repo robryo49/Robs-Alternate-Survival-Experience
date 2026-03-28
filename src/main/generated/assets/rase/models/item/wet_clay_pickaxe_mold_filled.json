@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rase:item/wet_clay_mold_base",
+    "layer1": "rase:item/mold_pattern_pickaxe",
+    "layer2": "rase:item/mold_pattern_pickaxe_filled"
+  }
+}

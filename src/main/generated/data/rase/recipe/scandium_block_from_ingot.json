@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    },
+    {
+      "item": "rase:scandium_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:scandium_block"
+  }
+}

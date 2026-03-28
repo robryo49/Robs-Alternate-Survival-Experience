@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "rase:item/tungsten_sword_mold_filled",
+      "predicate": {
+        "rase:filled": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "rase:item/tungsten_mold_base",
+    "layer1": "rase:item/mold_pattern_sword"
+  }
+}

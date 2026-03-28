@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "rase:block/tungsten_anvil",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "rase:block/tungsten_anvil"
+    },
+    "facing=south": {
+      "model": "rase:block/tungsten_anvil",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rase:block/tungsten_anvil",
+      "y": 270
+    }
+  }
+}

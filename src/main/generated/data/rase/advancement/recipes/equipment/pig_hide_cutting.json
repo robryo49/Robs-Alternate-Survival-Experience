@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pig_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:pig_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_pig_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:pig_hide_cutting"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_wet_clay_mold_base",
+  "criteria": {
+    "get_wet_clay_ingot_mold": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#rase:ingot_molds"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Wet Clay Ingot Mold",
+    "icon": {
+      "count": 1,
+      "id": "rase:wet_clay_ingot_mold"
+    },
+    "title": "Molding a Brick ?"
+  },
+  "requirements": [
+    [
+      "get_wet_clay_ingot_mold"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

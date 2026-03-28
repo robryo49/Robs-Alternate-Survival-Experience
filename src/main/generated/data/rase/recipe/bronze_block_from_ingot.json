@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    },
+    {
+      "item": "rase:bronze_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:bronze_block"
+  }
+}

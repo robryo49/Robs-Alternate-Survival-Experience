@@ -1,0 +1,14 @@
+{
+  "type": "rase:tooling",
+  "category": "equipment",
+  "input": {
+    "item": "minecraft:flint"
+  },
+  "result": {
+    "count": 1,
+    "id": "rase:sharp_flint"
+  },
+  "tool": {
+    "tag": "minecraft:swords"
+  }
+}

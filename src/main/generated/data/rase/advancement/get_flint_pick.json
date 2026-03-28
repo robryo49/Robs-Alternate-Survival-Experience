@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_sharp_flint",
+  "criteria": {
+    "get_flint_pick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:flint_pick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Flint Pick",
+    "icon": {
+      "count": 1,
+      "id": "rase:flint_pick"
+    },
+    "title": "Picky"
+  },
+  "requirements": [
+    [
+      "get_flint_pick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

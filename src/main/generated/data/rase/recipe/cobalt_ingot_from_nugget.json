@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    },
+    {
+      "item": "rase:cobalt_nugget"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:cobalt_ingot"
+  }
+}

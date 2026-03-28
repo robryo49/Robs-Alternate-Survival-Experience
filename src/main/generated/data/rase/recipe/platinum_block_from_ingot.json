@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    },
+    {
+      "item": "rase:platinum_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:platinum_block"
+  }
+}

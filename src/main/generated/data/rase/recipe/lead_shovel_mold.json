@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "tag": "rase:shovel_heads"
+    },
+    {
+      "item": "rase:lead_mold_base"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:lead_shovel_mold"
+  }
+}

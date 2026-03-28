@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_clay_ball",
+  "criteria": {
+    "get_wet_clay_mold_base": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:wet_clay_mold_base"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Wet Clay Mold Base",
+    "icon": {
+      "count": 1,
+      "id": "rase:wet_clay_mold_base"
+    },
+    "title": "That Ain't Molding Anything"
+  },
+  "requirements": [
+    [
+      "get_wet_clay_mold_base"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

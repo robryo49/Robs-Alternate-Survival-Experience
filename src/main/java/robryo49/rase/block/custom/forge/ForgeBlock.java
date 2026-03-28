@@ -122,7 +122,7 @@ public class ForgeBlock extends BlockWithEntity {
 				Text.translatable("item.rase.mold.tooltip.tier")
 						.append(": ")
 						.formatted(net.minecraft.util.Formatting.GRAY)
-						.append(Text.literal(String.valueOf(getTier())).formatted(net.minecraft.util.Formatting.GOLD)));
+						.append(Text.literal(String.valueOf(getTier().getTier())).formatted(net.minecraft.util.Formatting.GOLD)));
 		
 		super.appendTooltip(stack, context, tooltip, options);
 	}

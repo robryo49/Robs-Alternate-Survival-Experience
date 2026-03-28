@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "rase:leather_strap"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:handle"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "rase:get_stone_pickaxe",
+  "criteria": {
+    "get_coal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:coal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": "Get Coal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:coal"
+    },
+    "title": "I'm Coaled"
+  },
+  "requirements": [
+    [
+      "get_coal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

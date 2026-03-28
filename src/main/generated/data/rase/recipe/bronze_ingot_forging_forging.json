@@ -1,0 +1,26 @@
+{
+  "type": "rase:forging",
+  "cook_time": 200,
+  "cool_time": 200,
+  "experience": 1.2,
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "rase:tin_ingot"
+    }
+  ],
+  "mold_tag": "#rase:ingot_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:bronze_ingot"
+  },
+  "tier": 1
+}

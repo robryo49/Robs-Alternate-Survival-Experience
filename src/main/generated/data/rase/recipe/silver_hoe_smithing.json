@@ -1,0 +1,15 @@
+{
+  "type": "rase:anvil_smithing",
+  "addition": {
+    "item": "rase:silver_hoe_head"
+  },
+  "base": {
+    "item": "rase:handle"
+  },
+  "level_cost": 0,
+  "result": {
+    "count": 1,
+    "id": "rase:silver_hoe"
+  },
+  "tier": 2
+}

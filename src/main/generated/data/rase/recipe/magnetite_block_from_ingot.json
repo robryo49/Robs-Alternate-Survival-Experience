@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    },
+    {
+      "item": "rase:magnetite_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:magnetite_block"
+  }
+}

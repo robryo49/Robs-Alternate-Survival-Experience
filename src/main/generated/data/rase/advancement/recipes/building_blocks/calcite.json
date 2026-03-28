@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_calcite_pebbles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:calcite_pebbles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rase:calcite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_calcite_pebbles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:calcite"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polar_bear_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:polar_bear_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_polar_bear_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:polar_bear_hide_cutting"
+    ]
+  }
+}

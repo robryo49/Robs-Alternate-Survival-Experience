@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    },
+    {
+      "item": "rase:raw_palladium"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:raw_palladium_block"
+  }
+}
