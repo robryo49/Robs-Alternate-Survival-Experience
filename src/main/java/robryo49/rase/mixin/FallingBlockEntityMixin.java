@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import robryo49.rase.block.ModBlocks;
-import robryo49.rase.block.custom.forge.SmithingAnvilBlock;
+import robryo49.rase.block.custom.smithing_anvil.SmithingAnvilBlock;
 
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntityMixin {

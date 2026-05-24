@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "rase:block/workbench_bottom",
+    "side": "rase:block/workbench_side",
+    "top": "rase:block/workbench_top"
+  }
+}

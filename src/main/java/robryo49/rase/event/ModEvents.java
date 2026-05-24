@@ -140,6 +140,20 @@ public class ModEvents {
 		});
 	}
 	
+	public static void registerPlayerHealthLimit() {
+		ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
+			if (entity instanceof PlayerEntity player) {
+				var instance = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+				if (instance != null) {
+					instance.setBaseValue(10.0);
+					if (player.getHealth() > 10f) {
+						player.setHealth(10f);
+					}
+				}
+			}
+		});
+	}
+	
 	
 	private static Item getPlankForLog(Block log) {
 		if (log.getDefaultState().isIn(BlockTags.OAK_LOGS)) return Items.OAK_PLANKS;
@@ -171,5 +185,6 @@ public class ModEvents {
 		registerNoBlockPunchingEvent();
 		registerLogCuttingEvent();
 		registerPlayerSlowDown();
+		registerPlayerHealthLimit();
 	}
 }

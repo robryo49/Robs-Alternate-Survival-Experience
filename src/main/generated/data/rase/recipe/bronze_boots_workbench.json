@@ -1,0 +1,18 @@
+{
+  "type": "rase:workbench",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rase:bronze_ingot"
+    }
+  },
+  "pattern": [
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:bronze_boots"
+  },
+  "show_notification": false
+}

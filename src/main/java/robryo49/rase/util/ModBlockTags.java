@@ -149,7 +149,7 @@ public class ModBlockTags {
 				Blocks.COAL_ORE
 		));
 		
-		addToTag(NEEDS_TIER_1_TOOLS, List.of(
+		addToTag(NEEDS_TIER_2_TOOLS, List.of(
 				Blocks.DEEPSLATE,
 				Blocks.DEEPSLATE_BRICK_SLAB,
 				Blocks.DEEPSLATE_BRICK_STAIRS,

@@ -1,0 +1,25 @@
+{
+  "type": "rase:workbench",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_stone"
+    },
+    "-": {
+      "item": "minecraft:stone"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "---",
+    "i -",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:refined_forge"
+  },
+  "show_notification": false
+}

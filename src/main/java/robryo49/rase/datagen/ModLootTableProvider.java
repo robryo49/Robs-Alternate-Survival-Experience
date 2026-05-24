@@ -133,6 +133,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 	public void generateBlockDrops() {
 		addDrop(List.of(
 				ModBlocks.DRYING_RACK,
+				ModBlocks.BASKET,
 				ModBlocks.OBSIDIAN_BRICKS,
 				ModBlocks.CRYING_OBSIDIAN_BRICKS
 		));

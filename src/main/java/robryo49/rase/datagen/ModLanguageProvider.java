@@ -77,6 +77,16 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 		generateTranslation(translationBuilder, "emi.category.rase.forge_structure");
 		generateTranslation(translationBuilder, "emi.category.rase.drying");
 		generateTranslation(translationBuilder, "emi.category.rase.item_use");
+		generateTranslation(translationBuilder, "emi.category.rase.workbench");
+		generateTranslation(translationBuilder, "emi.category.rase.crushing");
+	}
+	
+	public void generateTooltipTranslations(TranslationBuilder translationBuilder) {
+		generateTooltip(translationBuilder, "mold", "cooling_time", "Cooling Time");
+		generateTooltip(translationBuilder, "mold", "held_item", "Held Item");
+		generateTooltip(translationBuilder, "mold", "cooled", "Cooled");
+		generateTooltip(translationBuilder, "mold", "material", "Material");
+		generateTooltip(translationBuilder, "mold", "tier", "Tier");
 	}
 	
 	
@@ -94,11 +104,6 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 		generateItemTagsTranslations(translationBuilder, ModItemTags.ALL);
 		generateBlockTagsTranslations(translationBuilder, ModBlockTags.ALL);
 		generateRecipeCategoriesTranslations(translationBuilder);
-		
-		generateTooltip(translationBuilder, "mold", "cooling_time", "Cooling Time");
-		generateTooltip(translationBuilder, "mold", "held_item", "Held Item");
-		generateTooltip(translationBuilder, "mold", "cooled", "Cooled");
-		generateTooltip(translationBuilder, "mold", "material", "Material");
-		generateTooltip(translationBuilder, "mold", "tier", "Tier");
+		generateTooltipTranslations(translationBuilder);
 	}
 }

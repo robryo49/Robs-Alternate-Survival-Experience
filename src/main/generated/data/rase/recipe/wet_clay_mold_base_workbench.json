@@ -1,0 +1,19 @@
+{
+  "type": "rase:workbench",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "rase:wet_clay_mold_base"
+  },
+  "show_notification": false
+}

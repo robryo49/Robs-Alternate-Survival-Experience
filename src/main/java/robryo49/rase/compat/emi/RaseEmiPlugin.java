@@ -4,6 +4,7 @@ import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.recipe.EmiWorldInteractionRecipe;
+import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.block.Block;
@@ -18,12 +19,11 @@ import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
 import robryo49.rase.compat.emi.handlers.AnvilSmithingEmiRecipeHandler;
 import robryo49.rase.compat.emi.handlers.ForgeEmiRecipeHandler;
+import robryo49.rase.compat.emi.handlers.WorkbenchEmiRecipeHandler;
 import robryo49.rase.compat.emi.recipe.*;
 import robryo49.rase.item.ModItems;
 import robryo49.rase.recipe.ModRecipes;
-import robryo49.rase.recipe.custom.AnvilSmithingRecipe;
-import robryo49.rase.recipe.custom.DryingRecipe;
-import robryo49.rase.recipe.custom.ForgeRecipe;
+import robryo49.rase.recipe.custom.*;
 
 import net.minecraft.item.Items;
 import robryo49.rase.screen.ModScreenHandlers;
@@ -56,6 +56,16 @@ public class RaseEmiPlugin implements EmiPlugin {
 			EmiStack.of(Blocks.CHEST)
 	);
 	
+	public static final EmiRecipeCategory CRUSHING_CATEGORY = new EmiRecipeCategory(
+			Rase.getIdentifier("crushing"),
+			EmiStack.of(ModBlocks.CRUSHER)
+	);
+	
+	public static final EmiRecipeCategory WORKBENCH_CATEGORY = new EmiRecipeCategory(
+			Rase.getIdentifier("workbench"),
+			EmiStack.of(ModBlocks.WORKBENCH)
+	);
+	
 	private static EmiIngredient damagedTool(EmiIngredient tool) {
 		for (EmiStack stack : tool.getEmiStacks()) {
 			ItemStack is = stack.getItemStack().copy();
@@ -82,7 +92,8 @@ public class RaseEmiPlugin implements EmiPlugin {
 		registry.addCategory(FORGE_STRUCTURE_CATEGORY);
 		registry.addCategory(DRYING_CATEGORY);
 		registry.addCategory(ITEM_USE_CATEGORY);
-		
+		registry.addCategory(CRUSHING_CATEGORY);
+		registry.addCategory(WORKBENCH_CATEGORY);
 		
 		registry.addWorkstation(FORGE_CATEGORY, EmiStack.of(ModBlocks.PRIMITIVE_FORGE));
 		registry.addWorkstation(FORGE_CATEGORY, EmiStack.of(ModBlocks.BASIC_FORGE));
@@ -94,10 +105,14 @@ public class RaseEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(ANVIL_SMITHING_CATEGORY, EmiStack.of(ModBlocks.TITANIUM_ANVIL.NORMAL()));
 		registry.addWorkstation(ANVIL_SMITHING_CATEGORY, EmiStack.of(ModBlocks.TUNGSTEN_ANVIL.NORMAL()));
 		registry.addWorkstation(DRYING_CATEGORY, EmiStack.of(ModBlocks.DRYING_RACK));
+		registry.addWorkstation(CRUSHING_CATEGORY, EmiStack.of(ModBlocks.CRUSHER));
+		registry.addWorkstation(WORKBENCH_CATEGORY, EmiStack.of(ModBlocks.WORKBENCH));
+		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(ModBlocks.WORKBENCH));
 		
 		registry.addRecipeHandler(ScreenHandlerType.ANVIL, new AnvilSmithingEmiRecipeHandler());
 		registry.addRecipeHandler(ModScreenHandlers.FORGE_SCREEN_HANDLER, new ForgeEmiRecipeHandler());
-		
+		registry.addRecipeHandler(ModScreenHandlers.WORKBENCH_SCREEN_HANDLER,
+				new WorkbenchEmiRecipeHandler());
 		
 		
 		for (RecipeEntry<ForgeRecipe> entry :
@@ -113,6 +128,16 @@ public class RaseEmiPlugin implements EmiPlugin {
 		for (RecipeEntry<DryingRecipe> recipe :
 				registry.getRecipeManager().listAllOfType(ModRecipes.DRYING_RECIPE_TYPE)) {
 			registry.addRecipe(new DryingEmiRecipe(recipe.value(), recipe.id()));
+		}
+		
+		for (RecipeEntry<CrushingRecipe> entry :
+				registry.getRecipeManager().listAllOfType(ModRecipes.CRUSHING_RECIPE_TYPE)) {
+			registry.addRecipe(new CrushingEmiRecipe(entry.value(), entry.id()));
+		}
+		
+		for (RecipeEntry<WorkbenchRecipe> entry :
+				registry.getRecipeManager().listAllOfType(ModRecipes.WORKBENCH_RECIPE_TYPE)) {
+			registry.addRecipe(new WorkbenchEmiRecipe(entry.value(), entry.id()));
 		}
 		
 		registry.addRecipe(new ForgeStructureEmiRecipe(ModBlocks.PRIMITIVE_FORGE));

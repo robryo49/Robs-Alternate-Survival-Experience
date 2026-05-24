@@ -5,10 +5,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
-import robryo49.rase.recipe.custom.AnvilSmithingRecipe;
-import robryo49.rase.recipe.custom.DryingRecipe;
-import robryo49.rase.recipe.custom.ForgeRecipe;
-import robryo49.rase.recipe.custom.ToolingRecipe;
+import robryo49.rase.recipe.custom.*;
 
 public class ModRecipes {
 	
@@ -57,6 +54,31 @@ public class ModRecipes {
 			Registries.RECIPE_TYPE, Rase.getIdentifier("drying"),
 			new RecipeType<DryingRecipe>() {
 				@Override public String toString() { return "drying"; }
+			}
+	);
+	
+	
+	public static RecipeSerializer<CrushingRecipe> CRUSHING_RECIPE_SERIALIZER = Registry.register(
+			Registries.RECIPE_SERIALIZER, Rase.getIdentifier("crushing"), new CrushingRecipe.Serializer()
+	);
+	
+	public static RecipeType<CrushingRecipe> CRUSHING_RECIPE_TYPE = Registry.register(
+			Registries.RECIPE_TYPE, Rase.getIdentifier("crushing"),
+			new RecipeType<CrushingRecipe>() {
+				@Override public String toString() { return "crushing"; }
+			}
+	);
+	
+	
+	public static RecipeSerializer<WorkbenchRecipe> WORKBENCH_RECIPE_SERIALIZER = Registry.register(
+			Registries.RECIPE_SERIALIZER, Rase.getIdentifier("workbench"), new WorkbenchRecipe.Serializer()
+	);
+	
+	public static RecipeType<WorkbenchRecipe> WORKBENCH_RECIPE_TYPE = Registry.register(
+			Registries.RECIPE_TYPE, Rase.getIdentifier("workbench"),
+			new RecipeType<WorkbenchRecipe>() {
+				@Override
+				public String toString() { return "workbench"; }
 			}
 	);
 	

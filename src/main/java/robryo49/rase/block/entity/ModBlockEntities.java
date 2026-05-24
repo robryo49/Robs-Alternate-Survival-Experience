@@ -5,9 +5,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
-import robryo49.rase.block.entity.custom.BasketBlockEntity;
-import robryo49.rase.block.entity.custom.DryingRackBlockEntity;
-import robryo49.rase.block.entity.custom.ForgeBlockEntity;
+import robryo49.rase.block.entity.custom.*;
 
 
 public class ModBlockEntities {
@@ -32,6 +30,12 @@ public class ModBlockEntities {
 			Registry.register(Registries.BLOCK_ENTITY_TYPE, Rase.getIdentifier("drying_rack_block_entity"),
 					BlockEntityType.Builder.create(DryingRackBlockEntity::new,
 							ModBlocks.DRYING_RACK
+					).build());
+	
+	public static final BlockEntityType<CrusherBlockEntity> CRUSHER_BLOCK_ENTITY =
+			Registry.register(Registries.BLOCK_ENTITY_TYPE, Rase.getIdentifier("crusher_block_entity"),
+					BlockEntityType.Builder.create(CrusherBlockEntity::new,
+							ModBlocks.CRUSHER
 					).build());
 	
 	public static void registerModBlockEntities() {

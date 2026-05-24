@@ -1,0 +1,19 @@
+{
+  "type": "rase:workbench",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rase:tungsten_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "rase:tungsten_mold_base"
+  },
+  "show_notification": false
+}

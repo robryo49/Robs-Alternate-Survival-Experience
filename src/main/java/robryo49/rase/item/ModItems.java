@@ -186,9 +186,9 @@ public class ModItems {
 	public record MeatSet(EntityType<?> entity, Item RAW, Item COOKED) {}
 	public record PebbleSet(Item PEBBLE, Block SOURCE_BLOCK, Block RECONSTRUCTED_BLOCK) {}
 	
-	public record OreMaterialSet(String name, int tier, Item INGOT, Item NUGGET, Item RAW) {}
-	public record AlloyMaterialSet(String name, int tier, Item INGOT, Item NUGGET) {}
-	public record CrystalMaterialSet(String name, int tier, Item CRYSTAL) {}
+	public record OreMaterialSet(String name, int tier, Item INGOT, Item NUGGET, Item RAW, Item POWDER) {}
+	public record AlloyMaterialSet(String name, int tier, Item INGOT, Item NUGGET, Item POWDER) {}
+	public record CrystalMaterialSet(String name, int tier, Item CRYSTAL, Item POWDER) {}
 	
 	public record ArmorSet(String name, ArmorItem HELMET, ArmorItem CHESTPLATE, ArmorItem LEGGINGS, ArmorItem BOOTS) {}
 	
@@ -224,17 +224,19 @@ public class ModItems {
 	
 	public static OreMaterialSet registerOreMaterialSet(ModMaterials material) {
 		String name = material.getId();
-		return new OreMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS), registerItem(name + "_nugget"), registerItem("raw_" + name));
+		return new OreMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS),
+				registerItem(name + "_nugget"), registerItem("raw_" + name), registerItem(name + "_powder"));
 	}
 	
 	public static AlloyMaterialSet registerAlloyMaterialSet(ModMaterials material) {
 		String name = material.getId();
-		return new AlloyMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS), registerItem(name + "_nugget"));
+		return new AlloyMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS),
+				registerItem(name + "_nugget"), registerItem(name + "_powder"));
 	}
 	
 	public static CrystalMaterialSet registerCrystalMaterialSet(ModMaterials material) {
 		String name = material.getId();
-		return new CrystalMaterialSet(name, material.getTier(), registerItem(name));
+		return new CrystalMaterialSet(name, material.getTier(), registerItem(name), registerItem(name + "_powder"));
 	}
 	
 	

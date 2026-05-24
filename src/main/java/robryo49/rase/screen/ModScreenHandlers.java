@@ -9,10 +9,7 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import robryo49.rase.Rase;
-import robryo49.rase.screen.custom.BasketScreen;
-import robryo49.rase.screen.custom.BasketScreenHandler;
-import robryo49.rase.screen.custom.ForgeScreen;
-import robryo49.rase.screen.custom.ForgeScreenHandler;
+import robryo49.rase.screen.custom.*;
 
 public class ModScreenHandlers {
 	
@@ -23,7 +20,9 @@ public class ModScreenHandlers {
 	public static final ScreenHandlerType<BasketScreenHandler> BASKET_SCREEN_HANDLER =
 			Registry.register(Registries.SCREEN_HANDLER, Rase.getIdentifier("basket_screen_handler"),
 					new ScreenHandlerType<>(BasketScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
-	
+	public static final ScreenHandlerType<WorkbenchScreenHandler> WORKBENCH_SCREEN_HANDLER =
+			Registry.register(Registries.SCREEN_HANDLER, Rase.getIdentifier("workbench_screen_handler"),
+					new ScreenHandlerType<>(WorkbenchScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
 	
 	public static void registerScreenHandlers() {
 		Rase.LOGGER.info("Registering Screen Handlers for " + Rase.MOD_ID);
@@ -34,5 +33,6 @@ public class ModScreenHandlers {
 	public static void registerScreens() {
 		HandledScreens.register(FORGE_SCREEN_HANDLER, ForgeScreen::new);
 		HandledScreens.register(BASKET_SCREEN_HANDLER, BasketScreen::new);
+		HandledScreens.register(WORKBENCH_SCREEN_HANDLER, WorkbenchScreen::new);
 	}
 }

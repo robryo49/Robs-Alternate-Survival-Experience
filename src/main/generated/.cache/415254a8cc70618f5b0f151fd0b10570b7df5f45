@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-16T14:17:49.2538102	Rob's Alternate Survival Experience/Tags for minecraft:block
+// 1.21.1	2026-05-24T14:26:40.2148637	Rob's Alternate Survival Experience/Tags for minecraft:block
 fd853e6a9011ce70bb335025a443bbd8258b7d3b data\rase\tags\block\ethereal_forge_shell.json
 9a8f79b95d767f32f5757834037fc546a862cfe8 data\rase\tags\block\ethereal_forge_core.json
 38698a294a49c6c2f437a664e11812d68cf999d5 data\rase\tags\block\nether_ores.json
@@ -14,7 +14,7 @@ d6075710fc6a6726e8b6639644296bd8eb159932 data\rase\tags\block\needs_tier_4_tool.
 4299a3aeb550dac5d1182404571c32a720c12c01 data\rase\tags\block\primitive_forge_shell.json
 07b4042b193f69af4576b916882a7251f5e45e5f data\rase\tags\block\stone_ores.json
 4dcb64a3111caeaab3f2f025579db80fa9a1a37f data\rase\tags\block\incorrect_for_tier_4_tool.json
-a8dbd0b11e689c776c68e17f847f2658122a6602 data\rase\tags\block\needs_tier_2_tool.json
+332542cba8e8abb16570610c3dd7f39b5b616edd data\rase\tags\block\needs_tier_2_tool.json
 f7f722fe4d6e1a13df4a9adcde9d5572578748fb data\rase\tags\block\refined_forge_shell.json
 3212407ca724a519627759d4f585551fae091f75 data\rase\tags\block\incorrect_for_tier_2_tool.json
 889928c5b2c28579da5a5fc573be5915d424f1d2 data\rase\tags\block\incorrect_for_tier_0_tool.json
@@ -23,6 +23,6 @@ f7f722fe4d6e1a13df4a9adcde9d5572578748fb data\rase\tags\block\refined_forge_shel
 a401bb2892040b7ea66e7ab2862570f8282493e3 data\rase\tags\block\advanced_forge_core.json
 ee3835b6a53d6c9ce58ff27e7619a1124c688249 data\minecraft\tags\block\mineable\pickaxe.json
 924697d5345d31d1f191b1bdf983b35440512edf data\minecraft\tags\block\sword_efficient.json
-0a543863903a03ff68421a9ca3920e5115c6db77 data\rase\tags\block\needs_tier_1_tool.json
+6b0764dd85c9b8169b6e49be909cec882d5a3ef1 data\rase\tags\block\needs_tier_1_tool.json
 c0f295096df1c1c80e06ba4846fbdc5932e6c369 data\rase\tags\block\incorrect_for_tier_3_tool.json
 ec06e5516cd9d266e214a831dfac26d9bc5c77d0 data\rase\tags\block\deepslate_ores.json

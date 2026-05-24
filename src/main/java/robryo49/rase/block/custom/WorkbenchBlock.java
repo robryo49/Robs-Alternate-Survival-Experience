@@ -1,0 +1,36 @@
+package robryo49.rase.block.custom;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import robryo49.rase.screen.custom.WorkbenchScreenHandler;
+
+public class WorkbenchBlock extends Block {
+	
+	public WorkbenchBlock(Settings settings) {
+		super(settings);
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos,
+	                          PlayerEntity player, BlockHitResult hit) {
+		if (world.isClient) return ActionResult.SUCCESS;
+		player.openHandledScreen(createScreenHandlerFactory(state, world, pos));
+		return ActionResult.CONSUME;
+	}
+	
+	@Override
+	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+		return new SimpleNamedScreenHandlerFactory(
+				(syncId, inv, p) -> new WorkbenchScreenHandler(syncId, inv),
+				Text.translatable("container.rase.workbench")
+		);
+	}
+}

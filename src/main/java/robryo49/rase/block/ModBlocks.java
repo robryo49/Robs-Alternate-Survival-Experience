@@ -1,7 +1,6 @@
 package robryo49.rase.block;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.data.client.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -12,9 +11,10 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
-import robryo49.rase.block.custom.BasketBlock;
-import robryo49.rase.block.custom.DryingRackBlock;
+import robryo49.rase.block.custom.*;
 import robryo49.rase.block.custom.forge.*;
+import robryo49.rase.block.custom.smithing_anvil.SmithingAnvilBlock;
+import robryo49.rase.block.custom.smithing_anvil.SmithingAnvilMaterials;
 import robryo49.rase.item.ModMaterials;
 import robryo49.rase.util.ModBlockTags;
 
@@ -33,7 +33,7 @@ public class ModBlocks {
 	
 	// --- Block Registrations ---
 	
-	public static final Block BASKET = registerBlock("basket", new BasketBlock(AbstractBlock.Settings.create().strength(2.5f, 3.0f).sounds(BlockSoundGroup.BIG_DRIPLEAF)), List.of(), Models.BASKET);
+	public static final Block BASKET = registerBlock("basket", new BasketBlock(AbstractBlock.Settings.create().strength(1.0f, 3.0f).sounds(BlockSoundGroup.BIG_DRIPLEAF)), List.of(), Models.BASKET);
 	public static final Block DRYING_RACK = registerBlock("drying_rack", new DryingRackBlock(AbstractBlock.Settings.create().strength(1.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), List.of(), Models.SCAFFOLDING);
 	
 	public static final Block CRACKED_STONE = registerBlock("cracked_stone", 1.5f, 6.0f, BlockSoundGroup.STONE);
@@ -47,6 +47,10 @@ public class ModBlocks {
 	public static final Block OBSIDIAN_BRICKS = registerBlock("obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F)), List.of(ModBlockTags.ETHEREAL_FORGE_SHELL), Models.CUBE_ALL);
 	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)), List.of(), Models.CUBE_ALL);
 	
+	public static final Block CRUSHER = registerBlock("crusher", new CrusherBlock(AbstractBlock.Settings.create().strength(1.0f)), List.of(), Models.CUBE_ALL);
+	public static final Block MOTOR = registerBlock("motor", new MotorBlock(AbstractBlock.Settings.create().strength(1.0f)), List.of(), Models.CUBE_ALL);
+	
+	public static final Block WORKBENCH = registerBlock("workbench", new WorkbenchBlock(AbstractBlock.Settings.copy(Blocks.CRAFTING_TABLE)), List.of(), Models.WORKBENCH);
 	
 	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
 	public static final Block BASIC_FORGE = registerForge("basic_forge", ForgeTiers.BASIC, 7.0f, 50.0f);
@@ -203,6 +207,7 @@ public class ModBlocks {
 	public enum Models {
 		CUBE_ALL(BlockStateModelGenerator::registerSimpleCubeAll),
 		ORIENTABLE((generator, block) -> generator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE)),
+		ORIENTABLE_WITH_BOTTOM((generator, block) -> generator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE_WITH_BOTTOM)),
 		COOKER((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE)),
 		COOKER_WITH_BOTTOM((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE_WITH_BOTTOM)),
 		ANVIL((generator, block) -> {
@@ -219,6 +224,21 @@ public class ModBlocks {
 			Identifier modelId = model.upload(block, textures, generator.modelCollector);
 			generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block, BlockStateVariant.create().put(VariantSettings.MODEL, modelId))
 					.coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates()));
+		}),
+		WORKBENCH((generator, block) -> {
+			Identifier blockId = Registries.BLOCK.getId(block);
+			String ns = blockId.getNamespace();
+			String path = blockId.getPath();
+			
+			TextureMap textures = new TextureMap()
+					.put(TextureKey.TOP,    Identifier.of(ns, "block/" + path + "_top"))
+					.put(TextureKey.BOTTOM, Identifier.of(ns, "block/" + path + "_bottom"))
+					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.PARTICLE, Identifier.of(ns, "block/" + path + "_side"));
+			
+			Identifier modelId = net.minecraft.data.client.Models.CUBE_BOTTOM_TOP.upload(block, textures, generator.modelCollector);
+			generator.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(block, modelId));
+			generator.registerParentedItemModel(block, modelId);
 		}),
 		BASKET((generator, block) -> {
 			Identifier blockId = Registries.BLOCK.getId(block);

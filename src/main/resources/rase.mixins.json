@@ -4,13 +4,15 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AnvilScreenHandlerMixin",
-    "NoInstaBreakMixin",
-    "BlockChippingMixin",
+    "BlockCrackingMixin",
     "CampfireBlockEntityMixin",
     "CampfireBlockMixin",
+    "CraftingTableMixin",
     "FallingBlockEntityMixin",
     "FoodPoisonMixin",
+    "HungerManagerMixin",
     "ItemStackMixin",
+    "NoInstaBreakMixin",
     "PlayerEntityMixin",
     "RecipeRemoverMixin",
     "SwordDurabilityMixin",
@@ -24,6 +26,6 @@
   },
   "client": [
     "AnvilScreenMixin",
-    "NoChippedBlockBreakingMixin"
+    "NoCrackedBlockBreakingMixin"
   ]
 }

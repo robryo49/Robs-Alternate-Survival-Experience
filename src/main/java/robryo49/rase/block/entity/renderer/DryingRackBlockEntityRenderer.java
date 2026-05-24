@@ -20,8 +20,6 @@ public class DryingRackBlockEntityRenderer implements BlockEntityRenderer<Drying
     public void render(DryingRackBlockEntity entity, float tickDelta, MatrixStack matrices,
                        VertexConsumerProvider vertexConsumers, int light, int overlay) {
         
-        // Offsets for each of the 4 slots, laid out like campfire (NE, NW, SE, SW)
-        // relative to block center, on top of the rack
         float[][] offsets = {
                 { -0.25f, 0.0f, -0.25f },
                 {  0.25f, 0.0f, -0.25f },

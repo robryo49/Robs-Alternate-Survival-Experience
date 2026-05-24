@@ -1,0 +1,25 @@
+{
+  "type": "rase:workbench",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rase:steel_block"
+    },
+    "-": {
+      "item": "rase:obsidian_bricks"
+    },
+    "i": {
+      "item": "rase:steel_ingot"
+    }
+  },
+  "pattern": [
+    "---",
+    "i -",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:ethereal_forge"
+  },
+  "show_notification": false
+}

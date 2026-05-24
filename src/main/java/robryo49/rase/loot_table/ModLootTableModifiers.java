@@ -28,6 +28,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import robryo49.rase.event.ModEvents;
 import robryo49.rase.item.ModItems;
 
 import java.util.List;
@@ -168,23 +169,32 @@ public class ModLootTableModifiers {
 		return null;
 	}
 	
+	private static LootTable replacePebbleDrop(RegistryKey<LootTable> key, LootTable original, LootTableSource source, RegistryWrapper.WrapperLookup registries, Block block, Item pebble) {
+		if (block != null && block.getLootTableKey().equals(key)) {
+			return LootTable.builder().pool(LootPool.builder()
+					.rolls(ConstantLootNumberProvider.create(1.0f))
+					.with(AlternativeEntry.builder(
+							ItemEntry.builder(block)
+									.conditionally(MatchToolLootCondition.builder(
+											ItemPredicate.Builder.create().subPredicate(ItemSubPredicateTypes.ENCHANTMENTS,
+													EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(
+															registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH),
+															NumberRange.IntRange.atLeast(1))))))),
+							ItemEntry.builder(pebble)
+									.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 4.0f)))
+									.apply(net.minecraft.loot.function.ExplosionDecayLootFunction.builder())
+					))
+			).build();
+		}
+		return null;
+	}
+	
 	private static LootTable replacePebbleDrops(RegistryKey<LootTable> key, LootTable original, LootTableSource source, RegistryWrapper.WrapperLookup registries) {
 		for (ModItems.PebbleSet pebbleSet : ModItems.PEBBLE_SETS) {
 			if (pebbleSet.SOURCE_BLOCK().getLootTableKey().equals(key)) {
-				return LootTable.builder().pool(LootPool.builder()
-						.rolls(ConstantLootNumberProvider.create(1.0f))
-						.with(AlternativeEntry.builder(
-								ItemEntry.builder(pebbleSet.SOURCE_BLOCK())
-										.conditionally(MatchToolLootCondition.builder(
-												ItemPredicate.Builder.create().subPredicate(ItemSubPredicateTypes.ENCHANTMENTS,
-														EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(
-																registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH),
-																NumberRange.IntRange.atLeast(1))))))),
-								ItemEntry.builder(pebbleSet.PEBBLE())
-										.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 4.0f)))
-										.apply(net.minecraft.loot.function.ExplosionDecayLootFunction.builder())
-						))
-				).build();
+				return replacePebbleDrop(key, original, source, registries, pebbleSet.SOURCE_BLOCK(), pebbleSet.PEBBLE());
+			} else {
+				return replacePebbleDrop(key, original, source, registries, ModEvents.getReplacingBlock(pebbleSet.SOURCE_BLOCK()),  pebbleSet.PEBBLE());
 			}
 		}
 		return null;
