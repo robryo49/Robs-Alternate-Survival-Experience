@@ -217,10 +217,12 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 		generateRootAdvancement(consumer, "rase", Blocks.DIRT, "Good Luck !", AdvancementFrame.CHALLENGE);
 		
 		FLINT_AGE = generateAdvancementChain(consumer, List.of(
-				
 				advancement(Items.FLINT).name("Mine"),
 				advancement(ModItems.FLINT_SHARD).name("It's Tiny !"),
 				advancement(ModItems.FLINT_KNIFE).name("It's Sharp !"),
+				List.of(
+						advancement(ModItems.SHARP_FLINT).name("It's Sharper !")
+				),
 				advancement(ModItems.PLANT_FIBER).name("U Need Fiber"),
 				advancement(ModItems.TWINE).name("Twisted Twine"),
 				advancement(ModItems.FLINT_HATCHET).name("Hatchy"),
@@ -229,7 +231,6 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 						advancement(ItemTags.PLANKS).name("Planked Up"),
 						advancement(Items.CRAFTING_TABLE).name("Craft")
 				),
-				advancement(ModItems.SHARP_FLINT).name("It's Sharper !"),
 				advancement(ModItems.FLINT_PICK).name("Picky"),
 				
 				advancement(ModItems.STONE_PEBBLES.PEBBLE()).name("Rockin' It"),

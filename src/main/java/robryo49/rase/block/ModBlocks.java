@@ -37,12 +37,11 @@ public class ModBlocks {
 	public static final Block DRYING_RACK = registerBlock("drying_rack", new DryingRackBlock(AbstractBlock.Settings.create().strength(1.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), List.of(), Models.SCAFFOLDING);
 	
 	public static final Block CRACKED_STONE = registerBlock("cracked_stone", 1.5f, 6.0f, BlockSoundGroup.STONE);
-	public static final Block CRACKED_DEEPSLATE = registerBlock("cracked_deepslate", 2.5f, 6.0f, BlockSoundGroup.DEEPSLATE);
+	public static final Block CRACKED_DEEPSLATE = registerBlock("cracked_deepslate", 2.0f, 6.0f, BlockSoundGroup.DEEPSLATE);
 	public static final Block CRACKED_GRANITE = registerBlock("cracked_granite", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	public static final Block CRACKED_ANDESITE = registerBlock("cracked_andesite", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	public static final Block CRACKED_DIORITE = registerBlock("cracked_diorite", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	public static final Block CRACKED_TUFF = registerBlock("cracked_tuff", 1.5f, 6.0f, BlockSoundGroup.STONE);
-	
 	
 	public static final Block OBSIDIAN_BRICKS = registerBlock("obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F)), List.of(ModBlockTags.ETHEREAL_FORGE_SHELL), Models.CUBE_ALL);
 	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)), List.of(), Models.CUBE_ALL);

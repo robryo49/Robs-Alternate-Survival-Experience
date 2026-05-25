@@ -1,6 +1,6 @@
 {
   "type": "rase:drying",
-  "drying_time": 2400,
+  "drying_time": 3600,
   "input": {
     "item": "rase:clay_brick"
   },

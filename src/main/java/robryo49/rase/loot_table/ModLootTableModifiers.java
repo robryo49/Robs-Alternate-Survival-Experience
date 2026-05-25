@@ -33,6 +33,8 @@ import robryo49.rase.item.ModItems;
 
 import java.util.List;
 
+import static robryo49.rase.event.ModEvents.getReplacingBlock;
+
 public class ModLootTableModifiers {
 	
 	public static void modifyMobMeatDrop(RegistryKey<LootTable> key, LootTable.Builder tableBuilder, LootTableSource source, RegistryWrapper.WrapperLookup registries,
@@ -189,16 +191,6 @@ public class ModLootTableModifiers {
 		return null;
 	}
 	
-	private static LootTable replacePebbleDrops(RegistryKey<LootTable> key, LootTable original, LootTableSource source, RegistryWrapper.WrapperLookup registries) {
-		for (ModItems.PebbleSet pebbleSet : ModItems.PEBBLE_SETS) {
-			if (pebbleSet.SOURCE_BLOCK().getLootTableKey().equals(key)) {
-				return replacePebbleDrop(key, original, source, registries, pebbleSet.SOURCE_BLOCK(), pebbleSet.PEBBLE());
-			} else {
-				return replacePebbleDrop(key, original, source, registries, ModEvents.getReplacingBlock(pebbleSet.SOURCE_BLOCK()),  pebbleSet.PEBBLE());
-			}
-		}
-		return null;
-	}
 	
 	public static void modifyLootTables() {
 		LootTableEvents.MODIFY.register(ModLootTableModifiers::modifyMobMeatDrops);
@@ -206,6 +198,10 @@ public class ModLootTableModifiers {
 		LootTableEvents.MODIFY.register(ModLootTableModifiers::modifyLeavesDrops);
 		LootTableEvents.MODIFY.register(ModLootTableModifiers::modifyPlantFiberDrops);
 		LootTableEvents.REPLACE.register(ModLootTableModifiers::replaceGravelDrops);
-		LootTableEvents.REPLACE.register(ModLootTableModifiers::replacePebbleDrops);
+		
+		for (ModItems.PebbleSet pebbleSet: ModItems.PEBBLE_SETS) {
+			LootTableEvents.REPLACE.register(((key, original, source, registries) ->
+					replacePebbleDrop(key, original, source, registries, pebbleSet.SOURCE_BLOCK(), pebbleSet.PEBBLE())));
+		}
 	}
 }

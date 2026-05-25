@@ -1,5 +1,5 @@
 {
-  "parent": "rase:get_flint_hatchet",
+  "parent": "rase:get_flint_knife",
   "criteria": {
     "get_sharp_flint": {
       "conditions": {

@@ -11,8 +11,8 @@ import robryo49.rase.util.ModBlockTags;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-	FLINT(ModMaterials.FLINT, 4, 0.8f, 0.0f, 2),
-	STONE(ModMaterials.STONE, 8, 1.0f, 0.5f, 5),
+	FLINT(ModMaterials.FLINT, 8, 0.8f, 0.0f, 2),
+	STONE(ModMaterials.STONE, 14, 1.0f, 0.5f, 5),
 	
 	// TIER 1: The Bronze Age
 	BRONZE(ModMaterials.BRONZE, 30, 2.5f, 1.2f, 10),

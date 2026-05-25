@@ -24,6 +24,7 @@ public class RecipeRemoverMixin {
 		ids.add("stick");
 		ids.add("stick_from_bamboo_item");
 		ids.add("brick");
+		ids.add("bread");
 		
 		for (String type : new String[]{"oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo"}) {
 			ids.add(type + "_planks");

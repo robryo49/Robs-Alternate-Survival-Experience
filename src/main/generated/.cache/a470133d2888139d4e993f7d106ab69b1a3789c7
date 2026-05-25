@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-24T14:26:40.2259103	Rob's Alternate Survival Experience/Block Loot Tables
+// 1.21.1	2026-05-26T00:24:58.839451	Rob's Alternate Survival Experience/Block Loot Tables
 e6e9f27c16e485b5775a37851683908e520fffcd data\rase\loot_table\blocks\titanium_anvil.json
 8e5f13c8c0ee053712db93933e40e887f3497a54 data\rase\loot_table\blocks\cobalt_block.json
 bfaabf07c14644d6969769520fe7419eb430193d data\rase\loot_table\blocks\raw_mythril_block.json
@@ -31,11 +31,14 @@ bab8d21f7ba178b747de32040cf659e1386a8d40 data\rase\loot_table\blocks\titanium_or
 ce431862d4a7d4e7ca0bd710a18578a5a552e989 data\rase\loot_table\blocks\deepslate_tungsten_ore.json
 063751dd7c9d00706ac5566933447d247917771c data\rase\loot_table\blocks\scandium_block.json
 ea344b8eebfe078daf0fc862b8445cc29497a71e data\rase\loot_table\blocks\damaged_lead_anvil.json
+d9bf2287c4dc4cb9c6856273c2003fcef1c33acc data\rase\loot_table\blocks\cracked_diorite.json
 9c7016e510cf808a50ff9ebfbf9694570f12039a data\rase\loot_table\blocks\nether_cobalt_ore.json
 31d7e2e9cb03ee05b9a8aa3713d8cf65da084c99 data\rase\loot_table\blocks\chipped_lead_anvil.json
+7bc7223c0bff674172db61ee9e435375bfb9a056 data\rase\loot_table\blocks\cracked_deepslate.json
 abdf09fa7bebae9113a60723db306fe3ec2388e7 data\rase\loot_table\blocks\raw_titanium_block.json
 1b0d48c3f4b5efd0593458b86ecec12d6841fad4 data\rase\loot_table\blocks\deepslate_silver_ore.json
 991676e30045c785514b27fae441d121e2f0c693 data\rase\loot_table\blocks\ethereal_forge.json
+5494da3a599e151b41388cffdfaa2458e8d83854 data\rase\loot_table\blocks\cracked_stone.json
 8511c7b7ebe610504bb256a41c8f355d99af894b data\rase\loot_table\blocks\basic_forge.json
 2a4b0757337d21524bb4ef98de76b0ec5c1ac19f data\rase\loot_table\blocks\bronze_block.json
 d38339e6f3267666a286c1a91076deaa47174be3 data\rase\loot_table\blocks\refined_forge.json
@@ -59,11 +62,13 @@ bacc5ca08bc5d879cc3866a52c25047333501094 data\rase\loot_table\blocks\palladium_o
 cc374c9de7d1363ec432a33882110b497f5ad1cc data\rase\loot_table\blocks\deepslate_platinum_ore.json
 f6de75183febd33b4806a25d2434983b77c5b509 data\rase\loot_table\blocks\lead_ore.json
 c5928c66d6e4b2abd6cc281e55aaf157955735d6 data\rase\loot_table\blocks\raw_cobalt_block.json
+40ed1c93a63f6439a89fc37714bfadbd53dd99eb data\rase\loot_table\blocks\cracked_granite.json
 18b639a1314113732e493bc233889cad508cd66a data\rase\loot_table\blocks\titanium_block.json
 9358e75c7744e8cbb821ea47e30be9881948bd82 data\rase\loot_table\blocks\crying_obsidian_bricks.json
 cfbccfc80a704267a6dd4a1d0220ffef1637637a data\rase\loot_table\blocks\ethereal_forge_core.json
 fdbb2798b19c68815ea5788e631d9509fcb5dbea data\rase\loot_table\blocks\advanced_forge_core.json
 b652d7ac6a1ae4af614d0577512cdc0a2e65c76f data\rase\loot_table\blocks\lead_block.json
+3b83ad71ca4af24b2a11360189d54a8b67da38b3 data\rase\loot_table\blocks\cracked_andesite.json
 54c34de7e53dc9baf11c8812d04d34de863a7145 data\rase\loot_table\blocks\tungsten_block.json
 eb4c9581cd13b0ef437d1a9469755ff277a55258 data\rase\loot_table\blocks\deepslate_lead_ore.json
 1950ea471d6adb7024ee1b4064b5622810d7f934 data\rase\loot_table\blocks\mythril_block.json

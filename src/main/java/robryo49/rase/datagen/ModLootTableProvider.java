@@ -34,6 +34,8 @@ import robryo49.rase.item.ModItems;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static robryo49.rase.event.ModEvents.getReplacingBlock;
+
 public class ModLootTableProvider extends FabricBlockLootTableProvider {
 	public ModLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
 		super(dataOutput, registryLookup);
@@ -41,10 +43,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 	
 	
 	
-	
 	public void addDrop(List<Block> blocks) {
 		for (Block block: blocks) addDrop(block);
 	}
+	
 	public void addDrop(Block block, Item item, int minCount, int maxCount) {
 		addDrop(
 				block,
@@ -91,6 +93,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 		addDrop(anvil.DAMAGED());
 	}
 	
+	public void addDrop(ModItems.PebbleSet pebbleSet) {
+		Block replacingBlock = getReplacingBlock(pebbleSet.SOURCE_BLOCK());
+		if (replacingBlock != null) addDrop(replacingBlock, pebbleSet.PEBBLE());
+	}
 	
 	public void generateMaterialBlockDrops() {
 		addDrop(ModItems.TIN, ModBlocks.TIN);
@@ -139,6 +145,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 		));
 	}
 	
+	public void generatePebbleDrops() {
+		ModItems.PEBBLE_SETS.forEach(this::addDrop);
+	}
 	
 	@Override
 	public void generate() {
@@ -146,5 +155,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 		generateAnvilDrops();
 		generateForgesDrops();
 		generateBlockDrops();
+		generatePebbleDrops();
 	}
 }

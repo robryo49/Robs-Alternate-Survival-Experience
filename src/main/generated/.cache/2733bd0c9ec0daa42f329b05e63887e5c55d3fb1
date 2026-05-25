@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-24T14:26:40.2113503	Rob's Alternate Survival Experience/Advancements
+// 1.21.1	2026-05-26T00:24:58.801842	Rob's Alternate Survival Experience/Advancements
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\husbandry\allay_deliver_cake_to_note_block.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\adventure\under_lock_and_key.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\adventure\shoot_arrow.json
@@ -54,7 +54,7 @@ a2b254c77d04ccec82ffbf6ccf02e43e21258fa9 data\rase\advancement\get_flint_knife.j
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\husbandry\wax_on.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\story\smelt_iron.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\adventure\trim_with_any_armor_pattern.json
-74a2416ba5917aa14030b3535d74f8fae74a635c data\rase\advancement\get_sharp_flint.json
+9b01534b3b4963f4b596d4cf10e42bda53cf2322 data\rase\advancement\get_sharp_flint.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\adventure\minecraft_trials_edition.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\adventure\lighten_up.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\adventure\two_birds_one_arrow.json
@@ -62,7 +62,7 @@ a2b254c77d04ccec82ffbf6ccf02e43e21258fa9 data\rase\advancement\get_flint_knife.j
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\end\levitate.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\nether\uneasy_alliance.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\nether\fast_travel.json
-602ee7ecb50028169f5775b698715f6ba9a9e6a6 data\rase\advancement\get_flint_pick.json
+607b5e3c2bbb95cf172776859d40b58a076483b8 data\rase\advancement\get_flint_pick.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\nether\all_potions.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\husbandry\leash_all_frog_variants.json
 457090b3c038c855e314984b559f72aac652d863 data\minecraft\advancement\husbandry\remove_wolf_armor.json

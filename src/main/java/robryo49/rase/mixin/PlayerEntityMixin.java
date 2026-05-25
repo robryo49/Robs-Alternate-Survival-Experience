@@ -17,7 +17,7 @@ public abstract class PlayerEntityMixin {
 	
 	@Inject(method = "getBlockBreakingSpeed", at = @At("RETURN"), cancellable = true)
 	private void slowDownMining(BlockState block, CallbackInfoReturnable<Float> cir) {
-		cir.setReturnValue(cir.getReturnValue() / 3.0f);
+		cir.setReturnValue(cir.getReturnValue() / 5.0f);
 	}
 	
 	@Inject(method = "travel", at = @At("HEAD"))

@@ -344,7 +344,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	}
 	
 	public static void offerHideSetRecipes(RecipeExporter exporter, ModItems.HideSet hideSet) {
-		offerTooling(exporter, hideSet.entity().getUntranslatedName() + "_hide_cutting", Ingredient.fromTag(ItemTags.SWORDS), hideSet.HIDE(), Items.LEATHER, 1);
+		offerTooling(exporter, hideSet.entity().getUntranslatedName() + "_hide_cutting", Ingredient.fromTag(ItemTags.SWORDS), hideSet.HIDE(), ModItems.TANNED_HIDE, 1);
 	}
 	
 	public static void offerPebbleSetRecipes(RecipeExporter exporter, ModItems.PebbleSet pebbleSet) {
@@ -359,7 +359,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		int tier = materialSet.tier();
 		
 		String materialName = materialSet.name();
-		Item ingot = materialSet.INGOT(), nugget = materialSet.NUGGET(), raw = materialSet.RAW();
+		Item ingot = materialSet.INGOT(), nugget = materialSet.NUGGET(), raw = materialSet.RAW(), powder = materialSet.POWDER();
 		Block ore = blockSet.ORE(), deepslateOre = blockSet.DEEPSLATE_ORE(), block = blockSet.BLOCK(), rawBlock = blockSet.RAW_BLOCK();
 		
 		int smeltingTime = 200 * tier, coolingTime = 200 * tier;
@@ -368,9 +368,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 		offerForging(exporter, materialName + "_ingot_forging", List.of(Ingredient.ofItems(raw)),
 				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
+		offerForging(exporter, materialName + "_ingot_forging_from_powder", List.of(Ingredient.ofItems(powder), Ingredient.ofItems(powder)),
+				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
 		
 		offerIngotCompacting(exporter, ingot, block, nugget);
 		offerRawCompacting(exporter, raw, rawBlock);
+		
+		offerCrushing(exporter, materialName + "_powder", Ingredient.ofItems(raw), powder, 3, 200);
 		
 		if (toolSet != null) offerToolSetRecipes(exporter, ingot, toolSet, smeltingTime, coolingTime, tier, xp);
 		if (armorSet != null) offerArmorSetRecipes(exporter, ingot, armorSet);
@@ -384,7 +388,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		int tier = materialSet.tier();
 		
 		String materialName = materialSet.name();
-		Item ingot = materialSet.INGOT(), nugget = materialSet.NUGGET(), raw = materialSet.RAW();
+		Item ingot = materialSet.INGOT(), nugget = materialSet.NUGGET(), raw = materialSet.RAW(), powder = materialSet.POWDER();
 		Block ore = blockSet.NETHER_ORE(), block = blockSet.BLOCK(), rawBlock = blockSet.RAW_BLOCK();
 		
 		int smeltingTime = 200 * tier, coolingTime = 200 * tier;
@@ -392,9 +396,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 		offerForging(exporter, materialName + "_ingot_forging", List.of(Ingredient.ofItems(raw)),
 				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
+		offerForging(exporter, materialName + "_ingot_forging_from_powder", List.of(Ingredient.ofItems(powder), Ingredient.ofItems(powder)),
+				ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
 		
 		offerIngotCompacting(exporter, ingot, block, nugget);
 		offerRawCompacting(exporter, raw, rawBlock);
+		
+		offerCrushing(exporter, materialName + "_powder", Ingredient.ofItems(raw), powder, 3, 200);
 		
 		if (toolSet != null) offerToolSetRecipes(exporter, ingot, toolSet, smeltingTime, coolingTime, tier, xp);
 		if (armorSet != null) offerArmorSetRecipes(exporter, ingot, armorSet);
@@ -573,11 +581,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	private void generateCookingRecipes(RecipeExporter exporter) {
 		ModItems.MEAT_SETS.forEach(meat -> offerAllCooking(exporter, RecipeCategory.FOOD, meat.RAW(), meat.COOKED(), 0.35f, true, true, true));
 		offerFurnaceCooking(exporter, RecipeCategory.MISC, Items.COAL, ModItems.COAL_COKE, 1);
+		offerAllCooking(exporter, RecipeCategory.FOOD, ModItems.DOUGH, Items.BREAD, 1, true, true, true);
 	}
 	
 	private void generateDryingRecipes(RecipeExporter exporter) {
+		offerDrying(exporter, "leather_drying", Ingredient.ofItems(ModItems.TANNED_HIDE), Items.LEATHER, 60*3*20);
 		offerDrying(exporter, "dry_cane_drying", Ingredient.ofItems(Items.SUGAR_CANE), ModItems.DRY_CANE, 60*2*20);
-		offerDrying(exporter, "brick_drying", Ingredient.ofItems(ModItems.CLAY_BRICK), Items.BRICK, 60*2*20);
+		offerDrying(exporter, "brick_drying", Ingredient.ofItems(ModItems.CLAY_BRICK), Items.BRICK, 60*3*20);
 	}
 	
 	private void generateShapedRecipes(RecipeExporter exporter) {
@@ -623,6 +633,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		
 		offerShapeless(exporter, RecipeCategory.MISC, Items.STICK, 1, List.of(Ingredient.fromTag(ItemTags.SAPLINGS)), Items.STICK);
 		
+		offerShapeless(exporter, RecipeCategory.FOOD, ModItems.DOUGH, 1, List.of(Ingredient.ofItems(ModItems.FLOUR), Ingredient.ofItems(ModItems.FLOUR)), ModItems.FLOUR);
 	}
 	
 	private void replaceVanillaRecipes(RecipeExporter exporter) {
@@ -640,10 +651,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		replaceShaped(exporter, "barrel", RecipeCategory.MISC, Items.BARREL, 1,
 				Map.of('#', Ingredient.fromTag(ItemTags.PLANKS), 'i', Ingredient.ofItems(Items.IRON_INGOT), 's', Ingredient.fromTag(ItemTags.WOODEN_SLABS)),
 				List.of("#s#", "i i", "#s#"), Items.IRON_INGOT);
+		
 	}
 	
 	private void generateCrushingRecipes(RecipeExporter exporter) {
-		offerCrushing(exporter, "copper_dust_from_crushing", Ingredient.ofItems(ModItems.TIN.RAW()), ModItems.TIN.POWDER(), 2, 100);
+		offerCrushing(exporter, "flour", Ingredient.ofItems(Items.WHEAT), ModItems.FLOUR, 1, 200);
 	}
 	
 	@Override

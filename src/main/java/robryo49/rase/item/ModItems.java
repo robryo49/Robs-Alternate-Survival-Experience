@@ -179,6 +179,10 @@ public class ModItems {
 	public static final HideSet POLAR_BEAR_HIDE = registerHideItem(EntityType.POLAR_BEAR);
 	public static final HideSet WOLF_HIDE = registerHideItem(EntityType.WOLF);
 	
+	public static final Item TANNED_HIDE = registerItem("tanned_hide");
+	public static final Item FLOUR = registerItem("flour");
+	public static final Item DOUGH = registerItem("dough");
+	
 	
 	// --- HELPER RECORDS ---
 	
@@ -187,8 +191,8 @@ public class ModItems {
 	public record PebbleSet(Item PEBBLE, Block SOURCE_BLOCK, Block RECONSTRUCTED_BLOCK) {}
 	
 	public record OreMaterialSet(String name, int tier, Item INGOT, Item NUGGET, Item RAW, Item POWDER) {}
-	public record AlloyMaterialSet(String name, int tier, Item INGOT, Item NUGGET, Item POWDER) {}
-	public record CrystalMaterialSet(String name, int tier, Item CRYSTAL, Item POWDER) {}
+	public record AlloyMaterialSet(String name, int tier, Item INGOT, Item NUGGET) {}
+	public record CrystalMaterialSet(String name, int tier, Item CRYSTAL) {}
 	
 	public record ArmorSet(String name, ArmorItem HELMET, ArmorItem CHESTPLATE, ArmorItem LEGGINGS, ArmorItem BOOTS) {}
 	
@@ -230,13 +234,12 @@ public class ModItems {
 	
 	public static AlloyMaterialSet registerAlloyMaterialSet(ModMaterials material) {
 		String name = material.getId();
-		return new AlloyMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS),
-				registerItem(name + "_nugget"), registerItem(name + "_powder"));
+		return new AlloyMaterialSet(name, material.getTier(), registerItem(name + "_ingot", ModItemTags.INGOTS), registerItem(name + "_nugget"));
 	}
 	
 	public static CrystalMaterialSet registerCrystalMaterialSet(ModMaterials material) {
 		String name = material.getId();
-		return new CrystalMaterialSet(name, material.getTier(), registerItem(name), registerItem(name + "_powder"));
+		return new CrystalMaterialSet(name, material.getTier(), registerItem(name));
 	}
 	
 	
