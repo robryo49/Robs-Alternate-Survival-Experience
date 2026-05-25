@@ -1,0 +1,11 @@
+{
+  "type": "rase:crushing",
+  "crushing_time": 200,
+  "input": {
+    "item": "rase:raw_tin"
+  },
+  "result": {
+    "count": 3,
+    "id": "rase:tin_powder"
+  }
+}

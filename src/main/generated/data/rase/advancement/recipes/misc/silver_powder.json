@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_silver_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:silver_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_silver_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:silver_powder"
+    ]
+  }
+}

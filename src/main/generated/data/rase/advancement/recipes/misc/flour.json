@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_flour": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:flour"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_flour"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:flour"
+    ]
+  }
+}

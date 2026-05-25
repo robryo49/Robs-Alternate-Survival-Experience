@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magnetite_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:magnetite_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_magnetite_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:magnetite_powder"
+    ]
+  }
+}

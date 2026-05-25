@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_tungsten_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:tungsten_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_tungsten_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:tungsten_powder"
+    ]
+  }
+}

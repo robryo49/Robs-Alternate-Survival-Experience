@@ -1,0 +1,11 @@
+{
+  "type": "rase:crushing",
+  "crushing_time": 200,
+  "input": {
+    "item": "rase:raw_titanium"
+  },
+  "result": {
+    "count": 3,
+    "id": "rase:titanium_powder"
+  }
+}

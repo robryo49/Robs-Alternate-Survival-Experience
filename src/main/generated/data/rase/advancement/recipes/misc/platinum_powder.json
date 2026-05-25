@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_platinum_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:platinum_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_platinum_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:platinum_powder"
+    ]
+  }
+}

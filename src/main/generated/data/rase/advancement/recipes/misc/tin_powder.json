@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_tin_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:tin_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_tin_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:tin_powder"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_titanium_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:titanium_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_titanium_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:titanium_powder"
+    ]
+  }
+}

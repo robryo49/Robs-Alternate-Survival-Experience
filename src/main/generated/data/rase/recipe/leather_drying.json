@@ -1,0 +1,11 @@
+{
+  "type": "rase:drying",
+  "drying_time": 3600,
+  "input": {
+    "item": "rase:tanned_hide"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:leather"
+  }
+}

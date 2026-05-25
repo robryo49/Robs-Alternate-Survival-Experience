@@ -1,0 +1,11 @@
+{
+  "type": "rase:crushing",
+  "crushing_time": 200,
+  "input": {
+    "item": "rase:raw_mythril"
+  },
+  "result": {
+    "count": 3,
+    "id": "rase:mythril_powder"
+  }
+}

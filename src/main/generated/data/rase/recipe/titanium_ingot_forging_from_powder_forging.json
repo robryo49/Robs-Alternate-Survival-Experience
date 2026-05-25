@@ -1,0 +1,20 @@
+{
+  "type": "rase:forging",
+  "cook_time": 400,
+  "cool_time": 400,
+  "experience": 2.4,
+  "ingredients": [
+    {
+      "item": "rase:titanium_powder"
+    },
+    {
+      "item": "rase:titanium_powder"
+    }
+  ],
+  "mold_tag": "#rase:ingot_molds",
+  "result": {
+    "count": 1,
+    "id": "rase:titanium_ingot"
+  },
+  "tier": 2
+}

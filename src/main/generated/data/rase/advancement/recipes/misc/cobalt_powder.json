@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cobalt_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:cobalt_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_cobalt_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:cobalt_powder"
+    ]
+  }
+}
