@@ -12,14 +12,11 @@ import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import robryo49.rase.block.custom.CrusherBlock;
-import robryo49.rase.block.custom.MotorBlock;
 import robryo49.rase.block.entity.ModBlockEntities;
 import robryo49.rase.recipe.ModRecipes;
 import robryo49.rase.recipe.custom.CrushingRecipe;
@@ -42,15 +39,14 @@ public class CrusherBlockEntity extends BlockEntity {
 	public void tick(World world, BlockPos pos, BlockState state) {
 		if (world.isClient) return;
 		
-		boolean hasPower = hasValidMotor(world, pos);
 		boolean hasInput = !inputItem.isEmpty();
 		boolean hasOutput = !outputItem.isEmpty();
 		
-		if (hasOutput || !hasInput || !hasPower) {
+		if (hasOutput || !hasInput) {
 			if (state.get(CrusherBlock.CRUSHING)) {
 				world.setBlockState(pos, state.with(CrusherBlock.CRUSHING, false), 2);
 			}
-			if (!hasPower || !hasInput) {
+			if (!hasInput) {
 				crushingTime = 0;
 			}
 			return;
@@ -98,20 +94,6 @@ public class CrusherBlockEntity extends BlockEntity {
 		}
 		
 		markDirty(world, pos, state);
-	}
-	
-	private boolean hasValidMotor(World world, BlockPos pos) {
-		for (Direction dir : Direction.Type.HORIZONTAL) {
-			BlockPos neighborPos = pos.offset(dir);
-			BlockState neighbor = world.getBlockState(neighborPos);
-			
-			if (!(neighbor.getBlock() instanceof MotorBlock)) continue;
-			if (!neighbor.get(MotorBlock.ACTIVE)) continue;
-			
-			Direction motorFacing = neighbor.get(MotorBlock.FACING);
-			if (motorFacing == dir.getOpposite()) return true;
-		}
-		return false;
 	}
 	
 	public boolean insertItem(ItemStack stack, World world) {

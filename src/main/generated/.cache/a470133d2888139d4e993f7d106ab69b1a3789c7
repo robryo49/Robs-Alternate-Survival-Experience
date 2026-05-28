@@ -1,4 +1,4 @@
-// 1.21.1	2026-05-26T00:24:58.839451	Rob's Alternate Survival Experience/Block Loot Tables
+// 1.21.1	2026-05-29T00:13:34.7093745	Rob's Alternate Survival Experience/Block Loot Tables
 e6e9f27c16e485b5775a37851683908e520fffcd data\rase\loot_table\blocks\titanium_anvil.json
 8e5f13c8c0ee053712db93933e40e887f3497a54 data\rase\loot_table\blocks\cobalt_block.json
 bfaabf07c14644d6969769520fe7419eb430193d data\rase\loot_table\blocks\raw_mythril_block.json
@@ -26,8 +26,8 @@ bab8d21f7ba178b747de32040cf659e1386a8d40 data\rase\loot_table\blocks\titanium_or
 80fc4817f0c1cc782931b3739dde431a02dcb3ef data\rase\loot_table\blocks\raw_platinum_block.json
 5019b60578fc33ff2fa1bdfbfdbc5317c2d28bf8 data\rase\loot_table\blocks\palladium_block.json
 74cb0575d67ccf27a2ce3fa2f74c64970a17826a data\rase\loot_table\blocks\refined_forge_core.json
-2b49f5f7dc1fcbe42623119d32e363a824de49d7 data\rase\loot_table\blocks\mythril_ore.json
 76bc11ad0b1dd3127ae49b17c0fa4dd385131c30 data\rase\loot_table\blocks\chipped_titanium_anvil.json
+2b49f5f7dc1fcbe42623119d32e363a824de49d7 data\rase\loot_table\blocks\mythril_ore.json
 ce431862d4a7d4e7ca0bd710a18578a5a552e989 data\rase\loot_table\blocks\deepslate_tungsten_ore.json
 063751dd7c9d00706ac5566933447d247917771c data\rase\loot_table\blocks\scandium_block.json
 ea344b8eebfe078daf0fc862b8445cc29497a71e data\rase\loot_table\blocks\damaged_lead_anvil.json

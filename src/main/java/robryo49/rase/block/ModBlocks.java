@@ -47,8 +47,6 @@ public class ModBlocks {
 	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)), List.of(), Models.CUBE_ALL);
 	
 	public static final Block CRUSHER = registerBlock("crusher", new CrusherBlock(AbstractBlock.Settings.create().strength(1.0f)), List.of(), Models.CUBE_ALL);
-	public static final Block MOTOR = registerBlock("motor", new MotorBlock(AbstractBlock.Settings.create().strength(1.0f)), List.of(), Models.CUBE_ALL);
-	
 	public static final Block WORKBENCH = registerBlock("workbench", new WorkbenchBlock(AbstractBlock.Settings.copy(Blocks.CRAFTING_TABLE)), List.of(), Models.WORKBENCH);
 	
 	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
