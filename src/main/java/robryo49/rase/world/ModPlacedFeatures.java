@@ -22,6 +22,7 @@ public class ModPlacedFeatures {
 		RegistryEntryLookup<ConfiguredFeature<?, ?>> configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 		
 		register(context, configuredFeatures, TIN_ORE_PLACED_KEY, ModConfiguredFeatures.TIN_ORE_KEY, 6, 0, 80);
+		
 	}
 	
 	public static RegistryKey<PlacedFeature> registerKey(String id) {
