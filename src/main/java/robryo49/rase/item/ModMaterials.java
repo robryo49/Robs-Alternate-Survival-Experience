@@ -13,6 +13,7 @@ public enum ModMaterials {
 	STONE(0, "stone",           () -> ModItems.STONE_PEBBLES.PEBBLE(), () -> Blocks.COBBLESTONE),
 	
 	COPPER(1, "copper",         () -> Items.COPPER_INGOT, () -> Blocks.COPPER_BLOCK),
+	COAL(1, "coal",             () -> Items.COAL, () -> Blocks.COAL_BLOCK),
 	TIN(1, "tin",               () -> ModItems.TIN.INGOT(), () -> ModBlocks.TIN.BLOCK()),
 	BRONZE(1, "bronze",         () -> ModItems.BRONZE.INGOT(), () -> ModBlocks.BRONZE.BLOCK()),
 	MAGNETITE(1, "magnetite",   () -> ModItems.MAGNETITE.INGOT(), () -> ModBlocks.MAGNETITE.BLOCK()),

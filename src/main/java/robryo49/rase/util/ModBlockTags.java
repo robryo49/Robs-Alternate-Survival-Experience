@@ -142,11 +142,6 @@ public class ModBlockTags {
 		
 		addToTag(BlockTags.SWORD_EFFICIENT, List.of(Blocks.TALL_GRASS, Blocks.SHORT_GRASS, Blocks.SUGAR_CANE));
 		
-		addToTag(NEEDS_TIER_0_TOOLS, List.of(
-				Blocks.COAL_ORE,
-				Blocks.COAL_BLOCK,
-				Blocks.COAL_ORE
-		));
 		
 		addToTag(NEEDS_TIER_2_TOOLS, List.of(
 				Blocks.DEEPSLATE,
@@ -179,6 +174,12 @@ public class ModBlockTags {
 				Blocks.DEEPSLATE_IRON_ORE,
 				Blocks.DEEPSLATE_LAPIS_ORE,
 				Blocks.DEEPSLATE_REDSTONE_ORE
+		));
+		
+		addMaterialBlocksToTag(ModMaterials.COAL, List.of(
+				Blocks.COAL_ORE,
+				Blocks.COAL_BLOCK,
+				Blocks.COAL_ORE
 		));
 		
 		addMaterialBlocksToTag(ModMaterials.NETHERITE, List.of(
