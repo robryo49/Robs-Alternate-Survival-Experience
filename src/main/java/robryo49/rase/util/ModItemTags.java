@@ -4,7 +4,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
 
 import java.util.ArrayList;
@@ -82,7 +81,7 @@ public class ModItemTags {
 		return tagKey;
 	}
 	
-	public static void registerItemTags() {
+	public static void registerModItemTags() {
 		Rase.LOGGER.info("Registering Item Tags for " + Rase.MOD_ID);
 	}
 }

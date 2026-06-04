@@ -1,0 +1,19 @@
+{
+  "type": "rase:workbench",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "rase:mithril_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:mithril_leggings"
+  },
+  "show_notification": false
+}

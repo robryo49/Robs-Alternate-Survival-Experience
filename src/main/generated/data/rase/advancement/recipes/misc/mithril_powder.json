@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mithril_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:mithril_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_mithril_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:mithril_powder"
+    ]
+  }
+}

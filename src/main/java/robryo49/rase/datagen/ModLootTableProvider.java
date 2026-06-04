@@ -111,7 +111,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 		addDrop(ModItems.PALLADIUM, ModBlocks.PALLADIUM);
 		addDrop(ModItems.COBALT, ModBlocks.COBALT);
 		addDrop(ModItems.SCANDIUM, ModBlocks.SCANDIUM);
-		addDrop(ModItems.MYTHRIL, ModBlocks.MYTHRIL);
+		addDrop(ModItems.MITHRIL, ModBlocks.MITHRIL);
 		addDrop(ModItems.RHEXIS, ModBlocks.RHEXIS);
 	}
 	public void generateAnvilDrops() {

@@ -374,7 +374,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		offerIngotCompacting(exporter, ingot, block, nugget);
 		offerRawCompacting(exporter, raw, rawBlock);
 		
-		offerCrushing(exporter, materialName + "_powder", Ingredient.ofItems(raw), powder, 3, 200);
+		offerCrushing(exporter, materialName + "_powder", Ingredient.ofItems(raw), powder, 3, 100 + 100*tier);
 		
 		if (toolSet != null) offerToolSetRecipes(exporter, ingot, toolSet, smeltingTime, coolingTime, tier, xp);
 		if (armorSet != null) offerArmorSetRecipes(exporter, ingot, armorSet);
@@ -402,7 +402,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		offerIngotCompacting(exporter, ingot, block, nugget);
 		offerRawCompacting(exporter, raw, rawBlock);
 		
-		offerCrushing(exporter, materialName + "_powder", Ingredient.ofItems(raw), powder, 3, 200);
+		offerCrushing(exporter, materialName + "_powder", Ingredient.ofItems(raw), powder, 3, 100 + 100*tier);
 		
 		if (toolSet != null) offerToolSetRecipes(exporter, ingot, toolSet, smeltingTime, coolingTime, tier, xp);
 		if (armorSet != null) offerArmorSetRecipes(exporter, ingot, armorSet);
@@ -484,16 +484,26 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	
 	
 	private void generateVanillaMaterialRecipes(RecipeExporter exporter) {
+		
 		Map.of(
-				ModMaterials.IRON, Items.RAW_IRON,
-				ModMaterials.COPPER, Items.RAW_COPPER,
-				ModMaterials.GOLD, Items.RAW_GOLD
-		).forEach((material, item) -> {
+				ModMaterials.IRON, List.of(Items.RAW_IRON, ModItems.IRON_POWDER, Items.IRON_INGOT),
+				ModMaterials.COPPER, List.of(Items.RAW_COPPER, ModItems.COPPER_POWDER, Items.COPPER_INGOT),
+				ModMaterials.GOLD, List.of(Items.RAW_GOLD, ModItems.GOLD_POWDER, Items.GOLD_INGOT)
+		).forEach((material, items) -> {
+			
+			String materialName = material.getId();
+			Item ingot = items.getLast(), raw = items.getFirst(), powder = items.get(1);
+			
 			int tier = material.getTier();
 			int smeltingTime = 200 * tier, coolingTime = 200 * tier;
 			float xp = 1.2f * tier;
-			offerForging(exporter, material.getId() + "_ingot_forging", List.of(Ingredient.ofItems(item)),
+			
+			offerForging(exporter, material.getId() + "_ingot_forging", List.of(Ingredient.ofItems(raw)),
 					material.getMaterialItem(), ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
+			offerForging(exporter, materialName + "_ingot_forging_from_powder", List.of(Ingredient.ofItems(powder), Ingredient.ofItems(powder)),
+					ingot, ModItemTags.INGOT_MOLDS, smeltingTime, coolingTime, tier, xp);
+			
+			offerCrushing(exporter, materialName + "_powder", Ingredient.ofItems(raw), powder, 3, 100 + 100*tier);
 		});
 	}
 	
@@ -525,7 +535,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 				List.of(Ingredient.ofItems(ModItems.PALLADIUM.INGOT()), Ingredient.ofItems(ModItems.PLATINUM.INGOT())),
 				ModItems.SCANDIUM, ModBlocks.SCANDIUM, ModItems.SCANDIUM_ARMOR_SET, ModItems.SCANDIUM_TOOL_SET);
 		
-		offerMaterialSetRecipes(exporter, ModItems.MYTHRIL, ModBlocks.MYTHRIL, ModItems.MYTHRIL_ARMOR_SET, ModItems.MYTHRIL_TOOL_SET);
+		offerMaterialSetRecipes(exporter, ModItems.MITHRIL, ModBlocks.MITHRIL, ModItems.MITHRIL_ARMOR_SET, ModItems.MITHRIL_TOOL_SET);
 		offerMaterialSetRecipes(exporter, ModItems.RHEXIS, ModBlocks.RHEXIS);
 	}
 	
@@ -612,6 +622,22 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		generateAnvilRecipes(exporter);
 		generateMoldSetsRecipes(exporter);
 		generatePebbleSetsRecipes(exporter);
+		
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PRIMITIVE_FORGE_CORE, 1,
+				Map.of('#', Ingredient.ofItems(Blocks.COBBLESTONE), 'o', Ingredient.ofItems(Blocks.COAL_BLOCK), 'b', Ingredient.ofItems(ModItems.STONE_PEBBLES.PEBBLE())),
+				List.of("#b#", "bob", "#b#"),  Items.COBBLESTONE);
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BASIC_FORGE_CORE, 1,
+				Map.of('#', Ingredient.ofItems(Blocks.BRICKS), 'o', Ingredient.ofItems(Blocks.COAL_BLOCK), 'b', Ingredient.ofItems(Blocks.COPPER_GRATE)),
+				List.of("#b#", "bob", "#b#"),  Items.COPPER_INGOT);
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.REFINED_FORGE_CORE, 1,
+				Map.of('#', Ingredient.ofItems(Blocks.STONE_BRICKS), 'o', Ingredient.ofItems(Blocks.COAL_BLOCK), 'b', Ingredient.ofItems(Blocks.IRON_BARS)),
+				List.of("#b#", "bob", "#b#"),  Items.IRON_INGOT);
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ADVANCED_FORGE_CORE, 1,
+				Map.of('#', Ingredient.ofItems(Blocks.NETHER_BRICKS), 'o', Ingredient.ofItems(Blocks.COAL_BLOCK), 'b', Ingredient.ofItems(Blocks.IRON_BARS)),
+				List.of("#b#", "bob", "#b#"),  Items.NETHER_BRICKS);
+		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ETHEREAL_FORGE_CORE, 1,
+				Map.of('#', Ingredient.ofItems(ModBlocks.OBSIDIAN_BRICKS), 'o', Ingredient.ofItems(Blocks.COAL_BLOCK), 'b', Ingredient.ofItems(Blocks.IRON_BARS)),
+				List.of("#b#", "bob", "#b#"),  ModBlocks.OBSIDIAN_BRICKS);
 	}
 	
 	private void generateShapelessRecipes(RecipeExporter exporter) {

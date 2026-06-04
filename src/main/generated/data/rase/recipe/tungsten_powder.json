@@ -1,6 +1,6 @@
 {
   "type": "rase:crushing",
-  "crushing_time": 200,
+  "crushing_time": 400,
   "input": {
     "item": "rase:raw_tungsten"
   },

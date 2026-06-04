@@ -29,7 +29,7 @@ public enum ModToolMaterials implements ToolMaterial {
 	SCANDIUM(ModMaterials.SCANDIUM, 650, 6.5f, 3.0f, 12),
 	
 	// TIER 5: Mythic
-	MYTHRIL(ModMaterials.MYTHRIL, 1200, 8.5f, 4.0f, 22)
+	MITHRIL(ModMaterials.MITHRIL, 1200, 8.5f, 4.0f, 22)
 	
 	;
 	

@@ -77,7 +77,7 @@ public class ModBlocks {
 	public static final NetherOreBlockSet COBALT = registerNetherOreBlockSet(ModMaterials.COBALT, 15.0f, 20.0f);
 	
 	public static final AlloyBlockSet SCANDIUM = registerAlloyBlockSet(ModMaterials.SCANDIUM, 22.0f, 70.0f);
-	public static final OreBlockSet MYTHRIL = registerOreBlockSet(ModMaterials.MYTHRIL, 30.0f, 1200.0f);
+	public static final OreBlockSet MITHRIL = registerOreBlockSet(ModMaterials.MITHRIL, 30.0f, 1200.0f);
 	public static final NetherCrystalBlockSet RHEXIS = registerNetherCrystalBlockSet(ModMaterials.RHEXIS, 35.0f, 1200.0f);
 	
 	public static final SmithingAnvilBlockSet STONE_ANVIL = registerSmithingAnvilBlockSet(SmithingAnvilMaterials.STONE);

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "rase:obsidian_bricks"
+    },
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "o": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "pattern": [
+    "#b#",
+    "bob",
+    "#b#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:ethereal_forge_core"
+  }
+}

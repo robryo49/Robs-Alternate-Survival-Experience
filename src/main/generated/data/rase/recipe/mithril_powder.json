@@ -1,0 +1,11 @@
+{
+  "type": "rase:crushing",
+  "crushing_time": 600,
+  "input": {
+    "item": "rase:raw_mithril"
+  },
+  "result": {
+    "count": 3,
+    "id": "rase:mithril_powder"
+  }
+}

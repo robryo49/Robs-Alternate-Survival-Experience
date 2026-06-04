@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:nether_bricks"
+    },
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "o": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "pattern": [
+    "#b#",
+    "bob",
+    "#b#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:advanced_forge_core"
+  }
+}

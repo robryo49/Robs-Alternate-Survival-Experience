@@ -3,7 +3,6 @@ package robryo49.rase.recipe;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 import robryo49.rase.Rase;
 import robryo49.rase.recipe.custom.*;
 
@@ -83,7 +82,7 @@ public class ModRecipes {
 	);
 	
 	
-	public static void registerRecipes() {
+	public static void registerModRecipes() {
 		Rase.LOGGER.info("Registering Custom Recipes for " + Rase.MOD_ID);
 	}
 }

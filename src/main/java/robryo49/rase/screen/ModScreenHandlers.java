@@ -6,7 +6,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import robryo49.rase.Rase;
 import robryo49.rase.screen.custom.*;
@@ -24,7 +23,7 @@ public class ModScreenHandlers {
 			Registry.register(Registries.SCREEN_HANDLER, Rase.getIdentifier("workbench_screen_handler"),
 					new ScreenHandlerType<>(WorkbenchScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
 	
-	public static void registerScreenHandlers() {
+	public static void registerModScreenHandlers() {
 		Rase.LOGGER.info("Registering Screen Handlers for " + Rase.MOD_ID);
 		
 		ModScreenHandlers.registerScreens();

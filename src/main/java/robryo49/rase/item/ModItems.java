@@ -92,6 +92,7 @@ public class ModItems {
 	
 	// --- Material Sets ---
 	
+	
 	public static final OreMaterialSet TIN = registerOreMaterialSet(ModMaterials.TIN);
 	public static final OreMaterialSet MAGNETITE = registerOreMaterialSet(ModMaterials.MAGNETITE);
 	public static final AlloyMaterialSet BRONZE = registerAlloyMaterialSet(ModMaterials.BRONZE);
@@ -104,8 +105,12 @@ public class ModItems {
 	public static final OreMaterialSet PALLADIUM = registerOreMaterialSet(ModMaterials.PALLADIUM);
 	public static final OreMaterialSet COBALT = registerOreMaterialSet(ModMaterials.COBALT);
 	public static final AlloyMaterialSet SCANDIUM = registerAlloyMaterialSet(ModMaterials.SCANDIUM);
-	public static final OreMaterialSet MYTHRIL = registerOreMaterialSet(ModMaterials.MYTHRIL);
+	public static final OreMaterialSet MITHRIL = registerOreMaterialSet(ModMaterials.MITHRIL);
 	public static final CrystalMaterialSet RHEXIS = registerCrystalMaterialSet(ModMaterials.RHEXIS);
+	
+	public static final Item IRON_POWDER = registerItem("iron_powder");
+	public static final Item GOLD_POWDER = registerItem("gold_powder");
+	public static final Item COPPER_POWDER = registerItem("copper_powder");
 	
 	
 	// --- Tool Sets ---
@@ -120,7 +125,7 @@ public class ModItems {
 	public static final ToolSet TITANIUM_TOOL_SET = registerToolSet(ModToolMaterials.TITANIUM);
 	public static final ToolSet COBALT_TOOL_SET = registerToolSet(ModToolMaterials.COBALT);
 	public static final ToolSet SCANDIUM_TOOL_SET = registerToolSet(ModToolMaterials.SCANDIUM);
-	public static final ToolSet MYTHRIL_TOOL_SET = registerToolSet(ModToolMaterials.MYTHRIL);
+	public static final ToolSet MITHRIL_TOOL_SET = registerToolSet(ModToolMaterials.MITHRIL);
 	
 	
 	// --- Armor Sets ---
@@ -131,7 +136,7 @@ public class ModItems {
 	public static final ArmorSet TITANIUM_ARMOR_SET = registerArmorSet(ModArmorMaterials.TITANIUM, 35);
 	public static final ArmorSet COBALT_ARMOR_SET = registerArmorSet(ModArmorMaterials.COBALT, 30);
 	public static final ArmorSet SCANDIUM_ARMOR_SET = registerArmorSet(ModArmorMaterials.SCANDIUM, 45);
-	public static final ArmorSet MYTHRIL_ARMOR_SET = registerArmorSet(ModArmorMaterials.MYTHRIL, 50);
+	public static final ArmorSet MITHRIL_ARMOR_SET = registerArmorSet(ModArmorMaterials.MITHRIL, 50);
 	
 	
 	// --- Molds ---

@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gold_powder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rase:gold_powder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_gold_powder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rase:gold_powder"
+    ]
+  }
+}

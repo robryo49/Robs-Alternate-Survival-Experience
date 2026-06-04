@@ -1,10 +1,10 @@
 {
   "values": [
     "rase:scandium_block",
-    "rase:mythril_ore",
-    "rase:deepslate_mythril_ore",
-    "rase:mythril_block",
-    "rase:raw_mythril_block",
+    "rase:mithril_ore",
+    "rase:deepslate_mithril_ore",
+    "rase:mithril_block",
+    "rase:raw_mithril_block",
     "rase:nether_rhexis_ore",
     "rase:rhexis_block",
     "minecraft:ancient_debris",

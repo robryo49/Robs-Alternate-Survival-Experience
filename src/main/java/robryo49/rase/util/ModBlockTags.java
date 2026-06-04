@@ -6,7 +6,6 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import robryo49.rase.Rase;
-import robryo49.rase.block.ModBlocks;
 import robryo49.rase.item.ModMaterials;
 
 import java.util.ArrayList;
@@ -138,7 +137,7 @@ public class ModBlockTags {
 		addToTag(getNeedsTier(material.getInferiorTier()), blocks);
 	}
 	
-	public static void registerBlockTags() {
+	public static void registerModBlockTags() {
 		Rase.LOGGER.info("Registering Block Tags for " + Rase.MOD_ID);
 		
 		addToTag(BlockTags.SWORD_EFFICIENT, List.of(Blocks.TALL_GRASS, Blocks.SHORT_GRASS, Blocks.SUGAR_CANE));

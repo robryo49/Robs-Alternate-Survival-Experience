@@ -37,7 +37,7 @@ public class ModArmorMaterials {
 	public static final RegistryEntry<ArmorMaterial> SCANDIUM = registerArmorMaterial("scandium", () -> Ingredient.ofItems(ModItems.SCANDIUM.INGOT()),
 			3, 6, 8, 3, 12, 3.0f, 0.2f);
 	
-	public static final RegistryEntry<ArmorMaterial> MYTHRIL = registerArmorMaterial("mythril", () -> Ingredient.ofItems(ModItems.MYTHRIL.INGOT()),
+	public static final RegistryEntry<ArmorMaterial> MITHRIL = registerArmorMaterial("mithril", () -> Ingredient.ofItems(ModItems.MITHRIL.INGOT()),
 			4, 7, 9, 4, 22, 4.0f, 0.3f);
 	
 	

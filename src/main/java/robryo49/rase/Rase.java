@@ -15,6 +15,8 @@ import robryo49.rase.recipe.ModRecipes;
 import robryo49.rase.screen.ModScreenHandlers;
 import robryo49.rase.util.ModBlockTags;
 import robryo49.rase.util.ModItemTags;
+import robryo49.rase.world.gen.ModOreGeneration;
+import robryo49.rase.world.gen.ModWorldGeneration;
 
 public class Rase implements ModInitializer {
 	public static final String MOD_ID = "rase";
@@ -22,17 +24,19 @@ public class Rase implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
-		ModBlockTags.registerBlockTags();
-		ModItemTags.registerItemTags();
+		ModBlockTags.registerModBlockTags();
+		ModItemTags.registerModItemTags();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModItemGroups.registerModItemGroups();
 		
 		ModEvents.registerModEvents();
 		ModBlockEntities.registerModBlockEntities();
-		ModScreenHandlers.registerScreenHandlers();
-		ModRecipes.registerRecipes();
+		ModScreenHandlers.registerModScreenHandlers();
+		ModRecipes.registerModRecipes();
 		ModLootTableModifiers.modifyLootTables();
+		
+		ModWorldGeneration.generateModWorldGen();
 	}
 	
 	public static Identifier getIdentifier(String id) {

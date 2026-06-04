@@ -35,7 +35,7 @@ public enum ModMaterials {
 	
 	NETHERITE(5, "netherite",   () -> Items.NETHERITE_INGOT, () -> Blocks.NETHERITE_BLOCK),
 	SCANDIUM(5, "scandium",     () -> ModItems.SCANDIUM.INGOT(), () -> ModBlocks.SCANDIUM.BLOCK()),
-	MYTHRIL(5, "mythril",       () -> ModItems.MYTHRIL.INGOT(), () -> ModBlocks.MYTHRIL.BLOCK()),
+	MITHRIL(5, "mithril",       () -> ModItems.MITHRIL.INGOT(), () -> ModBlocks.MITHRIL.BLOCK()),
 	RHEXIS(5, "rhexis",         () -> ModItems.RHEXIS.CRYSTAL(), () -> ModBlocks.RHEXIS.BLOCK())
 	;
 	
