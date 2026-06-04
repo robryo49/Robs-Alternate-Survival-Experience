@@ -11,12 +11,13 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import robryo49.rase.Rase;
+import robryo49.rase.item.ModMaterials;
 
 import java.util.List;
 
 public class ModPlacedFeatures {
 	
-	public static final RegistryKey<PlacedFeature> TIN_ORE_PLACED_KEY = registerKey("tin_ore_placed");
+	public static final RegistryKey<PlacedFeature> TIN_ORE_PLACED_KEY = registerKey(ModMaterials.BRONZE);
 	
 	public static void bootstrap(Registerable<PlacedFeature> context) {
 		RegistryEntryLookup<ConfiguredFeature<?, ?>> configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -27,6 +28,13 @@ public class ModPlacedFeatures {
 	
 	public static RegistryKey<PlacedFeature> registerKey(String id) {
 		return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Rase.getIdentifier(id));
+	}
+	
+	public static RegistryKey<PlacedFeature> registerKey(ModMaterials material) {
+		return registerKey(material.getId());
+	}
+	public static RegistryKey<PlacedFeature> registerKey(ModMaterials material, String variant) {
+		return registerKey(material.getId() + "_placed_" + variant);
 	}
 	
 	

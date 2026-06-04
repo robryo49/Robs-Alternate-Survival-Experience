@@ -11,12 +11,13 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import robryo49.rase.Rase;
 import robryo49.rase.block.ModBlocks;
+import robryo49.rase.item.ModMaterials;
 
 import java.util.List;
 
 public class ModConfiguredFeatures {
 	
-	public static final RegistryKey<ConfiguredFeature<?, ?>> TIN_ORE_KEY = registerKey("tin_ore");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> TIN_ORE_KEY = registerKey(ModMaterials.TIN);
 	
 	
 	public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
@@ -48,6 +49,14 @@ public class ModConfiguredFeatures {
 	public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String id) {
 		return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Rase.getIdentifier(id));
 	}
+	
+	public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(ModMaterials material) {
+		return registerKey(material.getId() + "_ore");
+	}
+	public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(ModMaterials material, String variant) {
+		return registerKey(material.getId() + "_ore_" + variant);
+	}
+	
 	
 	private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?, ?>> context,
 	                                                                               RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
