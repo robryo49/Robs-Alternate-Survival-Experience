@@ -17,5 +17,8 @@ public abstract class NoInstaBreakMixin {
 		if (cir.getReturnValue() == 0.0f) {
 			cir.setReturnValue(0.2f);
 		}
+		if (world.getBlockState(pos).isOf(Blocks.DEEPSLATE)) {
+			cir.setReturnValue(cir.getReturnValue() * 3);
+		}
 	}
 }

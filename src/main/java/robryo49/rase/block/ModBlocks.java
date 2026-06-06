@@ -31,6 +31,28 @@ public class ModBlocks {
 	public static final Map<TagKey<Block>, List<Block>> TAGS = new HashMap<>();
 	
 	
+	public static final Block MINING_DRILL = registerDrill();
+	
+	private static Block registerDrill() {
+		Block block = new MiningDrillBlock(
+				AbstractBlock.Settings.create()
+						.strength(3.5f, 6.0f)
+						.sounds(BlockSoundGroup.METAL)
+						.requiresTool()
+						.pistonBehavior(net.minecraft.block.piston.PistonBehavior.NORMAL));
+		
+		Identifier id = Rase.getIdentifier("mining_drill");
+		Registry.register(Registries.BLOCK, id, block);
+		Registry.register(Registries.ITEM, id, new BlockItem(block, new Item.Settings()));
+		
+		ALL.add(block);
+		MODELS.computeIfAbsent(Models.ORIENTABLE, k -> new ArrayList<>()).add(block);
+		TAGS.computeIfAbsent(BlockTags.PICKAXE_MINEABLE, k -> new ArrayList<>()).add(block);
+		
+		return block;
+	}
+	
+	
 	// --- Block Registrations ---
 	
 	public static final Block BASKET = registerBlock("basket", new BasketBlock(AbstractBlock.Settings.create().strength(1.0f, 3.0f).sounds(BlockSoundGroup.BIG_DRIPLEAF)), List.of(), Models.BASKET);

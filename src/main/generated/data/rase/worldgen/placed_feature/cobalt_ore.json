@@ -1,5 +1,5 @@
 {
-  "feature": "rase:tin_ore",
+  "feature": "rase:cobalt_ore",
   "placement": [
     {
       "type": "minecraft:count",
@@ -13,10 +13,10 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 80
+          "absolute": 117
         },
         "min_inclusive": {
-          "absolute": 0
+          "absolute": 10
         }
       }
     },

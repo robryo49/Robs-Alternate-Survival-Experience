@@ -38,6 +38,12 @@ public class ModBlockEntities {
 							ModBlocks.CRUSHER
 					).build());
 	
+	public static final BlockEntityType<MiningDrillBlockEntity> MINING_DRILL_BLOCK_ENTITY =
+			Registry.register(Registries.BLOCK_ENTITY_TYPE,
+					Rase.getIdentifier("mining_drill_block_entity"),
+					BlockEntityType.Builder.create(MiningDrillBlockEntity::new,
+							ModBlocks.MINING_DRILL).build());
+	
 	public static void registerModBlockEntities() {
 		Rase.LOGGER.info("Registering Block Entities for " + Rase.MOD_ID);
 	}

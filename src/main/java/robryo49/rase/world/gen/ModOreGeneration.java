@@ -1,6 +1,7 @@
 package robryo49.rase.world.gen;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.minecraft.registry.RegistryKey;
@@ -11,6 +12,7 @@ import robryo49.rase.Rase;
 import robryo49.rase.world.ModPlacedFeatures;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class ModOreGeneration {
 	
@@ -43,6 +45,20 @@ public class ModOreGeneration {
 			OrePlacedFeatures.ORE_DIAMOND_MEDIUM
 	);
 	
+	private static boolean isWarm(net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext ctx) {
+		return ctx.getBiome().getTemperature() > 0.8f && ctx.getBiomeRegistryEntry().isIn(
+				net.minecraft.registry.tag.BiomeTags.IS_OVERWORLD);
+	}
+	
+	private static boolean isCold(net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext ctx) {
+		return ctx.getBiome().getTemperature() < 0.15f && ctx.getBiomeRegistryEntry().isIn(
+				net.minecraft.registry.tag.BiomeTags.IS_OVERWORLD);
+	}
+	
+	private static boolean isMountain(net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext ctx) {
+		return ctx.getBiomeRegistryEntry().isIn(net.minecraft.registry.tag.BiomeTags.IS_MOUNTAIN);
+	}
+	
 	public static void generateModOresGen() {
 		
 		BiomeModifications.create(Rase.getIdentifier("remove_vanilla_ores"))
@@ -52,8 +68,47 @@ public class ModOreGeneration {
 						)
 				);
 		
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES,
-				ModPlacedFeatures.TIN_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.TIN_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.MAGNETITE_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.COAL_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.COPPER_ORE_PLACED_KEY);
 		
+		addOverworld(ModPlacedFeatures.SILVER_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.LEAD_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.IRON_ORE_PLACED_KEY);
+		
+		addBiome(ModOreGeneration::isWarm, ModPlacedFeatures.PLATINUM_ORE_PLACED_KEY);
+		addBiome(ModOreGeneration::isCold, ModPlacedFeatures.TUNGSTEN_ORE_PLACED_KEY);
+		addBiome(ModOreGeneration::isWarm, ModPlacedFeatures.GOLD_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.LAPIS_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.REDSTONE_ORE_PLACED_KEY);
+		
+		addBiome(ModOreGeneration::isCold, ModPlacedFeatures.PALLADIUM_ORE_PLACED_KEY);
+		addOverworld(ModPlacedFeatures.DIAMOND_ORE_PLACED_KEY);
+		addBiome(ModOreGeneration::isMountain, ModPlacedFeatures.EMERALD_ORE_PLACED_KEY);
+		
+		addNether(ModPlacedFeatures.COBALT_ORE_PLACED_KEY);
+		addNether(ModPlacedFeatures.RHEXIS_ORE_PLACED_KEY);
+		
+		addOverworld(ModPlacedFeatures.MITHRIL_ORE_PLACED_KEY);
+	}
+	
+	
+	private static void addOverworld(RegistryKey<PlacedFeature> key) {
+		BiomeModifications.addFeature(
+				BiomeSelectors.foundInOverworld(),
+				GenerationStep.Feature.UNDERGROUND_ORES, key);
+	}
+	
+	private static void addNether(RegistryKey<PlacedFeature> key) {
+		BiomeModifications.addFeature(
+				BiomeSelectors.foundInTheNether(),
+				GenerationStep.Feature.UNDERGROUND_ORES, key);
+	}
+	
+	private static void addBiome(Predicate<BiomeSelectionContext> selector,
+	                             RegistryKey<PlacedFeature> key) {
+		BiomeModifications.addFeature(selector,
+				GenerationStep.Feature.UNDERGROUND_ORES, key);
 	}
 }

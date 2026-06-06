@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-04T15:00:19.9030049	Rob's Alternate Survival Experience/Model Definitions
+// 1.21.1	2026-06-06T17:03:14.0113861	Rob's Alternate Survival Experience/Model Definitions
 37186269ea1544f505b0b1cd435328356735d5c0 assets\rase\models\item\mithril_chestplate_gold_trim.json
 0c8ee7d16b65407a60e291d8f22dc26453d94cac assets\rase\blockstates\raw_lead_block.json
 e2ce09b9cb978642e0b02563c7af232f80364a47 assets\rase\models\item\cobalt_chestplate_netherite_trim.json
@@ -129,8 +129,8 @@ e5e73134a034525234cc2f3f58adcfa502197e84 assets\rase\models\block\cracked_granit
 5231e0fef889d6efc94bd18cd066ec356598a521 assets\rase\models\block\raw_platinum_block.json
 055959b01bee7899ef76c6b4524496e1b174ad41 assets\rase\models\item\titanium_pickaxe.json
 1e09ec52a2285d89da21821c5f203ffbec4d574a assets\rase\models\item\scandium_axe_head.json
-8f36162d92445a8762a6894b634321fa3556adfb assets\rase\models\item\advanced_forge.json
 1cd74b93e253972ef9d78c66f2c677769a950bfe assets\rase\models\item\deepslate_tin_ore.json
+8f36162d92445a8762a6894b634321fa3556adfb assets\rase\models\item\advanced_forge.json
 d8fa949b2549324c7cad72f38028479f025b9856 assets\rase\models\item\steel_boots_netherite_trim.json
 d5da7742a720b22b5f4fd6f7a1da7488d85d1008 assets\rase\models\item\tungsten_ingot_mold_filled.json
 c18630fe369218ea53c520ddc137aee5813fba7d assets\rase\models\item\obsidian_axe_mold_filled.json
@@ -156,8 +156,8 @@ a5f250508c5d36157065e9e3f6da4b1113201559 assets\rase\models\item\cobalt_chestpla
 cb7c06a43380b3855034bb03fd19f95405201719 assets\rase\models\item\silver_leggings_copper_trim.json
 1c87303789ca2e4ee35ad9d53ab9d7ceb375b9f7 assets\rase\models\item\magnetite_block.json
 88e968bb2804522f37f34bb6696b8bb83beed01a assets\rase\models\item\titanium_sword_mold.json
-044cc0af6feed7cb7b8dd172166f465b2d5c1441 assets\rase\models\item\titanium_helmet_redstone_trim.json
 846528afe4950a96ce72747f30c3d5ecb8567573 assets\rase\models\item\cow_hide.json
+044cc0af6feed7cb7b8dd172166f465b2d5c1441 assets\rase\models\item\titanium_helmet_redstone_trim.json
 7bfe9eec60c6fcb07d8266d723f084d31ee64fb0 assets\rase\models\item\cobalt_leggings_iron_trim.json
 10aeeb8699fb885d72fc53296f48f43c411bacfb assets\rase\models\item\titanium_chestplate_netherite_trim.json
 a517a7d7a72b75337ebb32daf61476b5f04ed3a1 assets\rase\models\item\silver_helmet_redstone_trim.json
@@ -291,10 +291,10 @@ e85312278fd264a9497e017d0036e66a3e367df7 assets\rase\models\item\silver_chestpla
 4c4df57afed801f9f18ce08813f2618369e40023 assets\rase\models\item\clay_mold_base.json
 2ea13a72e982c2a6db0d55437eea7f3f654b9428 assets\rase\models\item\titanium_boots_redstone_trim.json
 be0cb4cf88019fa2bc36dcf0a6a223d416a9e4ac assets\rase\models\item\dry_cane_bundle.json
-e08ca2db2f2b62828a3af37bee1e8b6bbbe55bb0 assets\rase\models\item\titanium_leggings_lapis_trim.json
 4d788c87eea4f56044335be85823d1d91fd6e14b assets\rase\models\item\mithril_boots_amethyst_trim.json
-84c66da4c31b466c4ac391f73ee11b8932ea0951 assets\rase\blockstates\cracked_stone.json
+e08ca2db2f2b62828a3af37bee1e8b6bbbe55bb0 assets\rase\models\item\titanium_leggings_lapis_trim.json
 c3b2b41703dd214fd20d89707d77cf1833a96d51 assets\rase\blockstates\chipped_lead_anvil.json
+84c66da4c31b466c4ac391f73ee11b8932ea0951 assets\rase\blockstates\cracked_stone.json
 3a7c01ea2482bdc23019fd4a6f42abdf98330ad2 assets\rase\models\item\cobalt_boots_emerald_trim.json
 cd7cc2c2ca30703ee98096d56c62aab981fcaf66 assets\rase\models\item\scandium_leggings_lapis_trim.json
 28cd69e8ec5bdfc1fbe077c22f2e0beed46fcf17 assets\rase\models\item\mithril_sword_blade.json
@@ -393,6 +393,7 @@ d46ad7a5f319ec64347981374bb732e793410646 assets\rase\models\item\mithril_helmet_
 f74f0ed72c39749cf6351baf484430b9b053b4e3 assets\rase\models\item\cooked_fox.json
 97f255d2b36d194500c829d745e864403355a901 assets\rase\models\item\raw_horse.json
 29ddde5893b08dbd562d480d40aca99cf580de82 assets\rase\blockstates\deepslate_mithril_ore.json
+4378029ee41724ce2e3122aa4c7238547bdf601f assets\rase\models\block\mining_drill.json
 a64b1747a1330ee21caa99c5de660dcb5737757e assets\rase\models\block\silver_ore.json
 e75b1b89d3b6cbda0a0228477a26643fc1d9ed91 assets\rase\models\item\steel_sword.json
 b6fc061db6e97e4d44920f10cf5221ef97ff6cba assets\rase\models\item\silver_helmet_iron_trim.json
@@ -579,6 +580,7 @@ e6099398411e0b39d0dea47a6140f3e386c9e88f assets\rase\models\item\raw_sniffer.jso
 7fc282467215803975288190b552acb628af8d0e assets\rase\models\item\dough.json
 3bf71b9bc231d3fd9a0ecc36373e0e4ce3435aaa assets\rase\models\item\steel_helmet_gold_trim.json
 c39e558d36b7935cf77fcebf898cdb370b8d12ff assets\rase\models\item\bronze_helmet_amethyst_trim.json
+71f806bf6c9dea5bf9992c0dd714ad9559558a7b assets\rase\blockstates\mining_drill.json
 175ec62695c9f30d05affef61666e3d4ff64beba assets\rase\models\item\bronze_boots.json
 7c547d8dadc0743efe8dd4e5a81f86ac79b05631 assets\rase\models\item\steel_leggings_quartz_trim.json
 2b6bf5abe7c63935f24ad71720c95988c9ce191a assets\rase\models\item\titanium_leggings.json
@@ -779,9 +781,9 @@ b248b0880a65d6374a49e023bb81eaff34aa53e0 assets\rase\models\item\cobalt_leggings
 55bcae648fdec50e6a7d35086a767a5ae1299cce assets\rase\models\item\platinum_ingot.json
 ea070091811d1662b8a509cb318abafd5355ed01 assets\rase\models\block\tungsten_anvil.json
 1e7444768e2cab14ae47c40d87a035c2b4d8398a assets\rase\models\item\scandium_boots_amethyst_trim.json
-232a5882df08687a6c24a4ccf3346153501483b6 assets\rase\models\item\silver_chestplate_lapis_trim.json
-a4a008fcab49db7f047fbcc457a1ac70b0310c50 assets\rase\models\item\bronze_leggings_redstone_trim.json
 8fd1b64da133fc469674c619df0e2a8928615916 assets\rase\models\item\titanium_nugget.json
+a4a008fcab49db7f047fbcc457a1ac70b0310c50 assets\rase\models\item\bronze_leggings_redstone_trim.json
+232a5882df08687a6c24a4ccf3346153501483b6 assets\rase\models\item\silver_chestplate_lapis_trim.json
 6eefd4be8db364bfc4857f3b42dcb44fff1bd534 assets\rase\models\item\titanium_axe_head.json
 9150c227e3f52b35e0bdcf383ae8735a5e2754e3 assets\rase\models\item\cracked_tuff.json
 3ddeaf2b366c1b344c5823286aa353d741a634b0 assets\rase\models\item\scandium_shovel_head.json

@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "rase:tin_ore"
+          "Name": "rase:lead_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "rase:deepslate_tin_ore"
+          "Name": "rase:deepslate_lead_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

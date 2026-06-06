@@ -28,6 +28,7 @@ public enum ModMaterials {
 	GOLD(3, "gold",             () -> Items.GOLD_INGOT, () -> Blocks.GOLD_BLOCK),
 	PLATINUM(3, "platinum",     () -> ModItems.PLATINUM.INGOT(), () -> ModBlocks.PLATINUM.BLOCK()),
 	TUNGSTEN(3, "tungsten",     () -> ModItems.TUNGSTEN.INGOT(), () -> ModBlocks.TUNGSTEN.BLOCK()),
+	REDSTONE(3, "redstone",     () -> Items.REDSTONE, () -> Blocks.REDSTONE_BLOCK),
 	
 	DIAMOND(4, "diamond",       () -> Items.DIAMOND, () -> Blocks.DIAMOND_BLOCK),
 	EMERALD(4, "emerald",       () -> Items.EMERALD, () -> Blocks.EMERALD_BLOCK),

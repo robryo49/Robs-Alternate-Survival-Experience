@@ -12,6 +12,7 @@
     "FoodPoisonMixin",
     "HungerManagerMixin",
     "ItemStackMixin",
+    "MiningDrillPistonMixin",
     "NoInstaBreakMixin",
     "PlayerEntityMixin",
     "RecipeRemoverMixin",

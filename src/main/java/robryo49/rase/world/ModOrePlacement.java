@@ -17,4 +17,8 @@ public class ModOrePlacement {
 	public static List<PlacementModifier> modifiers(int count, int minHeight, int maxHeight) {
 		return modifiers(count, HeightRangePlacementModifier.uniform(YOffset.fixed(minHeight), YOffset.fixed(maxHeight)));
 	}
+	
+	public static List<PlacementModifier> netherModifiers(int count, int minHeight, int maxHeight) {
+		return modifiers(count, minHeight, maxHeight);
+	}
 }

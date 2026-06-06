@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-04T15:00:19.8787222	Rob's Alternate Survival Experience/Recipes
+// 1.21.1	2026-06-06T17:03:13.9914043	Rob's Alternate Survival Experience/Recipes
 e0ca8771dc24c825c8681d2ebf81695b26cf3fe3 data\rase\recipe\lead_shovel_mold.json
 9a631293c6b65b8e7711b1d6e21bcfb705092862 data\rase\advancement\recipes\tools\clay_axe_mold_from_smelting.json
 7cceb7ca9dbb1285b02569696cb25ea8e7c10c7d data\rase\recipe\cooked_camel_from_campfire.json
@@ -124,8 +124,8 @@ ea8562f5f4084bd00eaf439fc1ec802cee78313a data\rase\recipe\bronze_pickaxe_smithin
 3e91fcecd7b56722ee12e01427deac03ea7811f6 data\rase\advancement\recipes\food\cooked_turtle_from_campfire.json
 5eda9b0d68767612e7643e623a0597b57ddbaf31 data\rase\advancement\recipes\misc\scandium_ingot_from_block.json
 3ef32093f4fbf0ebe64f1d3fd034ba0220ac5d16 data\rase\advancement\recipes\anvil_smithing\scandium_shovel_smithing.json
-e3a3d24e0f8c49c1ec40b5ec3521bf4677bae4ef data\rase\recipe\copper_powder.json
 d2aaa9a168ae99962267e5a9bb750c575230b99a data\rase\advancement\recipes\forge_smelting\iron_ingot_forging_forging.json
+e3a3d24e0f8c49c1ec40b5ec3521bf4677bae4ef data\rase\recipe\copper_powder.json
 8c436e7f0f7540f08fc158cbf4b8ba8892693713 data\rase\advancement\recipes\misc\mithril_ingot_from_nugget.json
 b7f3a3de6af2f35e5afbaac9e205b768d28788b0 data\rase\advancement\recipes\tools\bronze_leggings.json
 ba594f1eb0cf983ca8cacd81e8431a743d0ebf72 data\rase\advancement\recipes\building_blocks\titanium_block_from_ingot.json
