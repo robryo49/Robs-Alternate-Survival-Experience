@@ -23,6 +23,9 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import robryo49.rase.block.custom.MiningDrillBlock;
 import robryo49.rase.block.entity.ModBlockEntities;
+import robryo49.rase.item.ModToolMaterials;
+import robryo49.rase.util.ModBlockTags;
+import robryo49.rase.util.ModItemTags;
 
 import java.util.List;
 
@@ -55,7 +58,7 @@ public class MiningDrillBlockEntity extends BlockEntity {
 		BlockPos targetPos = pos.offset(facing);
 		BlockState targetState = world.getBlockState(targetPos);
 		
-		if (targetState.isAir() || targetState.getHardness(world, targetPos) < 0) {
+		if (targetState.isAir() || targetState.getHardness(world, targetPos) < 0 || targetState.isIn(ModBlockTags.INCORRECT_FOR_TIER_4_TOOLS)) {
 			resetProgress(world, pos);
 			return;
 		}
@@ -78,7 +81,7 @@ public class MiningDrillBlockEntity extends BlockEntity {
 		}
 		
 		int stage = Math.min((int)(miningProgress * 10f), 9);
-		((ServerWorld) world).setBlockBreakingInfo(pos.hashCode(), targetPos, stage);
+		world.setBlockBreakingInfo(pos.hashCode(), targetPos, stage);
 		
 		if (miningProgress >= 1f) {
 			mine(world, pos, targetPos, targetState, facing);

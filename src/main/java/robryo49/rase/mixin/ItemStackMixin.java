@@ -21,7 +21,7 @@ public abstract class ItemStackMixin {
         
         if (baseMax > 1) {
             if (item instanceof BlockItem) {
-                cir.setReturnValue(16);
+                cir.setReturnValue(8);
             } else {
                 cir.setReturnValue(16);
             }

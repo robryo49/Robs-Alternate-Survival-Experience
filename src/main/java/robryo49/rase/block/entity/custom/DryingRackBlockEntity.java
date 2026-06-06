@@ -49,7 +49,6 @@ public class DryingRackBlockEntity extends BlockEntity {
             if (stack.isEmpty()) continue;
 
             if (!isDrying) {
-                // Reset progress if wet/waterlogged/raining
                 if (rack.dryingTimes[i] > 0) {
                     rack.dryingTimes[i] = MathHelper.clamp(rack.dryingTimes[i] - 2, 0, rack.dryingTotalTimes[i]);
                     dirty = true;
@@ -80,18 +79,10 @@ public class DryingRackBlockEntity extends BlockEntity {
         if (dirty) markDirty(world, pos, state);
     }
 
-    /**
-     * Returns true if the rack should be actively drying.
-     * Drying is blocked when waterlogged or when it's raining and the block is exposed to sky.
-     */
     private static boolean isDrying(BlockState state) {
-        // Waterlogged check is handled in the block via this helper
         return state.get(robryo49.rase.block.custom.DryingRackBlock.DRY);
     }
 
-    /**
-     * Try to add an item to the rack. Returns true on success.
-     */
     public boolean addItem(ItemStack stack, World world) {
         for (int i = 0; i < SLOT_COUNT; i++) {
             if (!items.get(i).isEmpty()) continue;
@@ -113,7 +104,6 @@ public class DryingRackBlockEntity extends BlockEntity {
         return false;
     }
 
-    // Expose for rendering
     public DefaultedList<ItemStack> getItems() { return items; }
     public int getDryingTime(int slot) { return dryingTimes[slot]; }
     public int getDryingTotalTime(int slot) { return dryingTotalTimes[slot]; }

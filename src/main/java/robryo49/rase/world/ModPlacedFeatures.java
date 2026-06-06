@@ -22,24 +22,20 @@ public class ModPlacedFeatures {
 	public static final RegistryKey<PlacedFeature> COAL_ORE_PLACED_KEY       = registerKey(ModMaterials.COAL);
 	public static final RegistryKey<PlacedFeature> COPPER_ORE_PLACED_KEY     = registerKey(ModMaterials.COPPER);
 	
-	// --- Tier 2 (Y -32 to 64) ---
 	public static final RegistryKey<PlacedFeature> SILVER_ORE_PLACED_KEY    = registerKey(ModMaterials.SILVER);
 	public static final RegistryKey<PlacedFeature> LEAD_ORE_PLACED_KEY      = registerKey(ModMaterials.LEAD);
 	public static final RegistryKey<PlacedFeature> IRON_ORE_PLACED_KEY      = registerKey(ModMaterials.IRON);
 	
-	// --- Tier 3 (Y -64 to 16) — warm/hot biomes ---
 	public static final RegistryKey<PlacedFeature> PLATINUM_ORE_PLACED_KEY  = registerKey(ModMaterials.PLATINUM);
 	public static final RegistryKey<PlacedFeature> TUNGSTEN_ORE_PLACED_KEY  = registerKey(ModMaterials.TUNGSTEN);
 	public static final RegistryKey<PlacedFeature> GOLD_ORE_PLACED_KEY      = registerKey(ModMaterials.GOLD);
 	public static final RegistryKey<PlacedFeature> LAPIS_ORE_PLACED_KEY     = registerKey(ModMaterials.LAPIS);
 	public static final RegistryKey<PlacedFeature> REDSTONE_ORE_PLACED_KEY  = registerKey(ModMaterials.REDSTONE);
 	
-	// --- Tier 4 (Y -64 to -16) — cold biomes ---
 	public static final RegistryKey<PlacedFeature> PALLADIUM_ORE_PLACED_KEY    = registerKey(ModMaterials.PALLADIUM);
 	public static final RegistryKey<PlacedFeature> DIAMOND_ORE_PLACED_KEY      = registerKey(ModMaterials.DIAMOND);
 	public static final RegistryKey<PlacedFeature> EMERALD_ORE_PLACED_KEY      = registerKey(ModMaterials.EMERALD);
 	
-	// --- Tier 5 / Nether ---
 	public static final RegistryKey<PlacedFeature> COBALT_ORE_PLACED_KEY        = registerKey(ModMaterials.COBALT);
 	public static final RegistryKey<PlacedFeature> RHEXIS_ORE_PLACED_KEY        = registerKey(ModMaterials.RHEXIS);
 	

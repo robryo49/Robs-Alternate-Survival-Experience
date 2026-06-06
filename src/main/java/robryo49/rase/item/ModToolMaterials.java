@@ -14,21 +14,16 @@ public enum ModToolMaterials implements ToolMaterial {
 	FLINT(ModMaterials.FLINT, 8, 0.8f, 0.0f, 2),
 	STONE(ModMaterials.STONE, 14, 1.0f, 0.5f, 5),
 	
-	// TIER 1: The Bronze Age
 	BRONZE(ModMaterials.BRONZE, 30, 2.5f, 1.2f, 10),
 	
-	// TIER 2: The Iron/Steel Age
 	SILVER(ModMaterials.SILVER, 20, 8.0f, 1.0f, 25),
 	STEEL(ModMaterials.STEEL, 150, 4.0f, 2.0f, 12),
 	
-	// TIER 3: High-Temperature Metallurgy
 	TITANIUM(ModMaterials.TITANIUM, 350, 5.5f, 2.5f, 10),
 	
-	// TIER 4: Exotic Alloys
 	COBALT(ModMaterials.COBALT, 280, 9.0f, 3.2f, 15),
 	SCANDIUM(ModMaterials.SCANDIUM, 650, 6.5f, 3.0f, 12),
 	
-	// TIER 5: Mythic
 	MITHRIL(ModMaterials.MITHRIL, 1200, 8.5f, 4.0f, 22)
 	
 	;

@@ -49,7 +49,6 @@ public class BasketBlockEntity extends LootableContainerBlockEntity {
 		@Override
 		protected boolean isPlayerViewing(PlayerEntity player) {
 			if (player.currentScreenHandler instanceof BasketScreenHandler) {
-				// Check that the handler's inventory is this block entity
 				return ((BasketScreenHandler) player.currentScreenHandler).getInventory() == BasketBlockEntity.this;
 			}
 			return false;
@@ -59,8 +58,6 @@ public class BasketBlockEntity extends LootableContainerBlockEntity {
 	public BasketBlockEntity(BlockPos pos, BlockState state) {
 		super(ModBlockEntities.BASKET_BLOCK_ENTITY_TYPE, pos, state);
 	}
-	
-	// --- LootableContainerBlockEntity contract ---
 	
 	@Override
 	public int size() { return SIZE; }
@@ -79,8 +76,6 @@ public class BasketBlockEntity extends LootableContainerBlockEntity {
 		return new BasketScreenHandler(syncId, playerInventory, this);
 	}
 	
-	// --- Open/close via ViewerCountManager ---
-	
 	@Override
 	public void onOpen(PlayerEntity player) {
 		if (!this.removed && !player.isSpectator()) {
@@ -95,7 +90,6 @@ public class BasketBlockEntity extends LootableContainerBlockEntity {
 		}
 	}
 	
-	// This must be ticked — ViewerCountManager needs it
 	public void tick() {
 		if (!this.removed) {
 			this.stateManager.updateViewerCount(this.getWorld(), this.getPos(), this.getCachedState());

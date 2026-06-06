@@ -27,39 +27,32 @@ public class WorkbenchScreenHandler extends AbstractRecipeScreenHandler<Crafting
 	private final RecipeInputInventory input;
 	private final CraftingResultInventory result = new CraftingResultInventory();
 	private final PlayerEntity player;
-	// Guard against recursive updates when filling slots from recipe book
 	private boolean filling = false;
 	
 	public WorkbenchScreenHandler(int syncId, PlayerInventory playerInventory) {
 		super(ModScreenHandlers.WORKBENCH_SCREEN_HANDLER, syncId);
 		this.player = playerInventory.player;
-		// CraftingInventory implements RecipeInputInventory
 		this.input = new net.minecraft.inventory.CraftingInventory(this, 3, 3);
 		
-		// Slot 0: result
 		this.addSlot(new CraftingResultSlot(player, this.input, this.result, 0, 124, 35));
 		
-		// Slots 1-9: 3x3 crafting grid
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
 				this.addSlot(new Slot(this.input, col + row * 3, 30 + col * 18, 17 + row * 18));
 			}
 		}
 		
-		// Slots 10-36: player inventory
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 9; col++) {
 				this.addSlot(new Slot(playerInventory, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
 			}
 		}
 		
-		// Slots 37-45: hotbar
 		for (int i = 0; i < 9; i++) {
 			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
 		}
 	}
 	
-	// Called by vanilla when recipe book fills slots
 	public void onInputSlotFillStart() {
 		this.filling = true;
 	}
@@ -76,10 +69,6 @@ public class WorkbenchScreenHandler extends AbstractRecipeScreenHandler<Crafting
 		}
 	}
 	
-	/**
-	 * Mirror of CraftingScreenHandler.updateResult, but checks WorkbenchRecipe first
-	 * so the workbench can craft workbench-only recipes in addition to all vanilla ones.
-	 */
 	private static void updateResult(WorkbenchScreenHandler handler, World world, PlayerEntity player,
 	                                 RecipeInputInventory craftingInventory, CraftingResultInventory resultInventory,
 	                                 @Nullable RecipeEntry<CraftingRecipe> recipe) {
@@ -89,7 +78,6 @@ public class WorkbenchScreenHandler extends AbstractRecipeScreenHandler<Crafting
 		ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 		ItemStack result = ItemStack.EMPTY;
 		
-		// Try workbench-only recipes first
 		Optional<RecipeEntry<WorkbenchRecipe>> workbenchMatch = world.getServer()
 				.getRecipeManager()
 				.getFirstMatch(ModRecipes.WORKBENCH_RECIPE_TYPE, input, world);
@@ -103,8 +91,6 @@ public class WorkbenchScreenHandler extends AbstractRecipeScreenHandler<Crafting
 				}
 			}
 		} else {
-			// Fall back to all vanilla crafting recipes (WorkbenchRecipes are filtered out
-			// at the crafting table by CraftingTableMixin, but here we allow everything)
 			Optional<RecipeEntry<CraftingRecipe>> vanillaMatch = world.getServer()
 					.getRecipeManager()
 					.getFirstMatch(RecipeType.CRAFTING, input, world, recipe);
