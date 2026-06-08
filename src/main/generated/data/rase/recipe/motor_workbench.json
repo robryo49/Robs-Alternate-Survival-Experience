@@ -1,0 +1,25 @@
+{
+  "type": "rase:workbench",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:cobblestone"
+    },
+    "c": {
+      "item": "rase:copper_coil"
+    },
+    "m": {
+      "item": "rase:magnetite_block"
+    }
+  },
+  "pattern": [
+    "c#c",
+    "#m#",
+    "c#c"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rase:motor"
+  },
+  "show_notification": false
+}

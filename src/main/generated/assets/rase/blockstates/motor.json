@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "active=false,facing=down": {
+      "model": "rase:block/motor",
+      "x": 90
+    },
+    "active=false,facing=east": {
+      "model": "rase:block/motor",
+      "y": 90
+    },
+    "active=false,facing=north": {
+      "model": "rase:block/motor"
+    },
+    "active=false,facing=south": {
+      "model": "rase:block/motor",
+      "y": 180
+    },
+    "active=false,facing=up": {
+      "model": "rase:block/motor",
+      "x": 270
+    },
+    "active=false,facing=west": {
+      "model": "rase:block/motor",
+      "y": 270
+    },
+    "active=true,facing=down": {
+      "model": "rase:block/motor_active",
+      "x": 90
+    },
+    "active=true,facing=east": {
+      "model": "rase:block/motor_active",
+      "y": 90
+    },
+    "active=true,facing=north": {
+      "model": "rase:block/motor_active"
+    },
+    "active=true,facing=south": {
+      "model": "rase:block/motor_active",
+      "y": 180
+    },
+    "active=true,facing=up": {
+      "model": "rase:block/motor_active",
+      "x": 270
+    },
+    "active=true,facing=west": {
+      "model": "rase:block/motor_active",
+      "y": 270
+    }
+  }
+}

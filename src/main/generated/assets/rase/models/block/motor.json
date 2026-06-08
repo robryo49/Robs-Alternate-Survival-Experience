@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "rase:block/motor_side",
+    "east": "rase:block/motor_side_rotated",
+    "north": "rase:block/motor_top",
+    "particle": "rase:block/motor_side",
+    "south": "rase:block/motor_bottom",
+    "up": "rase:block/motor_side",
+    "west": "rase:block/motor_side_rotated"
+  }
+}
