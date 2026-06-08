@@ -22,7 +22,7 @@ public class MiningDrillBlock extends BlockWithEntity {
 	
 	public static final MapCodec<MiningDrillBlock> CODEC = createCodec(MiningDrillBlock::new);
 	
-	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = Properties.FACING;
 	public static final BooleanProperty ACTIVE = BooleanProperty.of("active");
 	
 	public MiningDrillBlock(Settings settings) {
@@ -45,13 +45,19 @@ public class MiningDrillBlock extends BlockWithEntity {
 		return getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 	}
 	
+	public static boolean hasActiveMotor(World world, BlockPos pos, BlockState state) {
+		Direction facing = state.get(FACING);
+		BlockPos motorPos = pos.offset(facing.getOpposite());
+		return MotorBlock.isActiveMotorFacing(world, motorPos, facing);
+	}
+	
 	@Override
 	protected void neighborUpdate(BlockState state, World world, BlockPos pos,
 	                              Block sourceBlock, BlockPos sourcePos, boolean notify) {
 		if (world.isClient) return;
-		boolean powered = world.isReceivingRedstonePower(pos);
-		if (powered != state.get(ACTIVE)) {
-			world.setBlockState(pos, state.with(ACTIVE, powered), Block.NOTIFY_ALL);
+		boolean motorActive = hasActiveMotor(world, pos, state);
+		if (motorActive != state.get(ACTIVE)) {
+			world.setBlockState(pos, state.with(ACTIVE, motorActive), Block.NOTIFY_ALL);
 		}
 	}
 	

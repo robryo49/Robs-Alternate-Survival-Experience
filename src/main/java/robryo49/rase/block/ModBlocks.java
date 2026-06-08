@@ -1,6 +1,7 @@
 package robryo49.rase.block;
 
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.data.client.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -9,7 +10,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import robryo49.rase.Rase;
 import robryo49.rase.block.custom.*;
 import robryo49.rase.block.custom.forge.*;
@@ -27,36 +30,16 @@ public class ModBlocks {
 	
 	
 	public static final List<Block> ALL = new ArrayList<>();
-	public static final Map<Models, List<Block>> MODELS = new EnumMap<>(Models.class);
+	public static final Map<BlockModels, List<Block>> MODELS = new EnumMap<>(BlockModels.class);
 	public static final Map<TagKey<Block>, List<Block>> TAGS = new HashMap<>();
-	
-	
-	public static final Block MINING_DRILL = registerDrill();
-	
-	private static Block registerDrill() {
-		Block block = new MiningDrillBlock(
-				AbstractBlock.Settings.create()
-						.strength(3.5f, 6.0f)
-						.sounds(BlockSoundGroup.METAL)
-						.requiresTool()
-						.pistonBehavior(net.minecraft.block.piston.PistonBehavior.NORMAL));
-		
-		Identifier id = Rase.getIdentifier("mining_drill");
-		Registry.register(Registries.BLOCK, id, block);
-		Registry.register(Registries.ITEM, id, new BlockItem(block, new Item.Settings()));
-		
-		ALL.add(block);
-		MODELS.computeIfAbsent(Models.ORIENTABLE, k -> new ArrayList<>()).add(block);
-		TAGS.computeIfAbsent(BlockTags.PICKAXE_MINEABLE, k -> new ArrayList<>()).add(block);
-		
-		return block;
-	}
 	
 	
 	// --- Block Registrations ---
 	
-	public static final Block BASKET = registerBlock("basket", new BasketBlock(AbstractBlock.Settings.create().strength(1.0f, 3.0f).sounds(BlockSoundGroup.BIG_DRIPLEAF)), List.of(), Models.BASKET);
-	public static final Block DRYING_RACK = registerBlock("drying_rack", new DryingRackBlock(AbstractBlock.Settings.create().strength(1.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), List.of(), Models.SCAFFOLDING);
+	public static final Block BASKET = registerBlock("basket", new BasketBlock(AbstractBlock.Settings.create().strength(1.0f, 3.0f).sounds(BlockSoundGroup.BIG_DRIPLEAF)), List.of(), BlockModels.BASKET);
+	public static final Block DRYING_RACK = registerBlock("drying_rack", new DryingRackBlock(AbstractBlock.Settings.create().strength(1.0f).sounds(BlockSoundGroup.WOOD).nonOpaque()), List.of(), BlockModels.SCAFFOLDING);
+	public static final Block MINING_DRILL = registerDrill("mining_drill");
+	public static final Block MOTOR = registerMotor("motor");
 	
 	public static final Block CRACKED_STONE = registerBlock("cracked_stone", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	public static final Block CRACKED_DEEPSLATE = registerBlock("cracked_deepslate", 2.0f, 6.0f, BlockSoundGroup.DEEPSLATE);
@@ -65,11 +48,11 @@ public class ModBlocks {
 	public static final Block CRACKED_DIORITE = registerBlock("cracked_diorite", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	public static final Block CRACKED_TUFF = registerBlock("cracked_tuff", 1.5f, 6.0f, BlockSoundGroup.STONE);
 	
-	public static final Block OBSIDIAN_BRICKS = registerBlock("obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F)), List.of(ModBlockTags.ETHEREAL_FORGE_SHELL), Models.CUBE_ALL);
-	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)), List.of(), Models.CUBE_ALL);
+	public static final Block OBSIDIAN_BRICKS = registerBlock("obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F)), List.of(ModBlockTags.ETHEREAL_FORGE_SHELL), BlockModels.CUBE_ALL);
+	public static final Block CRYING_OBSIDIAN_BRICKS = registerBlock("crying_obsidian_bricks", new Block(AbstractBlock.Settings.create().requiresTool().strength(50.0F, 1200.0F).luminance((state) -> 10)), List.of(), BlockModels.CUBE_ALL);
 	
-	public static final Block CRUSHER = registerBlock("crusher", new CrusherBlock(AbstractBlock.Settings.create().strength(1.0f)), List.of(), Models.CUBE_ALL);
-	public static final Block WORKBENCH = registerBlock("workbench", new WorkbenchBlock(AbstractBlock.Settings.copy(Blocks.CRAFTING_TABLE)), List.of(), Models.WORKBENCH);
+	public static final Block CRUSHER = registerBlock("crusher", new CrusherBlock(AbstractBlock.Settings.create().strength(1.0f)), List.of(), BlockModels.CUBE_ALL);
+	public static final Block WORKBENCH = registerBlock("workbench", new WorkbenchBlock(AbstractBlock.Settings.copy(Blocks.CRAFTING_TABLE)), List.of(), BlockModels.WORKBENCH);
 	
 	public static final Block PRIMITIVE_FORGE = registerForge("primitive_forge", ForgeTiers.PRIMITIVE, 3.5f, 10.0f);
 	public static final Block BASIC_FORGE = registerForge("basic_forge", ForgeTiers.BASIC, 7.0f, 50.0f);
@@ -118,17 +101,28 @@ public class ModBlocks {
 	
 	// --- Helper Logic & Registration Wrappers ---
 	
+	private static Block registerDrill(String id) {
+		return registerBlock(id, new MiningDrillBlock(AbstractBlock.Settings.create().strength(3.5f, 6.0f)
+				.sounds(BlockSoundGroup.METAL).requiresTool().pistonBehavior(PistonBehavior.NORMAL)), List.of(), BlockModels.ORIENTABLE_3D_WITH_BOTTOM);
+	}
+	
+	private static Block registerMotor(String id) {
+		return registerBlock(id, new MotorBlock(AbstractBlock.Settings.create().strength(2.5f, 6.0f).sounds(BlockSoundGroup.METAL).requiresTool()),
+				List.of(BlockTags.PICKAXE_MINEABLE), BlockModels.MOTOR
+		);
+	}
+	
 	private static Block registerForge(String name, ForgeTiers tier, float strength, float resistance) {
 		return registerBlock(name, new ForgeBlock(AbstractBlock.Settings.create()
 						.strength(strength, resistance)
 						.luminance(state -> state.get(ForgeBlock.LIT) ? 13 : 0), tier),
-				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), Models.COOKER);
+				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), BlockModels.COOKER);
 	}
 	private static Block registerForgeWithBottom(String name, ForgeTiers tier, float strength, float resistance) {
 		return registerBlock(name, new ForgeBlock(AbstractBlock.Settings.create()
 						.strength(strength, resistance)
 						.luminance(state -> state.get(ForgeBlock.LIT) ? 13 : 0), tier),
-				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), Models.COOKER_WITH_BOTTOM);
+				List.of(BlockTags.PICKAXE_MINEABLE, ModBlockTags.FORGES), BlockModels.COOKER_WITH_BOTTOM);
 	}
 	
 	public static AlloyBlockSet registerAlloyBlockSet(ModMaterials material, float strength, float resistance) {
@@ -180,18 +174,18 @@ public class ModBlocks {
 	// --- Core Registration Logic ---
 	
 	public static Block registerBlock(String name, float strength, float resistance, BlockSoundGroup sound) {
-		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound)), List.of(), Models.CUBE_ALL);
+		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound)), List.of(), BlockModels.CUBE_ALL);
 	}
 	
 	public static Block registerBlock(String name, float strength, float resistance, BlockSoundGroup sound, List<TagKey<Block>> tags) {
-		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound).requiresTool()), tags, Models.CUBE_ALL);
+		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound).requiresTool()), tags, BlockModels.CUBE_ALL);
 	}
 	
 	public static Block registerBlock(String name, float strength, float resistance, BlockSoundGroup sound, TagKey<Block> tag) {
-		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound).requiresTool()), List.of(tag), Models.CUBE_ALL);
+		return registerBlock(name, new Block(AbstractBlock.Settings.create().strength(strength, resistance).sounds(sound).requiresTool()), List.of(tag), BlockModels.CUBE_ALL);
 	}
 	
-	public static Block registerBlock(String name, Block block, List<TagKey<Block>> tags, Models model) {
+	public static Block registerBlock(String name, Block block, List<TagKey<Block>> tags, BlockModels model) {
 		Identifier id = Rase.getIdentifier(name);
 		
 		// Register Block and Item
@@ -211,9 +205,9 @@ public class ModBlocks {
 	public static SmithingAnvilBlockSet registerSmithingAnvilBlockSet(SmithingAnvilMaterials material) {
 		String name = material.getName();
 		return new SmithingAnvilBlockSet(
-				(SmithingAnvilBlock) registerBlock(name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL),
-				(SmithingAnvilBlock) registerBlock("chipped_" + name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL),
-				(SmithingAnvilBlock) registerBlock("damaged_" + name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), Models.ANVIL)
+				(SmithingAnvilBlock) registerBlock(name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), BlockModels.ANVIL),
+				(SmithingAnvilBlock) registerBlock("chipped_" + name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), BlockModels.ANVIL),
+				(SmithingAnvilBlock) registerBlock("damaged_" + name + "_anvil", new SmithingAnvilBlock(AbstractBlock.Settings.copy(Blocks.ANVIL), material), List.of(BlockTags.ANVIL), BlockModels.ANVIL)
 		);
 	}
 	
@@ -232,84 +226,117 @@ public class ModBlocks {
 	
 	// --- Model Enumeration Logic ---
 	
-	public enum Models {
+	public enum BlockModels {
 		CUBE_ALL(BlockStateModelGenerator::registerSimpleCubeAll),
 		ORIENTABLE((generator, block) -> generator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE)),
 		ORIENTABLE_WITH_BOTTOM((generator, block) -> generator.registerNorthDefaultHorizontalRotated(block, TexturedModel.ORIENTABLE_WITH_BOTTOM)),
+		ORIENTABLE_3D((generator, block) -> registerOrientable3D(generator, block, false)),
+		ORIENTABLE_3D_WITH_BOTTOM((generator, block) -> registerOrientable3D(generator, block, true)),
+		MOTOR((generator, block) -> {
+			Identifier id = Registries.BLOCK.getId(block);
+			String ns = id.getNamespace();
+			String path = id.getPath();
+			
+			TextureMap inactiveTextures = new TextureMap()
+					.put(TextureKey.PARTICLE, Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.UP,       Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.DOWN,     Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.NORTH,    Identifier.of(ns, "block/" + path + "_top"))
+					.put(TextureKey.SOUTH,    Identifier.of(ns, "block/" + path + "_bottom"))
+					.put(TextureKey.EAST,     Identifier.of(ns, "block/" + path + "_side_rotated"))
+					.put(TextureKey.WEST,     Identifier.of(ns, "block/" + path + "_side_rotated"));
+			
+			TextureMap activeTextures = new TextureMap()
+					.put(TextureKey.PARTICLE, Identifier.of(ns, "block/" + path + "_side_active"))
+					.put(TextureKey.UP,       Identifier.of(ns, "block/" + path + "_side_active"))
+					.put(TextureKey.DOWN,     Identifier.of(ns, "block/" + path + "_side_active"))
+					.put(TextureKey.NORTH,    Identifier.of(ns, "block/" + path + "_top_active"))
+					.put(TextureKey.SOUTH,    Identifier.of(ns, "block/" + path + "_bottom"))
+					.put(TextureKey.EAST,     Identifier.of(ns, "block/" + path + "_side_active_rotated"))
+					.put(TextureKey.WEST,     Identifier.of(ns, "block/" + path + "_side_active_rotated"));
+			
+			Identifier modelId = Models.CUBE.upload(block, inactiveTextures, generator.modelCollector);
+			Identifier activeModelId = Models.CUBE.upload(block, "_active", activeTextures, generator.modelCollector);
+			
+			var variants = BlockStateVariantMap.create(MotorBlock.FACING, MotorBlock.ACTIVE);
+			for (Direction dir : Direction.values()) {
+				variants.register(dir, false, createRotatedVariant(modelId, dir));
+				variants.register(dir, true,  createRotatedVariant(activeModelId, dir));
+			}
+			
+			generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(variants));
+			generator.registerParentedItemModel(block, modelId);
+		}),
 		COOKER((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE)),
 		COOKER_WITH_BOTTOM((generator, block) -> generator.registerCooker(block, TexturedModel.ORIENTABLE_WITH_BOTTOM)),
 		ANVIL((generator, block) -> {
 			TextureKey BODY = TextureKey.of("body");
 			TextureKey TOP = TextureKey.of("top");
-			Identifier blockId = Registries.BLOCK.getId(block);
-			String path = blockId.getPath();
+			Identifier id = Registries.BLOCK.getId(block);
+			String ns = id.getNamespace();
+			String cleanPath = id.getPath().replace("chipped_", "").replace("damaged_", "");
 			
 			TextureMap textures = new TextureMap()
-					.put(BODY, Identifier.of(blockId.getNamespace(), "block/" + path.replace("chipped_", "").replace("damaged_", "")))
-					.put(TOP, Identifier.of(blockId.getNamespace(), "block/" + path + "_top"));
+					.put(BODY, Identifier.of(ns, "block/" + cleanPath))
+					.put(TOP,  Identifier.of(ns, "block/" + id.getPath() + "_top"));
 			
 			Model model = new Model(Optional.of(Identifier.of("minecraft", "block/anvil")), Optional.empty(), BODY, TOP);
 			Identifier modelId = model.upload(block, textures, generator.modelCollector);
+			
 			generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block, BlockStateVariant.create().put(VariantSettings.MODEL, modelId))
 					.coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates()));
 		}),
 		WORKBENCH((generator, block) -> {
-			Identifier blockId = Registries.BLOCK.getId(block);
-			String ns = blockId.getNamespace();
-			String path = blockId.getPath();
+			Identifier id = Registries.BLOCK.getId(block);
+			String ns = id.getNamespace();
+			String path = id.getPath();
 			
 			TextureMap textures = new TextureMap()
-					.put(TextureKey.TOP,    Identifier.of(ns, "block/" + path + "_top"))
-					.put(TextureKey.BOTTOM, Identifier.of(ns, "block/" + path + "_bottom"))
-					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.TOP,      Identifier.of(ns, "block/" + path + "_top"))
+					.put(TextureKey.BOTTOM,   Identifier.of(ns, "block/" + path + "_bottom"))
+					.put(TextureKey.SIDE,     Identifier.of(ns, "block/" + path + "_side"))
 					.put(TextureKey.PARTICLE, Identifier.of(ns, "block/" + path + "_side"));
 			
-			Identifier modelId = net.minecraft.data.client.Models.CUBE_BOTTOM_TOP.upload(block, textures, generator.modelCollector);
+			Identifier modelId = Models.CUBE_BOTTOM_TOP.upload(block, textures, generator.modelCollector);
 			generator.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(block, modelId));
 			generator.registerParentedItemModel(block, modelId);
 		}),
 		BASKET((generator, block) -> {
-			Identifier blockId = Registries.BLOCK.getId(block);
-			String ns = blockId.getNamespace();
-			String path = blockId.getPath();
+			Identifier id = Registries.BLOCK.getId(block);
+			String ns = id.getNamespace();
+			String path = id.getPath();
 			
 			Identifier closedModel = Identifier.of(ns, "block/" + path);
 			Identifier openModel   = Identifier.of(ns, "block/" + path + "_open");
 			
-			generator.blockStateCollector.accept(
-					VariantsBlockStateSupplier.create(block)
-							.coordinate(BlockStateVariantMap.create(BasketBlock.OPEN)
-									.register(false, BlockStateVariant.create()
-											.put(VariantSettings.MODEL, closedModel))
-									.register(true,  BlockStateVariant.create()
-											.put(VariantSettings.MODEL, openModel)))
+			generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block)
+					.coordinate(BlockStateVariantMap.create(BasketBlock.OPEN)
+							.register(false, BlockStateVariant.create().put(VariantSettings.MODEL, closedModel))
+							.register(true,  BlockStateVariant.create().put(VariantSettings.MODEL, openModel)))
 			);
 			
-			// Upload both models (cube with different top textures)
-			TextureMap closedTextures = new TextureMap()
+			Models.CUBE_BOTTOM_TOP.upload(closedModel, new TextureMap()
 					.put(TextureKey.ALL,    Identifier.of(ns, "block/" + path))
 					.put(TextureKey.TOP,    Identifier.of(ns, "block/" + path + "_top"))
 					.put(TextureKey.BOTTOM, Identifier.of(ns, "block/" + path + "_bottom"))
-					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side"));
-			TextureMap openTextures = new TextureMap()
+					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side")), generator.modelCollector);
+			
+			Models.CUBE_BOTTOM_TOP.upload(openModel, new TextureMap()
 					.put(TextureKey.ALL,    Identifier.of(ns, "block/" + path))
 					.put(TextureKey.TOP,    Identifier.of(ns, "block/" + path + "_top_open"))
 					.put(TextureKey.BOTTOM, Identifier.of(ns, "block/" + path + "_bottom"))
-					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side"));
-			
-			net.minecraft.data.client.Models.CUBE_BOTTOM_TOP.upload(closedModel, closedTextures, generator.modelCollector);
-			net.minecraft.data.client.Models.CUBE_BOTTOM_TOP.upload(openModel,   openTextures,   generator.modelCollector);
+					.put(TextureKey.SIDE,   Identifier.of(ns, "block/" + path + "_side")), generator.modelCollector);
 		}),
 		SCAFFOLDING((generator, block) -> {
-			Identifier blockId = Registries.BLOCK.getId(block);
-			String path = blockId.getPath();
-			String namespace = blockId.getNamespace();
+			Identifier id = Registries.BLOCK.getId(block);
+			String ns = id.getNamespace();
+			String path = id.getPath();
 			
 			TextureMap textures = new TextureMap()
-					.put(TextureKey.PARTICLE, Identifier.of(namespace, "block/" + path + "_top"))
-					.put(TextureKey.TOP,      Identifier.of(namespace, "block/" + path + "_top"))
-					.put(TextureKey.BOTTOM,   Identifier.of(namespace, "block/" + path + "_bottom"))
-					.put(TextureKey.SIDE,     Identifier.of(namespace, "block/" + path + "_side"));
+					.put(TextureKey.PARTICLE, Identifier.of(ns, "block/" + path + "_top"))
+					.put(TextureKey.TOP,      Identifier.of(ns, "block/" + path + "_top"))
+					.put(TextureKey.BOTTOM,   Identifier.of(ns, "block/" + path + "_bottom"))
+					.put(TextureKey.SIDE,     Identifier.of(ns, "block/" + path + "_side"));
 			
 			Model scaffoldingParent = new Model(
 					Optional.of(Identifier.of("minecraft", "block/scaffolding_stable")),
@@ -319,14 +346,59 @@ public class ModBlocks {
 			
 			Identifier modelId = scaffoldingParent.upload(block, textures, generator.modelCollector);
 			generator.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(block, modelId));
-			
 			generator.registerParentedItemModel(block, modelId);
-		}),;
+		});
 		
 		private final BiConsumer<BlockStateModelGenerator, Block> generator;
-		Models(BiConsumer<BlockStateModelGenerator, Block> generator) { this.generator = generator; }
-		public void generate(BlockStateModelGenerator gen, Block block) { this.generator.accept(gen, block); }
-		public void generate(BlockStateModelGenerator gen, List<Block> blocks) { blocks.forEach(block -> generate(gen, block));}
+		
+		BlockModels(BiConsumer<BlockStateModelGenerator, Block> generator) {
+			this.generator = generator;
+		}
+		
+		public void generate(BlockStateModelGenerator gen, Block block) {
+			this.generator.accept(gen, block);
+		}
+		
+		public void generate(BlockStateModelGenerator gen, List<Block> blocks) {
+			blocks.forEach(block -> generate(gen, block));
+		}
+		
+		private static void registerOrientable3D(BlockStateModelGenerator generator, Block block, boolean withBottom) {
+			Identifier id = Registries.BLOCK.getId(block);
+			String ns = id.getNamespace();
+			String path = id.getPath();
+			
+			TextureMap textures = new TextureMap()
+					.put(TextureKey.PARTICLE, Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.UP,        Identifier.of(ns, "block/" + path + "_top"))
+					.put(TextureKey.DOWN,      Identifier.of(ns, "block/" + path + (withBottom ? "_bottom" : "_top")))
+					.put(TextureKey.NORTH,     Identifier.of(ns, "block/" + path + "_front"))
+					.put(TextureKey.SOUTH,     Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.EAST,      Identifier.of(ns, "block/" + path + "_side"))
+					.put(TextureKey.WEST,      Identifier.of(ns, "block/" + path + "_side"));
+			
+			Identifier modelId = Models.CUBE.upload(block, textures, generator.modelCollector);
+			
+			var variants = BlockStateVariantMap.create(Properties.FACING);
+			for (Direction dir : Direction.values()) {
+				variants.register(dir, createRotatedVariant(modelId, dir));
+			}
+			
+			generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(variants));
+			generator.registerParentedItemModel(block, modelId);
+		}
+		private static BlockStateVariant createRotatedVariant(Identifier modelId, Direction direction) {
+			BlockStateVariant variant = BlockStateVariant.create().put(VariantSettings.MODEL, modelId);
+			switch (direction) {
+				case SOUTH -> variant.put(VariantSettings.Y, VariantSettings.Rotation.R180);
+				case WEST  -> variant.put(VariantSettings.Y, VariantSettings.Rotation.R270);
+				case EAST  -> variant.put(VariantSettings.Y, VariantSettings.Rotation.R90);
+				case UP    -> variant.put(VariantSettings.X, VariantSettings.Rotation.R270);
+				case DOWN  -> variant.put(VariantSettings.X, VariantSettings.Rotation.R90);
+				default    -> {} // NORTH requires no rotation adjustments
+			}
+			return variant;
+		}
 	}
 	
 	public static void registerModBlocks() {

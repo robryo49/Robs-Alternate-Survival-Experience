@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-06T17:03:14.0093875	Rob's Alternate Survival Experience/
+// 1.21.1	2026-06-08T12:20:03.818922	Rob's Alternate Survival Experience/
 196bc258e33fa727a90fa26f8774e1988b9e63ff data\rase\worldgen\configured_feature\iron_ore.json
 7369c65ebf9990369b9f3a81eba8443f58eaf063 data\rase\worldgen\placed_feature\mithril_ore.json
 694290d43e7848f22639b4c53a63163fe7453d25 data\rase\worldgen\placed_feature\diamond_ore.json
@@ -7,8 +7,8 @@
 2dbe9802b70cbf4720239c3b4defd9faa170526f data\rase\worldgen\placed_feature\platinum_ore.json
 1ce389dc3fc7b17caafaa7aa679448e60668a802 data\rase\worldgen\configured_feature\tin_ore.json
 f9fb1d6b271f71548c6af0e9d7c190c129d6618b data\rase\worldgen\configured_feature\platinum_ore.json
-f40af5daf0dd75cd99b8eab6e92bdab2004aea40 data\rase\worldgen\configured_feature\lead_ore.json
 117915eac7fef4f8669640c9eaff5ea9cccff180 data\rase\worldgen\configured_feature\palladium_ore.json
+f40af5daf0dd75cd99b8eab6e92bdab2004aea40 data\rase\worldgen\configured_feature\lead_ore.json
 7afe7c58215c0aa05a007b4f58b805777baf0ff8 data\rase\worldgen\configured_feature\emerald_ore.json
 434c5b2601ab9b281be8bf7f25de95c77300eac8 data\rase\worldgen\placed_feature\cobalt_ore.json
 aba8759c25b4f85fb83f6a43d20a678fbb317f3a data\rase\worldgen\placed_feature\palladium_ore.json
@@ -24,8 +24,8 @@ ffcc0f09cc6fc97f5620a960d8e3bb3e5fd772a9 data\rase\worldgen\configured_feature\s
 487bf483a19775c67f2432ab0b0ac207752e4876 data\rase\worldgen\placed_feature\gold_ore.json
 23ebea9d3c2bda8fa53c06caf2ff8356dcdb36b1 data\rase\worldgen\configured_feature\tungsten_ore.json
 cd35d13098b6e9b244fddf6a9188c38000fbddb2 data\rase\worldgen\placed_feature\rhexis_ore.json
-7427461c68b70656d7b59c72c22bc6703b415406 data\rase\worldgen\placed_feature\tin_ore.json
 703116d2a2cd4709afd54584572a7312d0d1db06 data\rase\worldgen\placed_feature\coal_ore.json
+7427461c68b70656d7b59c72c22bc6703b415406 data\rase\worldgen\placed_feature\tin_ore.json
 10593be13195bb57ef9c8cef666055583254f46a data\rase\worldgen\configured_feature\gold_ore.json
 7292e061a67f944ae511448f9b43e77233130f95 data\rase\worldgen\placed_feature\lapis_ore.json
 cda36f3a3b30f4a972293178858c0c91eec53b71 data\rase\worldgen\placed_feature\copper_ore.json

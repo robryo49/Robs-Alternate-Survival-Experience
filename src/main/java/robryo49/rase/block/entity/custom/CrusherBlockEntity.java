@@ -13,7 +13,6 @@ import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import robryo49.rase.block.custom.CrusherBlock;
@@ -39,13 +38,17 @@ public class CrusherBlockEntity extends BlockEntity {
 	public void tick(World world, BlockPos pos, BlockState state) {
 		if (world.isClient) return;
 		
+		boolean motorActive = CrusherBlock.hasActiveMotor(world, pos, state);
 		boolean hasInput = !inputItem.isEmpty();
 		boolean hasOutput = !outputItem.isEmpty();
 		
-		if (hasOutput || !hasInput) {
-			if (state.get(CrusherBlock.CRUSHING)) {
-				world.setBlockState(pos, state.with(CrusherBlock.CRUSHING, false), 2);
-			}
+		// Update CRUSHING visual state based on whether we're actually working
+		boolean shouldBeCrushing = motorActive && hasInput && !hasOutput;
+		if (state.get(CrusherBlock.CRUSHING) != shouldBeCrushing) {
+			world.setBlockState(pos, state.with(CrusherBlock.CRUSHING, shouldBeCrushing), 2);
+		}
+		
+		if (hasOutput || !hasInput || !motorActive) {
 			if (!hasInput) {
 				crushingTime = 0;
 			}
@@ -58,17 +61,10 @@ public class CrusherBlockEntity extends BlockEntity {
 					.orElse(null);
 			
 			if (recipe == null) {
-				if (state.get(CrusherBlock.CRUSHING)) {
-					world.setBlockState(pos, state.with(CrusherBlock.CRUSHING, false), 2);
-				}
 				return;
 			}
 			
 			crushingTimeTotal = recipe.value().crushingTime();
-		}
-		
-		if (!state.get(CrusherBlock.CRUSHING)) {
-			world.setBlockState(pos, state.with(CrusherBlock.CRUSHING, true), 2);
 		}
 		
 		crushingTime++;

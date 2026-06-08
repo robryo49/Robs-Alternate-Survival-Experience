@@ -1,8 +1,12 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "front": "rase:block/mining_drill_front",
-    "side": "rase:block/mining_drill_side",
-    "top": "rase:block/mining_drill_top"
+    "down": "rase:block/mining_drill_bottom",
+    "east": "rase:block/mining_drill_side",
+    "north": "rase:block/mining_drill_front",
+    "particle": "rase:block/mining_drill_side",
+    "south": "rase:block/mining_drill_side",
+    "up": "rase:block/mining_drill_top",
+    "west": "rase:block/mining_drill_side"
   }
 }

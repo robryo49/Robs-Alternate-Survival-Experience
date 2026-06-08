@@ -23,9 +23,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import robryo49.rase.block.custom.MiningDrillBlock;
 import robryo49.rase.block.entity.ModBlockEntities;
-import robryo49.rase.item.ModToolMaterials;
 import robryo49.rase.util.ModBlockTags;
-import robryo49.rase.util.ModItemTags;
 
 import java.util.List;
 
@@ -45,6 +43,7 @@ public class MiningDrillBlockEntity extends BlockEntity {
 	public void tick(World world, BlockPos pos, BlockState state) {
 		if (world.isClient) return;
 		
+		// ACTIVE is set by MiningDrillBlock.neighborUpdate when the motor behind it changes
 		if (!state.get(MiningDrillBlock.ACTIVE)) {
 			if (miningProgress > 0f) {
 				miningProgress = Math.max(0f, miningProgress - 0.05f);
@@ -58,7 +57,8 @@ public class MiningDrillBlockEntity extends BlockEntity {
 		BlockPos targetPos = pos.offset(facing);
 		BlockState targetState = world.getBlockState(targetPos);
 		
-		if (targetState.isAir() || targetState.getHardness(world, targetPos) < 0 || targetState.isIn(ModBlockTags.INCORRECT_FOR_TIER_4_TOOLS)) {
+		if (targetState.isAir() || targetState.getHardness(world, targetPos) < 0
+				|| targetState.isIn(ModBlockTags.INCORRECT_FOR_TIER_4_TOOLS)) {
 			resetProgress(world, pos);
 			return;
 		}
@@ -80,7 +80,7 @@ public class MiningDrillBlockEntity extends BlockEntity {
 					sound.getVolume() * 0.6f, sound.getPitch() * 0.9f);
 		}
 		
-		int stage = Math.min((int)(miningProgress * 10f), 9);
+		int stage = Math.min((int) (miningProgress * 10f), 9);
 		world.setBlockBreakingInfo(pos.hashCode(), targetPos, stage);
 		
 		if (miningProgress >= 1f) {

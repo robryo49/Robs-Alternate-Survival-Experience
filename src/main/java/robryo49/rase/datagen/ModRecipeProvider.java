@@ -638,6 +638,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		offerShaped(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ETHEREAL_FORGE_CORE, 1,
 				Map.of('#', Ingredient.ofItems(ModBlocks.OBSIDIAN_BRICKS), 'o', Ingredient.ofItems(Blocks.COAL_BLOCK), 'b', Ingredient.ofItems(Blocks.IRON_BARS)),
 				List.of("#b#", "bob", "#b#"),  ModBlocks.OBSIDIAN_BRICKS);
+		
+		offerWorkbench(exporter, RecipeCategory.REDSTONE, ModItems.COPPER_COIL, 1,
+				Map.of('i', Ingredient.ofItems(Items.IRON_INGOT), 'c', Ingredient.ofItems(Items.COPPER_INGOT)),
+				List.of("cic", "cic"), Items.COPPER_INGOT);
+		offerWorkbench(exporter, RecipeCategory.REDSTONE, ModBlocks.MOTOR, 1,
+				Map.of('#', Ingredient.ofItems(Blocks.COBBLESTONE), 'c', Ingredient.ofItems(ModItems.COPPER_COIL), 'm', Ingredient.ofItems(ModBlocks.MAGNETITE.BLOCK())),
+				List.of("c#c", "#m#", "c#c"), Items.COBBLESTONE);
 	}
 	
 	private void generateShapelessRecipes(RecipeExporter exporter) {
@@ -677,6 +684,46 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		replaceShaped(exporter, "barrel", RecipeCategory.MISC, Items.BARREL, 1,
 				Map.of('#', Ingredient.fromTag(ItemTags.PLANKS), 'i', Ingredient.ofItems(Items.IRON_INGOT), 's', Ingredient.fromTag(ItemTags.WOODEN_SLABS)),
 				List.of("#s#", "i i", "#s#"), Items.IRON_INGOT);
+		
+		replaceShaped(exporter, "rail", RecipeCategory.BUILDING_BLOCKS, Items.RAIL, 8,
+				Map.of('/', Ingredient.ofItems(Items.STICK), '#', Ingredient.ofItems(Items.IRON_INGOT)), List.of("/ /", "/#/", "# #"), Items.IRON_INGOT);
+		replaceShaped(exporter, "iron_bars", RecipeCategory.BUILDING_BLOCKS, Items.IRON_BARS, 8,
+				Map.of('#', Ingredient.ofItems(Items.IRON_INGOT)), List.of("###", "###"), Items.IRON_INGOT);
+		replaceShaped(exporter, "glass_pane", RecipeCategory.BUILDING_BLOCKS, Items.GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.GLASS)), List.of("###", "###"), Items.GLASS);
+		
+		replaceShaped(exporter, "lime_stained_glass_pane",                  RecipeCategory.BUILDING_BLOCKS, Items.LIME_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.LIME_STAINED_GLASS)),                  List.of("###", "###"), Items.LIME_STAINED_GLASS);
+		replaceShaped(exporter, "pink_stained_glass_pane",                  RecipeCategory.BUILDING_BLOCKS, Items.PINK_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.PINK_STAINED_GLASS)),                  List.of("###", "###"), Items.PINK_STAINED_GLASS);
+		replaceShaped(exporter, "green_stained_glass_pane",                 RecipeCategory.BUILDING_BLOCKS, Items.GREEN_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.GREEN_STAINED_GLASS)),                 List.of("###", "###"), Items.GREEN_STAINED_GLASS);
+		replaceShaped(exporter, "light_gray_stained_glass_pane",            RecipeCategory.BUILDING_BLOCKS, Items.LIGHT_GRAY_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.LIGHT_GRAY_STAINED_GLASS)),            List.of("###", "###"), Items.LIGHT_GRAY_STAINED_GLASS);
+		replaceShaped(exporter, "cyan_stained_glass_pane",                  RecipeCategory.BUILDING_BLOCKS, Items.CYAN_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.CYAN_STAINED_GLASS)),                  List.of("###", "###"), Items.CYAN_STAINED_GLASS);
+		replaceShaped(exporter, "red_stained_glass_pane",                   RecipeCategory.BUILDING_BLOCKS, Items.RED_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.RED_STAINED_GLASS)),                   List.of("###", "###"), Items.RED_STAINED_GLASS);
+		replaceShaped(exporter, "gray_stained_glass_pane",                  RecipeCategory.BUILDING_BLOCKS, Items.GRAY_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.GRAY_STAINED_GLASS)),                  List.of("###", "###"), Items.GRAY_STAINED_GLASS);
+		replaceShaped(exporter, "brown_stained_glass_pane",                 RecipeCategory.BUILDING_BLOCKS, Items.BROWN_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.BROWN_STAINED_GLASS)),                 List.of("###", "###"), Items.BROWN_STAINED_GLASS);
+		replaceShaped(exporter, "purple_stained_glass_pane",                RecipeCategory.BUILDING_BLOCKS, Items.PURPLE_STAINED_GLASS_PANE, 8, 
+				Map.of('#', Ingredient.ofItems(Items.PURPLE_STAINED_GLASS)),                List.of("###", "###"), Items.PURPLE_STAINED_GLASS);
+		replaceShaped(exporter, "magenta_stained_glass_pane",               RecipeCategory.BUILDING_BLOCKS, Items.MAGENTA_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.MAGENTA_STAINED_GLASS)),               List.of("###", "###"), Items.MAGENTA_STAINED_GLASS);
+		replaceShaped(exporter, "black_stained_glass_pane",                 RecipeCategory.BUILDING_BLOCKS, Items.BLACK_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.BLACK_STAINED_GLASS)),                 List.of("###", "###"), Items.BLACK_STAINED_GLASS);
+		replaceShaped(exporter, "white_stained_glass_pane",                 RecipeCategory.BUILDING_BLOCKS, Items.WHITE_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.WHITE_STAINED_GLASS)),                 List.of("###", "###"), Items.WHITE_STAINED_GLASS);
+		replaceShaped(exporter, "light_blue_stained_glass_pane",            RecipeCategory.BUILDING_BLOCKS, Items.LIGHT_BLUE_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.LIGHT_BLUE_STAINED_GLASS)),            List.of("###", "###"), Items.LIGHT_BLUE_STAINED_GLASS);
+		replaceShaped(exporter, "yellow_stained_glass_pane",                RecipeCategory.BUILDING_BLOCKS, Items.YELLOW_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.YELLOW_STAINED_GLASS)),                List.of("###", "###"), Items.YELLOW_STAINED_GLASS);
+		replaceShaped(exporter, "orange_stained_glass_pane",                RecipeCategory.BUILDING_BLOCKS, Items.ORANGE_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.ORANGE_STAINED_GLASS)),                List.of("###", "###"), Items.ORANGE_STAINED_GLASS);
+		replaceShaped(exporter, "blue_stained_glass_pane",                  RecipeCategory.BUILDING_BLOCKS, Items.BLUE_STAINED_GLASS_PANE, 8,
+				Map.of('#', Ingredient.ofItems(Items.BLUE_STAINED_GLASS)),                  List.of("###", "###"), Items.BLUE_STAINED_GLASS);
 		
 	}
 	

@@ -188,6 +188,7 @@ public class ModItems {
 	public static final Item FLOUR = registerItem("flour");
 	public static final Item DOUGH = registerItem("dough");
 	
+	public static final Item COPPER_COIL = registerItem("copper_coil");
 	
 	// --- HELPER RECORDS ---
 	

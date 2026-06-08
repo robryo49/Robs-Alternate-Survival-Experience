@@ -29,7 +29,6 @@ public class CrusherBlock extends BlockWithEntity {
 	public static final BooleanProperty CRUSHING = BooleanProperty.of("crushing");
 	public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
 	
-	
 	public CrusherBlock(Settings settings) {
 		super(settings);
 		setDefaultState(stateManager.getDefaultState()
@@ -50,6 +49,16 @@ public class CrusherBlock extends BlockWithEntity {
 		return getDefaultState()
 				.with(FACING, ctx.getHorizontalPlayerFacing().getOpposite())
 				.with(CRUSHING, false);
+	}
+	
+	public static boolean hasActiveMotor(World world, BlockPos pos, BlockState state) {
+		BlockPos motorPos = pos.offset(Direction.DOWN);
+		return MotorBlock.isActiveMotorFacing(world, motorPos, Direction.UP);
+	}
+	
+	@Override
+	protected void neighborUpdate(BlockState state, World world, BlockPos pos,
+	                              Block sourceBlock, BlockPos sourcePos, boolean notify) {
 	}
 	
 	@Override

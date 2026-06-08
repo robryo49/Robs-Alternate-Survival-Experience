@@ -1,6 +1,6 @@
-// 1.21.1	2026-06-06T17:03:14.0038913	Rob's Alternate Survival Experience/Tags for minecraft:item
-d68ed06b9718e0e5588e39a59e1fb52750b6cec0 data\rase\tags\item\hoe_head_molds.json
+// 1.21.1	2026-06-08T12:20:03.8159311	Rob's Alternate Survival Experience/Tags for minecraft:item
 d90ba61d19b7963c5dc042b9489c3057cad279b5 data\minecraft\tags\item\leg_armor.json
+d68ed06b9718e0e5588e39a59e1fb52750b6cec0 data\rase\tags\item\hoe_head_molds.json
 35418a34f33b4d192681865cfbb277dd9a706be2 data\minecraft\tags\item\hoes.json
 da3c795b3e307554595b65635b4ac18557e26060 data\rase\tags\item\shovel_head_molds.json
 52447869b5f667bc9c7f62721f191c1e1a757dd5 data\minecraft\tags\item\shovels.json
@@ -18,8 +18,8 @@ a8c4488c474e835c41009b79878164067e2139ec data\rase\tags\item\hoe_heads.json
 c7a169b819e5dcc763a6da5499baf66f84eab626 data\minecraft\tags\item\swords.json
 961eb6f71ab40eb60e86eff1cfdf8be0d1f5f5e2 data\rase\tags\item\axe_heads.json
 78f677e71ac06532e6054120c8e3c7aac17503ba data\rase\tags\item\ingot_molds.json
-1bc605a22e243808c689498b078fd1634e5eec78 data\rase\tags\item\axe_head_molds.json
 f4725bff677e5cfe2b4602c4ac65e754c9fd0410 data\rase\tags\item\pickaxe_head_molds.json
+1bc605a22e243808c689498b078fd1634e5eec78 data\rase\tags\item\axe_head_molds.json
 9c208d2c503649c25a206c97c05501ab158a41aa data\minecraft\tags\item\foot_armor.json
 d0c4196f75a457dafc39ab96abfbdb9c6920f594 data\rase\tags\item\primitive_tools.json
 387f2de947ad07b4585335927d4a4db9ce1a7324 data\minecraft\tags\item\pickaxes.json
